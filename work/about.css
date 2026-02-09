@@ -1,510 +1,627 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Manikya Chits</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
+/* ================= ROOT COLORS ================= */
+:root {
+  --green: #0b5c3b;
+  --green-light: #ecfdf5;
+}
 
-<!-- NAVBAR -->
-<header class="site-header">
-  <nav class="navbar">
-    <div class="nav-container">
-      
-      <!-- LOGO -->
-      <div class="logo">
-        <img src="assets/images/logo.svg" alt="Manikya Chits">
-      </div>
-        
-      <!-- HAMBURGER -->
-      <div class="hamburger" id="hamburger">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </div>
+/* ================= HEADER ================= */
+.site-header {
+  position: fixed;
+  top: 20px;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+}
 
-      <!-- MENU -->
-      <ul class="nav-menu" id="navMenu">
-        <li class="nav-item">
-          <a href="index.html" class="nav-link active">Home</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a href="about.html" class="nav-link">
-            About Us <i class="fas fa-chevron-down"></i>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="about.html">Company Overview</a></li>
-            <li><a href="management.html">Management</a></li>
-            <li><a href="career.html">Career</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a href="chitplan.html" class="nav-link">Chit Plans</a>
-        </li>
-        <li class="nav-item">
-          <a href="faq.html" class="nav-link">FAQ</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a href="contact.html" class="nav-link">
-            Contact Us <i class="fas fa-chevron-down"></i>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="contact.html">Contact Details</a></li>
-            <li><a href="branches.html">Branches</a></li>
-            <li><a href="feedback.html">Feedback</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</header>
+/* ================= NAVBAR ================= */
+.navbar {
+  width: 100%;
+}
 
-<!-- HERO SECTION -->
-<section class="hero">
-  <div class="hero-container">
-    <div class="hero-content">
-      <div class="hero-text">
-        <h1 class="hero-title">
-          Trusted by Thousands<br>
-          Approved by Government<br>
-          Driven by Technology
-        </h1>
-        <p class="hero-subtitle">Your Smart Savings Journey Begins with Manikya Chits.</p>
-        
-        <div class="hero-buttons">
-          <a href="assets/MANIKYA CHITS.pdf" target="_blank" class="btn btn-white">View gov certificate →</a>
-          <a href="chitplan.html" class="btn btn-dark">Chit Plans →</a>
-        </div>
-        
-        <div class="app-download">
-          <p class="app-label">Now available on</p>
-          <div class="store-buttons">
-            <a href="#" class="store-btn">
-              <img src="assets/images/plans/appstore.png" alt="App Store">
-            </a>
-            <a href="#" class="store-btn">
-              <img src="assets/images/plans/playstore.png" alt="Google Play Store">
-            </a>
-          </div>
-          <div class="app-features">
-            <span><i class="fas fa-check"></i> No paperwork</span>
-            <span><i class="fas fa-check"></i> Fast acceptance</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="hero-image">
-        <div class="image-container">
-          <img src="assets/images/image.png" alt="Manikya Chits App">
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+.nav-inner {
+  max-width: 1250px;
+  margin: auto;
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+}
 
-<!-- STATS SECTION -->
-<section class="stats-section">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-icon">
-          <i class="fas fa-users"></i>
-        </div>
-        <div class="stat-content">
-          <h3 class="stat-number">50+</h3>
-          <p class="stat-label">Active Groups</p>
-        </div>
-      </div>
-      
-      <div class="stat-card">
-        <div class="stat-icon">
-          <i class="fas fa-user-check"></i>
-        </div>
-        <div class="stat-content">
-          <h3 class="stat-number">1K+</h3>
-          <p class="stat-label">Subscribers</p>
-        </div>
-      </div>
-      
-      <div class="stat-card">
-        <div class="stat-icon">
-          <i class="fas fa-rupee-sign"></i>
-        </div>
-        <div class="stat-content">
-          <h3 class="stat-number">10CR+</h3>
-          <p class="stat-label">Transactions</p>
-        </div>
-      </div>
-      
-      <div class="stat-card">
-        <div class="stat-icon">
-          <i class="fas fa-building"></i>
-        </div>
-        <div class="stat-content">
-          <h3 class="stat-number">5+</h3>
-          <p class="stat-label">Branches</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+/* ================= LOGO ================= */
+.logo img {
+  height: 36px;
+  width: auto;
+}
 
-<!-- CHIT PLANS SECTION -->
-<section class="plans-section">
-  <div class="container">
-    <h2 class="section-title">Our Chit Plans are Simple, Transparent and Trustworthy</h2>
-    
-    <div class="plans-grid">
-      <!-- Plan Card 1 -->
-      <div class="plan-card">
-        <div class="plan-badge bronze">
-          <img src="assets/images/plans/2l.png" alt="2 Lakh Plan">
-        </div>
-        <div class="plan-content">
-          <h4>2 Lakh Chit Plan<span>/12 months</span></h4>
-          <p class="plan-desc">Invest ₹16,667 / Earn up to ₹3,333 dividend / month</p>
-          <a href="#" class="plan-btn" onclick="openModal(event)">View Details →</a>
-        </div>
-      </div>
-      
-      <!-- Plan Card 2 -->
-      <div class="plan-card">
-        <div class="plan-badge bronze">
-          <img src="assets/images/plans/3l.png" alt="3 Lakh Plan">
-        </div>
-        <div class="plan-content">
-          <h4>3 Lakh Chit Plan<span>/25 months</span></h4>
-          <p class="plan-desc">Invest ₹12,000 / Earn up to ₹3,000 dividend / month</p>
-          <a href="#" class="plan-btn" onclick="openModal(event)">View Details →</a>
-        </div>
-      </div>
-      
-      <!-- Plan Card 3 -->
-      <div class="plan-card">
-        <div class="plan-badge bronze">
-          <img src="assets/images/plans/5l.png" alt="5 Lakh Plan">
-        </div>
-        <div class="plan-content">
-          <h4>5 Lakh Chit Plan<span>/40 months</span></h4>
-          <p class="plan-desc">Invest ₹12,500 / Earn up to ₹4,375 dividend / month</p>
-          <a href="#" class="plan-btn" onclick="openModal(event)">View Details →</a>
-        </div>
-      </div>
-      
-      <!-- Plan Card 4 -->
-      <div class="plan-card">
-        <div class="plan-badge silver">
-          <img src="assets/images/plans/10l.png" alt="10 Lakh Plan">
-        </div>
-        <div class="plan-content">
-          <h4>10 Lakh Chit Plan<span>/30 months</span></h4>
-          <p class="plan-desc">Invest ₹33,333 / Earn up to ₹8,333 dividend / month</p>
-          <a href="#" class="plan-btn" onclick="openModal(event)">View Details →</a>
-        </div>
-      </div>
-      
-      <!-- Plan Card 5 -->
-      <div class="plan-card">
-        <div class="plan-badge silver">
-          <img src="assets/images/plans/15l.png" alt="15 Lakh Plan">
-        </div>
-        <div class="plan-content">
-          <h4>15 Lakh Chit Plan<span>/40 months</span></h4>
-          <p class="plan-desc">Invest ₹37,500 / Earn up to ₹13,125 dividend / month</p>
-          <a href="#" class="plan-btn" onclick="openModal(event)">View Details →</a>
-        </div>
-      </div>
-      
-      <!-- Plan Card 6 -->
-      <div class="plan-card">
-        <div class="plan-badge gold">
-          <img src="assets/images/plans/25l.png" alt="25 Lakh Plan">
-        </div>
-        <div class="plan-content">
-          <h4>25 Lakh Chit Plan<span>/40 months</span></h4>
-          <p class="plan-desc">Invest ₹62,500 / Earn up to ₹21,875 dividend / month</p>
-          <a href="#" class="plan-btn" onclick="openModal(event)">View Details →</a>
-        </div>
-      </div>
-      
-      <!-- Plan Card 7 -->
-      <div class="plan-card">
-        <div class="plan-badge gold">
-          <img src="assets/images/plans/50l.png" alt="50 Lakh Plan">
-        </div>
-        <div class="plan-content">
-          <h4>50 Lakh Chit Plan<span>/25 months</span></h4>
-          <p class="plan-desc">Invest ₹2,00,000 / Earn up to ₹50,000 dividend / month</p>
-          <a href="#" class="plan-btn" onclick="openModal(event)">View Details →</a>
-        </div>
-      </div>
-      
-      <!-- Plan Card 8 -->
-      <div class="plan-card">
-        <div class="plan-badge gold">
-          <img src="assets/images/plans/1cr.png" alt="1 Crore Plan">
-        </div>
-        <div class="plan-content">
-          <h4>1 Crore Chit Plan<span>/40 months</span></h4>
-          <p class="plan-desc">Invest ₹2,50,000 / Earn up to ₹87,500 dividend / month</p>
-          <a href="#" class="plan-btn" onclick="openModal(event)">View Details →</a>
-        </div>
-      </div>
-    </div>
-    
-    <div class="plan-cta">
-      <a href="contact.html" class="btn-outline">Personalize your chit plan →</a>
-      <a href="chitplan.html" class="btn-primary">Find all scheme →</a>
-    </div>
-  </div>
-</section>
+/* ================= MENU ================= */
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-left: auto;
+  list-style: none;
+  padding: 0;
+}
 
-<!-- MODAL -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal-container">
-    <button class="modal-close" onclick="closeModal()">&times;</button>
-    <div class="modal-content">
-      <h2>Get Personalized Assistance Now</h2>
-      <form class="modal-form" id="contactForm">
-        <div class="form-group">
-          <input type="tel" id="mobileInput" placeholder="Verify Mobile Number" required>
-          <div class="error-message" id="mobileError">Mobile number is required</div>
-        </div>
-        <div class="form-group">
-          <input type="text" id="nameInput" placeholder="Name" required>
-          <div class="error-message" id="nameError">Name is required</div>
-        </div>
-        <div class="form-group">
-          <input type="email" id="emailInput" placeholder="Email" required>
-          <div class="error-message" id="emailError">Email is required</div>
-        </div>
-        <button type="submit" class="btn-submit">Continue →</button>
-      </form>
-    </div>
-  </div>
-</div>
+.menu li {
+  list-style: none;
+  position: relative;
+}
 
-<!-- ABOUT SECTION -->
-<section class="about-section">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-content">
-        <h2 class="section-title">About Us</h2>
-        <p class="about-text">
-          Manikya Chits Private Limited is a government-approved chit fund company
-          that has been serving the community with trust and dedication since 2022.
-          Based in Sagara, Shivamogga district, Manikya Chits has quickly established
-          itself as a reliable financial partner for thousands of subscribers.
-          Our commitment to transparency, customer satisfaction, and financial
-          empowerment drives everything we do.
-        </p>
-        <a href="about.html" class="btn-about">Read More →</a>
-      </div>
-      <div class="about-image">
-        <img src="assets/images/image.png" alt="About Manikya Chits">
-      </div>
-    </div>
-  </div>
-</section>
+/* ================= LINKS ================= */
+.menu a {
+  text-decoration: none;
+  font-size: 15.5px;
+  font-weight: 500;
+  color: #374151;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.3s ease;
+}
 
-<!-- FEATURES SECTION -->
-<section class="features-section">
-  <div class="container">
-    <h2 class="section-title">Why Manikya Chits?</h2>
-    
-    <div class="features-grid">
-      <!-- Feature 1 -->
-      <div class="feature-card">
-        <div class="feature-icon">
-          <img src="assets/icons/chit-kart.svg" alt="Chit Kart">
-        </div>
-        <h4>Manikya Chit Fund – Your All-in-One Chit Fund Solution</h4>
-        <p>With our user-friendly Manikya Chit Fund platform, managing your account has never been easier. You can effortlessly track payments, bids, transactions, and your balance in real time.</p>
-      </div>
-      
-      <!-- Feature 2 -->
-      <div class="feature-card">
-        <div class="feature-icon">
-          <img src="assets/icons/transparency.svg" alt="Transparency">
-        </div>
-        <h4>100% Transparency, Total Control</h4>
-        <p>Manikya Chits is committed to full transparency, giving you clear access to all records and transactions. What you see is exactly what you get — with absolutely no hidden charges.</p>
-      </div>
-      
-      <!-- Feature 3 -->
-      <div class="feature-card">
-        <div class="feature-icon">
-          <img src="assets/icons/payment.svg" alt="Payment">
-        </div>
-        <h4>Multiple Payment Options for Convenience</h4>
-        <p>We support payments through UPI, Net Banking, and offline modes, giving you flexibility. All digital transactions are encrypted and secure.</p>
-      </div>
-      
-      <!-- Feature 4 -->
-      <div class="feature-card">
-        <div class="feature-icon">
-          <img src="assets/icons/compliant.svg" alt="Compliant">
-        </div>
-        <h4>Fully Compliant with the Chit Funds Act</h4>
-        <p>We strictly operate under Government of India guidelines and adhere to Karnataka Chit Fund Rules. Compliance and trust are hallmarks of our service.</p>
-      </div>
-      
-      <!-- Feature 5 -->
-      <div class="feature-card">
-        <div class="feature-icon">
-          <img src="assets/icons/online.svg" alt="Online">
-        </div>
-        <h4>End-to-End Online Services</h4>
-        <p>From joining a chit to bidding and receiving funds — everything can be done on your phone. The entire journey is fully digital and paperless.</p>
-      </div>
-      
-      <!-- Feature 6 -->
-      <div class="feature-card">
-        <div class="feature-icon">
-          <img src="assets/icons/eagreement.svg" alt="E-Agreement">
-        </div>
-        <h4>Secure E-Agreements at Your Fingertips</h4>
-        <p>All agreements are legally valid, digitally signed, and stored securely. You can access or download them anytime.</p>
-      </div>
-      
-      <!-- Feature 7 -->
-      <div class="feature-card">
-        <div class="feature-icon">
-          <img src="assets/icons/manager.svg" alt="Manager">
-        </div>
-        <h4>Dedicated Relationship Manager</h4>
-        <p>Each subscriber is assigned a relationship manager for personalized support throughout the chit lifecycle.</p>
-      </div>
-      
-      <!-- Feature 8 -->
-      <div class="feature-card">
-        <div class="feature-icon">
-          <img src="assets/icons/reminder.svg" alt="Reminder">
-        </div>
-        <h4>Never Miss a Due Date</h4>
-        <p>Stay updated with automated SMS alerts, app notifications, and email reminders to ensure timely payments.</p>
-      </div>
-      
-      <!-- Feature 9 -->
-      <div class="feature-card">
-        <div class="feature-icon">
-          <img src="assets/icons/support.svg" alt="Support">
-        </div>
-        <h4>Responsive Customer Support</h4>
-        <p>Our trained support team provides quick resolutions via app, call, or WhatsApp with multi-lingual assistance.</p>
-      </div>
-    </div>
-  </div>
-</section>
+.menu a:hover,
+.menu a.active {
+  color: var(--green);
+}
 
-<!-- APP SECTION -->
-<section class="app-section">
-  <div class="container">
-    <div class="app-card">
-      <div class="app-content">
-        <h2>Get the mobile app</h2>
-        <p class="app-powered">Powered by Manikya Chits</p>
-        
-        <div class="app-logo">
-          <img src="assets/images/logo.svg" alt="Manikya Chits">
-        </div>
-        
-        <h3>Smart Saving Starts Here.</h3>
-        
-        <p class="app-desc">
-          Download the Manikya Chits app to select your chit plans and enroll today.
-          With our mobile application, you can bid in e-auctions, track your accounts,
-          and make secure payments — all from your smartphone.
-        </p>
-        
-        <div class="app-stores">
-          <a href="#" class="store-link">
-            <img src="assets/images/plans/appstore.png" alt="App Store">
-          </a>
-          <a href="#" class="store-link">
-            <img src="assets/images/plans/playstore.png" alt="Google Play Store">
-          </a>
-        </div>
-        
-        <p class="app-note">Coming soon to Google Play Store</p>
-      </div>
-    </div>
-  </div>
-</section>
+.menu a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: var(--green);
+  transition: width 0.25s ease;
+}
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-col about-col">
-        <img src="assets/images/logo.svg" alt="Manikya Chits" class="footer-logo">
-        <p class="footer-about">
-          Manikya Chits Private Limited is a government-approved chit fund
-          company that has been serving the community with trust and dedication since 2022.
-        </p>
-        <address class="footer-address">
-          Sagara, Shivamogga District<br>
-          Karnataka, India
-        </address>
-        <div class="footer-contact">
-          <p><strong>Talk to Advisor:</strong> +91 7259201729</p>
-          <p><strong>Support:</strong> +91 7259201729</p>
-          <p><strong>E-Mail:</strong> manikyachitsprivatelimited@gmail.com</p>
-        </div>
-        <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-        </div>
-      </div>
-      
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul class="footer-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="management.html">Management</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul class="footer-links">
-          <li><a href="chitplan.html">Chit Plans</a></li>
-          <li><a href="branches.html">Branches</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-col">
-        <h4>Support</h4>
-        <ul class="footer-links">
-          <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="feedback.html">Suggestions / Feedback</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-col">
-        <h4>Resources</h4>
-        <ul class="footer-links">
-          <li><a href="assets/MANIKYA CHITS.pdf" target="_blank">Certificate</a></li>
-          <li><a href="terms.html">Terms & Conditions</a></li>
-          <li><a href="privacy.html">Privacy Policy</a></li>
-        </ul>
-      </div>
-    </div>
-    
-    <div class="footer-bottom">
-      <p>2025 © Manikya Chits Private Limited. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
+.menu a:hover::before,
+.menu a.active::before {
+  width: 100%;
+}
 
-<script src="main.js"></script>
-</body>
-</html>
+/* ================= DROPDOWN ================= */
+.nav-item {
+  position: relative;
+}
+
+.arrow {
+  font-size: 11px;
+  margin-left: 4px;
+}
+
+/* DROPDOWN BOX */
+.dropdown {
+  position: absolute;
+  top: 48px;
+  left: 0;
+  min-width: 220px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  padding: 10px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.25s ease;
+  z-index: 1000;
+  list-style: none;
+}
+
+/* REMOVE BULLETS */
+.dropdown li {
+  list-style: none;
+}
+
+/* DROPDOWN LINKS */
+.dropdown li a {
+  display: block;
+  padding: 12px 20px;
+  font-size: 14.5px;
+  color: #374151;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+
+.dropdown li a:hover {
+  background: var(--green-light);
+  color: var(--green);
+}
+
+/* SHOW DROPDOWN ON HOVER */
+.nav-item:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* ================= HAMBURGER ================= */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 8px;
+}
+
+.hamburger span {
+  width: 26px;
+  height: 3px;
+  background: var(--green);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Hamburger active (X icon) */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* ================= MOBILE MENU ================= */
+@media (max-width: 992px) {
+  .hamburger {
+    display: flex;
+    margin-left: auto;
+  }
+
+  .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #ffffff;
+    flex-direction: column;
+    padding: 90px 24px 24px;
+    display: none;
+    gap: 8px;
+    z-index: 10001;
+    overflow-y: auto;
+  }
+
+  .menu.active {
+    display: flex;
+  }
+
+  .menu li {
+    width: 100%;
+  }
+
+  .menu a {
+    padding: 14px 10px;
+    font-size: 16px;
+    display: block;
+    border-bottom: 1px solid #f1f1f1;
+  }
+
+  /* Mobile dropdown */
+  .dropdown {
+    position: static;
+    box-shadow: none;
+    border-radius: 0;
+    padding-left: 16px;
+    display: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    border-left: 2px solid var(--green);
+    margin-top: 10px;
+  }
+
+  .nav-item.active .dropdown {
+    display: block;
+  }
+
+  /* Disable hover dropdowns on mobile */
+  .nav-item:hover .dropdown {
+    display: none;
+  }
+}
+
+/* ================= ABOUT SECTION ================= */
+.about-section {
+  padding: 90px 20px;
+}
+
+.about-container {
+  max-width: 1150px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+/* LEFT TEXT */
+.about-text {
+  flex: 1;
+}
+
+.about-tag {
+  display: inline-block;
+  background: var(--green-light);
+  color: var(--green);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.about-text h1 {
+  font-size: 42px;
+  color: var(--green);
+  margin-bottom: 22px;
+}
+
+.about-text p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #374151;
+  margin-bottom: 16px;
+}
+
+/* RIGHT IMAGE */
+.about-image {
+  flex: 1;
+}
+
+.image-frame {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 14px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
+
+.image-frame img {
+  width: 100%;
+  border-radius: 16px;
+  display: block;
+}
+
+/* ================= MISSION & VISION ================= */
+.mv-section {
+  padding: 80px 20px;
+}
+
+.mv-container {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  gap: 30px;
+}
+
+.mv-card {
+  flex: 1;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 30px;
+  text-align: center;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.08);
+}
+
+.mv-icon {
+  width: 60px;
+  height: 60px;
+  background: var(--green-light);
+  color: var(--green);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  margin: 0 auto 18px;
+}
+
+.mv-card h3 {
+  font-size: 22px;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+
+.mv-card p {
+  font-size: 15.5px;
+  color: #374151;
+  line-height: 1.7;
+}
+
+/* ================= CORE VALUES ================= */
+.core-values-section {
+  padding: 80px 20px;
+}
+
+.core-title {
+  text-align: center;
+  font-size: 34px;
+  color: var(--green);
+  margin-bottom: 40px;
+}
+
+.core-card {
+  max-width: 1150px;
+  margin: auto;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 50px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.1);
+}
+
+.core-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.core-item {
+  text-align: center;
+  position: relative;
+}
+
+.core-number {
+  position: absolute;
+  top: -18px;
+  left: -10px;
+  font-size: 70px;
+  font-weight: 800;
+  color: rgba(11, 92, 59, 0.08);
+}
+
+.core-icon {
+  width: 48px;
+  margin-bottom: 12px;
+}
+
+.core-item h3 {
+  font-size: 18px;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+
+.core-item p {
+  font-size: 14.5px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+/* ================= MANAGEMENT SECTION ================= */
+.management-section {
+  padding: 90px 20px;
+}
+
+.management-title {
+  text-align: center;
+  font-size: 34px;
+  color: var(--green);
+  margin-bottom: 50px;
+}
+
+.management-container {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  gap: 60px;
+  align-items: center;
+}
+
+.management-text {
+  flex: 1;
+}
+
+.management-text p {
+  font-size: 15.5px;
+  line-height: 1.8;
+  color: #374151;
+  margin-bottom: 16px;
+}
+
+.director-quote {
+  background: var(--green-light);
+  padding: 20px;
+  border-radius: 14px;
+  margin-top: 20px;
+}
+
+.director-quote p {
+  font-style: italic;
+  margin-bottom: 8px;
+}
+
+.director-quote span {
+  font-size: 14px;
+  color: var(--green);
+  font-weight: 600;
+}
+
+/* IMAGE CARD */
+.management-image-card {
+  flex: 1;
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
+
+.management-image-card img {
+  width: 100%;
+  display: block;
+}
+
+.director-info {
+  padding: 18px;
+  background: var(--green);
+  color: white;
+}
+
+.director-info h4 {
+  font-size: 18px;
+}
+
+.director-info span {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* ================= TEAM CARDS ================= */
+.management-team {
+  padding: 70px 20px;
+}
+
+.team-wrapper {
+  max-width: 700px;
+  margin: auto;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
+.team-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 30px;
+  text-align: center;
+  width: 260px;
+  box-shadow: 0 14px 32px rgba(0,0,0,0.08);
+}
+
+.team-card img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 14px;
+}
+
+.team-card h4 {
+  color: var(--green);
+  margin-bottom: 4px;
+}
+
+.team-card p {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* ================= LICENSE SECTION ================= */
+.licenses-section {
+  padding: 80px 20px;
+  background: #ffffff;
+}
+
+.licenses-title {
+  text-align: center;
+  font-size: 34px;
+  color: var(--green);
+  margin-bottom: 40px;
+}
+
+.licenses-grid {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.license-card {
+  background: #f9fafb;
+  border-radius: 16px;
+  padding: 26px;
+  text-align: center;
+  box-shadow: 0 12px 26px rgba(0,0,0,0.05);
+}
+
+.license-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.license-card h4 {
+  color: var(--green);
+  margin-bottom: 10px;
+}
+
+.license-btn {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--green);
+  text-decoration: none;
+  font-weight: 600;
+}
+/* FOOTER STYLING */
+.kcpl-footer {
+    background: #eef8f4;
+    padding-top: 80px;
+    border-top: 1px solid #eee;
+}
+
+.footer-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+.footer-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 60px;
+}
+
+.footer-logo-img { width: 160px; margin-bottom: 25px; }
+
+.footer-col h4 {
+    font-size: 1.1rem;
+    color: #000;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+.footer-links { list-style: none; padding: 0; }
+.footer-links li { margin-bottom: 12px; }
+.footer-links li a {
+    text-decoration: none;
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    transition: 0.3s;
+}
+
+.footer-links li a:hover { color: var(--primary-green); padding-left: 5px; }
+
+.company-description { font-size: 0.95rem; line-height: 1.6; color: var(--text-gray); margin-bottom: 25px; }
+
+.contact-info p { font-size: 0.9rem; margin-bottom: 8px; color: var(--text-dark); }
+.green-text { color: var(--primary-green); font-weight: 500; }
+
+/* SOCIAL ICONS */
+.social-links { display: flex; gap: 15px; margin-top: 25px; }
+.social-icon {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: #f0f0f0; color: #004a99; /* Based on screenshot blue or use green */
+    display: flex; align-items: center; justify-content: center;
+    transition: 0.3s; text-decoration: none;
+}
+.social-icon:hover { background: var(--primary-green); color: var(--white); }
+
+.mt-30 { margin-top: 30px; }
+
+/* COPYRIGHT STRIP */
+.footer-bottom-strip {
+    background-color: var(--primary-green);
+    color: var(--white);
+    text-align: center;
+    padding: 15px;
+    font-size: 0.85rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .app-container { flex-direction: column; text-align: center; padding: 40px 20px; }
+    .app-left { padding-right: 0; margin-bottom: 40px; }
+    .footer-main { grid-template-columns: 1fr 1fr; }
+    .info-col { grid-column: span 2; }
+}
