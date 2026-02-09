@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Manikya Chits</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="site-header">
+    <nav class="navbar">
+        <div class="nav-container">
+            
+            <!-- LOGO -->
+            <div class="logo">
+                <img src="assets/manikyaChits.png" alt="Manikya Chits">
+            </div>
+                
+            <!-- HAMBURGER -->
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- MENU -->
+             <ul class="menu" id="menu">
+
+        <li><a href="index.html">Home</a></li>
+        <li class="nav-item">
+          <a href="about.html">About Us <span class="arrow">▾</span></a>
+           <ul class="dropdown">
+            <li><a href="#about-us">About Us</a></li>
+            <li><a href="#core-values">Core Values</a></li>
+            <li><a href="#management">Management</a></li>
+            <li><a href="#cirtificate">Certificate</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="chitplan.html" class="active">Chit Plans</a>
+        </li>
+        <li>
+          <a href="faq.html">FAQ</a>
+        </li>
+
+        <li class="nav-item">
+          <a href="contact.html">
+            Contact Us <span class="arrow">▾</span>
+          </a>
+          <ul class="dropdown">
+            <li><a href="contact.html">Contact Details</a></li>
+            <li><a href="branches.html">Branches</a></li>
+            <li><a href="feedback.html">Feedback</a></li>
+          </ul>
+        </li>
+
+      </ul>
+
+        </div>
+    </nav>
+</header>
+
+<!-- HERO SECTION -->
+<section class="contact-hero">
+    <div class="contact-hero-content">
+        <h1>Get in Touch with Us</h1>
+        <p>We're here to help you with all your chit fund needs. Reach out for personalized assistance.</p>
+        <div class="hero-badges">
+            <span class="badge"><i class="fas fa-clock"></i> Quick Response</span>
+            <span class="badge"><i class="fas fa-headset"></i> 24/7 Support</span>
+            <span class="badge"><i class="fas fa-shield-alt"></i> Secure & Trusted</span>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="contact-main">
+    <div class="contact-container">
+        
+        <!-- LEFT SIDE: CONTACT INFO -->
+        <div class="contact-info-side">
+            <div class="contact-info-card">
+                <h2><i class="fas fa-map-marker-alt"></i> Our Office</h2>
+                <div class="info-item">
+                    <i class="fas fa-building"></i>
+                    <div>
+                        <h4>Head Office</h4>
+                        <p>Sagara, Shivamogga District<br>Karnataka, India - 577401</p>
+                    </div>
+                </div>
+                
+                <div class="contact-details">
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Phone Number</h4>
+                            <a href="tel:+917259201729">+91 7259201729</a>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email Address</h4>
+                            <a href="mailto:manikyachitsprivatelimited@gmail.com">manikyachitsprivatelimited@gmail.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                        <div class="detail-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h4>Working Hours</h4>
+                            <p>Monday - Saturday: 9:00 AM - 7:00 PM<br>Sunday: 10:00 AM - 2:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="emergency-contact">
+                    <h3><i class="fas fa-exclamation-circle"></i> Emergency Support</h3>
+                    <p>For urgent matters outside working hours</p>
+                    <a href="tel:+917259201729" class="emergency-btn">
+                        <i class="fas fa-phone-alt"></i> Call Now: +91 7259201729
+                    </a>
+                </div>
+            </div>
+            
+            <!-- BRANCHES CARD -->
+            <div class="branches-card">
+                <h3><i class="fas fa-code-branch"></i> Our Branches</h3>
+                <div class="branch-item">
+                    <h4>Sagara Branch</h4>
+                    <p><i class="fas fa-map-pin"></i> Main Road, Sagara</p>
+                    <p><i class="fas fa-phone"></i> +91 7259201729</p>
+                </div>
+                <a href="branches.html" class="view-all-branches">
+                    View All Branches <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- RIGHT SIDE: CONTACT FORM -->
+        <div class="contact-form-side">
+            <div class="form-header">
+                <h2><i class="fas fa-paper-plane"></i> Send us a Message</h2>
+                <p>Fill out the form below and we'll get back to you within 24 hours.</p>
+            </div>
+            
+            <form id="contactForm" class="contact-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullName">
+                            <i class="fas fa-user"></i> Full Name *
+                        </label>
+                        <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                        <div class="error-message" id="nameError"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phoneNumber">
+                            <i class="fas fa-mobile-alt"></i> Phone Number *
+                        </label>
+                        <input type="tel" id="phoneNumber" name="phoneNumber" required placeholder="Enter your 10-digit mobile number">
+                        <div class="error-message" id="phoneError"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">
+                        <i class="fas fa-envelope"></i> Email Address *
+                    </label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                    <div class="error-message" id="emailError"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">
+                        <i class="fas fa-tag"></i> Subject *
+                    </label>
+                    <select id="subject" name="subject" required>
+                        <option value="" disabled selected>Select your query type</option>
+                        <option value="chit-info">Chit Plan Information</option>
+                        <option value="existing-customer">Existing Customer Query</option>
+                        <option value="new-account">Open New Account</option>
+                        <option value="auction">Auction Related</option>
+                        <option value="payment">Payment Issues</option>
+                        <option value="technical">Technical Support</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <div class="error-message" id="subjectError"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">
+                        <i class="fas fa-comment-dots"></i> Your Message *
+                    </label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Please describe your query in detail..."></textarea>
+                    <div class="error-message" id="messageError"></div>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="newsletter" name="newsletter">
+                    <label for="newsletter">
+                        I'd like to receive updates about new chit plans and offers
+                    </label>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+                
+                <div class="form-note">
+                    <i class="fas fa-info-circle"></i> We respect your privacy and will never share your information.
+                </div>
+            </form>
+            
+            <!-- SUCCESS MESSAGE -->
+            <div id="successMessage" class="success-message">
+                <i class="fas fa-check-circle"></i>
+                <h3>Message Sent Successfully!</h3>
+                <p>Thank you for contacting us. We'll get back to you within 24 hours.</p>
+                <button id="sendAnother" class="outline-btn">Send Another Message</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- QUICK CONTACT BANNER -->
+<section class="quick-contact-banner">
+    <div class="banner-content">
+        <div class="banner-text">
+            <h3>Need Immediate Assistance?</h3>
+            <p>Call our customer support team directly</p>
+        </div>
+        <div class="banner-actions">
+            <a href="tel:+917259201729" class="call-btn">
+                <i class="fas fa-phone"></i> Call Now: +91 7259201729
+            </a>
+            <a href="https://wa.me/917259201729" target="_blank" class="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> WhatsApp Us
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="kcpl-footer">
+    <div class="footer-container">
+        <div class="footer-main">
+            <!-- Column 1: Company Info -->
+            <div class="footer-col info-col">
+                <img src="assets/images/logo.svg" alt="Manikya Chits" class="footer-logo">
+                <p class="company-description">
+                    Manikya Chits Private Limited is a government-approved chit fund company 
+                    that has been serving the community with trust and dedication since 2022.
+                </p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Address</strong>
+                            <p>Sagara, Shivamogga District<br>Karnataka, India</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Talk to Advisor</strong>
+                            <p>+91 7259201729</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-headset"></i>
+                        <div>
+                            <strong>Support</strong>
+                            <p>+91 7259201729</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>E-Mail</strong>
+                            <p>manikyachitsprivatelimited@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <!-- Column 2: Company -->
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="management.html"><i class="fas fa-chevron-right"></i> Management</a></li>
+                    <li><a href="career.html"><i class="fas fa-chevron-right"></i> Career</a></li>
+                </ul>
+            </div>
+            
+            <!-- Column 3: Services -->
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="chitplan.html"><i class="fas fa-chevron-right"></i> Chit Plans</a></li>
+                    <li><a href="branches.html"><i class="fas fa-chevron-right"></i> Branches</a></li>
+                </ul>
+            </div>
+            
+            <!-- Column 4: Support -->
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul class="footer-links">
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                    <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                    <li><a href="feedback.html"><i class="fas fa-chevron-right"></i> Suggestions / Feedback</a></li>
+                </ul>
+            </div>
+            
+            <!-- Column 5: Resources -->
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="assets/MANIKYA CHITS.pdf" target="_blank"><i class="fas fa-chevron-right"></i> Certificate</a></li>
+                    <li><a href="terms.html"><i class="fas fa-chevron-right"></i> Terms & Conditions</a></li>
+                    <li><a href="privacy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; <span id="currentYear"></span> Manikya Chits Private Limited. All rights reserved.</p>
+            <div class="legal-links">
+                <a href="terms.html">Terms & Conditions</a>
+                <span class="divider">|</span>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Set current year in footer
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    
+    // Contact Form Validation and Submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Reset errors
+        document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+        document.querySelectorAll('input, select, textarea').forEach(el => el.classList.remove('error'));
+        
+        let isValid = true;
+        
+        // Name validation
+        const name = document.getElementById('fullName').value.trim();
+        if (!name || name.length < 2) {
+            document.getElementById('nameError').textContent = 'Please enter a valid name (minimum 2 characters)';
+            document.getElementById('fullName').classList.add('error');
+            isValid = false;
+        }
+        
+        // Phone validation
+        const phone = document.getElementById('phoneNumber').value.trim();
+        const phoneRegex = /^[6-9]\d{9}$/;
+        if (!phoneRegex.test(phone)) {
+            document.getElementById('phoneError').textContent = 'Please enter a valid 10-digit Indian mobile number';
+            document.getElementById('phoneNumber').classList.add('error');
+            isValid = false;
+        }
+        
+        // Email validation
+        const email = document.getElementById('email').value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            document.getElementById('emailError').textContent = 'Please enter a valid email address';
+            document.getElementById('email').classList.add('error');
+            isValid = false;
+        }
+        
+        // Subject validation
+        const subject = document.getElementById('subject').value;
+        if (!subject) {
+            document.getElementById('subjectError').textContent = 'Please select a subject';
+            document.getElementById('subject').classList.add('error');
+            isValid = false;
+        }
+        
+        // Message validation
+        const message = document.getElementById('message').value.trim();
+        if (!message || message.length < 10) {
+            document.getElementById('messageError').textContent = 'Please enter a message (minimum 10 characters)';
+            document.getElementById('message').classList.add('error');
+            isValid = false;
+        }
+        
+        if (isValid) {
+            // Simulate form submission
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // You can add actual form submission here
+            // Example: fetch('/submit-contact', { method: 'POST', body: new FormData(this) })
+        }
+    });
+    
+    // Reset form for another message
+    document.getElementById('sendAnother').addEventListener('click', function() {
+        document.getElementById('contactForm').reset();
+        document.getElementById('contactForm').style.display = 'block';
+        document.getElementById('successMessage').style.display = 'none';
+        document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+        document.querySelectorAll('input, select, textarea').forEach(el => el.classList.remove('error'));
+    });
+    
+    // Mobile menu toggle (if not in main.js)
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+    
+    if (hamburger && menu) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            menu.classList.toggle('active');
+        });
+    }
+</script>
+
+</body>
+</html>

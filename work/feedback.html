@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - Manikya Chits</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="feedback.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="site-header">
+    <nav class="navbar">
+        <div class="nav-container">
+            
+            <!-- LOGO -->
+            <div class="logo">
+                <img src="assets/manikyaChits.png" alt="Manikya Chits">
+            </div>
+                
+            <!-- HAMBURGER -->
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- MENU -->
+            <ul class="menu" id="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="chitplan.html">Chit Plans</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="feedback.html" class="active">Feedback</a></li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+
+<!-- HERO SECTION -->
+<section class="feedback-hero">
+    <div class="feedback-hero-content">
+        <h1>Your Feedback Matters</h1>
+        <p>Share your experience with Manikya Chits and help us serve you better. We value every suggestion and review.</p>
+        
+        <div class="feedback-stats">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>4.8</h3>
+                    <p>Average Rating</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>1,247</h3>
+                    <p>Total Feedback</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>98%</h3>
+                    <p>Positive Reviews</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-info">
+                    <h3>24h</h3>
+                    <p>Response Time</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEEDBACK CONTAINER -->
+<section class="feedback-container">
+    <!-- SUBMIT FEEDBACK FORM -->
+    <div class="submit-feedback">
+        <h2><i class="fas fa-edit"></i> Submit Your Feedback</h2>
+        <p>Tell us about your experience with Manikya Chits. Your feedback helps us improve.</p>
+        
+        <form id="feedbackForm" class="feedback-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name"><i class="fas fa-user"></i> Full Name *</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                    <div class="error-message" id="nameError"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email Address *</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                    <div class="error-message" id="emailError"></div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="category"><i class="fas fa-tag"></i> Feedback Category *</label>
+                <select id="category" name="category" required>
+                    <option value="" disabled selected>Select category</option>
+                    <option value="general">General Feedback</option>
+                    <option value="service">Customer Service</option>
+                    <option value="app">Mobile App Experience</option>
+                    <option value="payment">Payment Process</option>
+                    <option value="chit">Chit Plan Experience</option>
+                    <option value="suggestion">Suggestion</option>
+                    <option value="complaint">Complaint</option>
+                </select>
+                <div class="error-message" id="categoryError"></div>
+            </div>
+            
+            <div class="form-group rating-group">
+                <label><i class="fas fa-star"></i> Rate Your Experience *</label>
+                <div class="rating-stars" id="ratingStars">
+                    <i class="far fa-star" data-rating="1"></i>
+                    <i class="far fa-star" data-rating="2"></i>
+                    <i class="far fa-star" data-rating="3"></i>
+                    <i class="far fa-star" data-rating="4"></i>
+                    <i class="far fa-star" data-rating="5"></i>
+                </div>
+                <div class="rating-labels">
+                    <span>Poor</span>
+                    <span>Excellent</span>
+                </div>
+                <input type="hidden" id="rating" name="rating" value="0" required>
+                <div class="error-message" id="ratingError"></div>
+            </div>
+            
+            <div class="form-group">
+                <label for="message"><i class="fas fa-comment"></i> Your Feedback *</label>
+                <textarea id="message" name="message" rows="5" placeholder="Please share your detailed feedback..." required></textarea>
+                <div class="error-message" id="messageError"></div>
+            </div>
+            
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <i class="fas fa-paper-plane"></i> Submit Feedback
+            </button>
+        </form>
+        
+        <div id="successMessage" class="success-message">
+            <i class="fas fa-check-circle"></i>
+            <h3>Thank You for Your Feedback!</h3>
+            <p>Your feedback has been submitted successfully. We appreciate your time and will use your suggestions to improve our services.</p>
+            <button id="sendAnother" class="outline-btn">Send Another Message</button>
+        </div>
+    </div>
+    
+    <!-- VIEW FEEDBACK -->
+    <div class="view-feedback">
+        <h2><i class="fas fa-comments"></i> What Others Say</h2>
+        
+        <div class="feedback-filter">
+            <button class="filter-btn active" data-filter="all">All Feedback</button>
+            <button class="filter-btn" data-filter="5">5 Stars</button>
+            <button class="filter-btn" data-filter="4">4 Stars & Above</button>
+            <button class="filter-btn" data-filter="recent">Recent</button>
+            <button class="filter-btn" data-filter="popular">Most Helpful</button>
+        </div>
+        
+        <div class="feedback-list" id="feedbackList">
+            <!-- Feedback items will be dynamically added here -->
+        </div>
+        
+        <div id="noFeedbackMessage" class="no-feedback">
+            <i class="fas fa-comment-slash"></i>
+            <h3>No Feedback Yet</h3>
+            <p>Be the first to share your experience with Manikya Chits!</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="kcpl-footer">
+    <div class="footer-container">
+        <div class="footer-main">
+            <!-- Column 1: Company Info -->
+            <div class="footer-col info-col">
+                <h4>Manikya Chits Pvt Ltd (MCPL)</h4>
+                <p class="company-description">
+                    Manikya Chits Private Limited is a government-approved chit fund company 
+                    that has been serving the community with trust and dedication since 2022.
+                </p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <p><strong>Address</strong></p>
+                            <p>Sagara, Shivamogga District<br>Karnataka, India - 577401</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <p><strong>Talk to Advisor</strong></p>
+                            <p>+91 7259201729</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="contact-details">
+                            <p><strong>Support</strong></p>
+                            <p>+91 7259201729</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <p><strong>E-Mail</strong></p>
+                            <p>manikyachitsprivatelimited@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <!-- Column 2: Company -->
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="management.html"><i class="fas fa-chevron-right"></i> Management</a></li>
+                    <li><a href="career.html"><i class="fas fa-chevron-right"></i> Career</a></li>
+                </ul>
+            </div>
+            
+            <!-- Column 3: Services -->
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="chitplan.html"><i class="fas fa-chevron-right"></i> Chit Plans</a></li>
+                    <li><a href="branches.html"><i class="fas fa-chevron-right"></i> Branches</a></li>
+                </ul>
+            </div>
+            
+            <!-- Column 4: Support -->
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul class="footer-links">
+                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                    <li><a href="faq.html"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                    <li><a href="feedback.html"><i class="fas fa-chevron-right"></i> Suggestions / Feedback</a></li>
+                </ul>
+            </div>
+            
+            <!-- Column 5: Resources -->
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="blog.html"><i class="fas fa-chevron-right"></i> Blogs</a></li>
+                    <li><a href="assets/MANIKYA CHITS.pdf" target="_blank"><i class="fas fa-chevron-right"></i> Certificate</a></li>
+                    <li><a href="media.html"><i class="fas fa-chevron-right"></i> Media</a></li>
+                </ul>
+            </div>
+            
+            <!-- Column 6: Legal -->
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="terms.html"><i class="fas fa-chevron-right"></i> Terms & Conditions</a></li>
+                    <li><a href="privacy.html"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; <span id="currentYear"></span> Manikya Chits Private Limited. All rights reserved.</p>
+            <div class="legal-links">
+                <a href="terms.html">Terms & Conditions</a>
+                <span class="divider">|</span>
+                <a href="privacy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="feedback.js"></script>
+<script>
+    // Set current year in footer
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
