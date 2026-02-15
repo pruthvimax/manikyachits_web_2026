@@ -1,3 +1,9 @@
+:root {
+  --primary-green: #1a8f5a;
+  --white: #ffffff;
+  --text-gray: #555;
+  --text-dark: #222;
+}
 /* ================= RESET ================= */
 * {
   margin: 0;
@@ -865,7 +871,6 @@ body {
     padding: 0;
   }
 }
-
 
 
 /* FOOTER STYLING */
