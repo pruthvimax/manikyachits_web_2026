@@ -485,10 +485,22 @@
         </ul>
         <h4 class="mt-30">Legal</h4>
         <ul class="footer-links">
-          <li><a href="terms.html">Terms & Conditions</a></li>
-          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="#" id="openTerms">Terms & Conditions</a></li>
+          <li><a href="#" id="openPrivacy">Privacy Policy</a></li>
         </ul>
       </div>
+      <!-- POPUP OVERLAY -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup-box">
+    <span class="close-btn" id="closePopup">&times;</span>
+
+    <h2 id="popupTitle"></h2>
+    <div class="popup-content" id="popupContent">
+      <!-- Content injected by JS -->
+    </div>
+  </div>
+</div>
+
       
       <div class="footer-col">
         <h4>Services</h4>
@@ -528,5 +540,131 @@
   // Set current year in footer
   document.getElementById('currentYear').textContent = new Date().getFullYear();
 </script>
+<script>
+  const overlay = document.getElementById("popupOverlay");
+  const title = document.getElementById("popupTitle");
+  const content = document.getElementById("popupContent");
+  const closeBtn = document.getElementById("closePopup");
+
+  document.getElementById("openTerms").addEventListener("click", function (e) {
+    e.preventDefault();
+    title.innerText = "Terms & Conditions";
+    content.innerHTML = `
+      <p><strong>Last Updated:</strong> 20 March 2025</p>
+
+<p>
+Welcome to <strong>Manikya Chits Private Limited</strong>. By enrolling in or
+participating in any chit scheme conducted by the company, all subscribers
+agree to comply with the terms and conditions governed by the
+<strong>Chit Funds Act, 1982</strong> and the rules framed thereunder.
+</p>
+
+<h4>1. Conduct of Chit & Auction</h4>
+<p>
+All chits shall be conducted by the Foreman or an authorized representative.
+Auctions will be held on scheduled dates, and the Foreman’s decision shall be
+final and binding. Defaulting subscribers are not permitted to participate in
+auctions.
+</p>
+
+<h4>2. Payment of Installments</h4>
+<p>
+Subscribers must pay installments on or before the due date. Delay in payment
+will attract penalties as per company policy. Cheque payments are subject to
+clearance. Bounced cheques will attract bank charges.
+</p>
+
+<h4>3. Prized & Non-Prized Subscribers</h4>
+<p>
+Prized subscribers must furnish adequate security for future installments.
+Failure to do so may result in withholding of prize money. Non-prized
+subscribers who default continuously may lose dividend benefits or face
+cancellation.
+</p>
+
+<h4>4. Refund & Cancellation</h4>
+<p>
+On cancellation, the subscriber is entitled to the amount paid excluding
+dividends, after deduction of 5% of the chit amount and applicable taxes.
+Refunds are payable at the end of the chit term or earlier at management
+discretion.
+</p>
+
+<h4>5. Death of Subscriber</h4>
+<p>
+In case of death, the nominee may continue the chit or claim the eligible refund
+as per the Chit Funds Act, 1982.
+</p>
+
+<h4>6. Legal Compliance</h4>
+<p>
+Any disputes shall be governed by the laws of India and subject to the
+jurisdiction of Karnataka courts.
+</p> `;
+    overlay.style.display = "flex";
+  });
+
+  document.getElementById("openPrivacy").addEventListener("click", function (e) {
+    e.preventDefault();
+    title.innerText = "Privacy Policy";
+    content.innerHTML = `
+     <p><strong>Last Updated:</strong> 20 March 2025</p>
+
+<p>
+Manikya Chits Private Limited respects your privacy and is committed to
+protecting your personal information.
+</p>
+
+<h4>1. Information We Collect</h4>
+<p>
+We collect personal details such as name, contact number, address, identity
+proofs, and banking information strictly for chit administration and legal
+compliance.
+</p>
+
+<h4>2. Use of Information</h4>
+<p>
+Collected data is used only for account management, communication, statutory
+requirements, and service improvement.
+</p>
+
+<h4>3. Data Protection</h4>
+<p>
+We do not sell, trade, or share customer data with third parties except when
+required by law or government authorities.
+</p>
+
+<h4>4. Security</h4>
+<p>
+Reasonable security practices are implemented to safeguard customer
+information against unauthorized access.
+</p>
+
+<h4>5. Consent</h4>
+<p>
+By using our services, you consent to the collection and use of information as
+outlined in this policy.</p>
+
+<hr>
+<p><strong>Manikya Chits Private Limited</strong></p>
+<p>
+Registered Address: Sagara, Shivamogga District, Karnataka – 577401<br>
+Email: manikyachitsprivatelimited@gmail.com<br>
+Phone: +91 7259201729
+</p> `;
+    overlay.style.display = "flex";
+  });
+
+  closeBtn.addEventListener("click", () => {
+    overlay.style.display = "none";
+  });
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) {
+      overlay.style.display = "none";
+    }
+  });
+</script>
+
 </body>
 </html>
