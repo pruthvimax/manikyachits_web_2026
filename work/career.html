@@ -4,10 +4,20 @@
   <meta charset="UTF-8">
   <title>Careers | Manikya Chits</title>
   <link rel="stylesheet" href="career.css">
+  <style>
+    /* Add this to your career.css or keep it here */
+    .menu a.active {
+      color: #0b5c3b;
+      font-weight: 600;
+    }
+    
+    .menu a.active::before {
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
 
-    
 <!-- NAVBAR -->
 <header class="site-header">
   <nav class="navbar">
@@ -29,9 +39,10 @@
       <ul class="menu" id="menu">
 
         <li><a href="index.html">Home</a></li>
+        
         <li class="nav-item">
           <a href="about.html">About Us <span class="arrow">▾</span></a>
-           <ul class="dropdown">
+          <ul class="dropdown">
             <li><a href="about.html">About Us</a></li>
             <li><a href="about.html#core-values">Core Values</a></li>
             <li><a href="about.html#management">Management</a></li>
@@ -40,16 +51,15 @@
         </li>
 
         <li>
-          <a href="chitplan.html" class="active">Chit Plans</a>
+          <a href="chitplan.html">Chit Plans</a>
         </li>
+        
         <li>
           <a href="faq.html">FAQ</a>
         </li>
 
         <li class="nav-item">
-          <a href="contact.html">
-            Contact Us <span class="arrow">▾</span>
-          </a>
+          <a href="contact.html">Contact Us <span class="arrow">▾</span></a>
           <ul class="dropdown">
             <li><a href="contact.html">Contact Details</a></li>
             <li><a href="branches.html">Branches</a></li>
@@ -63,6 +73,7 @@
   </nav>
 </header>
 
+<!-- CAREERS SECTION -->
 <section class="career-section">
   <h1 class="career-title">Check out our current Openings</h1>
 
@@ -141,8 +152,9 @@
   </div>
 </div>
 
-<!-- JAVASCRIPT INSIDE HTML -->
+<!-- JAVASCRIPT -->
 <script>
+  // Modal functionality
   const modal = document.getElementById("jobModal");
   const closeBtn = document.getElementById("closeModal");
   const roleSelect = document.getElementById("jobRole");
@@ -162,6 +174,30 @@
     if (e.target === modal) {
       modal.style.display = "none";
     }
+  });
+
+  // Mobile menu functionality
+  const hamburger = document.getElementById('hamburger');
+  const menu = document.getElementById('menu');
+
+  if (hamburger) {
+    hamburger.addEventListener('click', function() {
+      this.classList.toggle('active');
+      menu.classList.toggle('active');
+    });
+  }
+
+  // Remove any active class from menu items (no page should be highlighted)
+  document.addEventListener('DOMContentLoaded', function() {
+    // Remove active class from all menu links
+    document.querySelectorAll('.menu a').forEach(link => {
+      link.classList.remove('active');
+    });
+    
+    // Also remove any active class from dropdown items
+    document.querySelectorAll('.dropdown a').forEach(link => {
+      link.classList.remove('active');
+    });
   });
 </script>
 
