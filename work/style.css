@@ -58,8 +58,9 @@ body {
     left: 0;
     width: 100%;
     z-index: 9999;
-    pointer-events: none;
+    pointer-events: auto; /* ✅ allow clicks */
 }
+
 
 /* ================= NAVBAR ================= */
 .navbar {
@@ -184,40 +185,40 @@ body {
 }
 
 /* ================= HAMBURGER ================= */
+/* ================= NAVBAR BASE ================= */
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.menu li {
+  position: relative;
+}
+
+/* ================= HAMBURGER ================= */
+
 .hamburger {
   display: none;
   flex-direction: column;
   gap: 6px;
-  cursor: pointer;
   background: none;
   border: none;
-  padding: 8px;
-  z-index: 10002;
+  cursor: pointer;
 }
 
 .hamburger span {
   width: 26px;
   height: 3px;
-  background-color: #0b5c3b;
+  background: #146c43;
   border-radius: 2px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Hamburger active (X icon) */
-.hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
-}
 
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
 
-.hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
-
-/* ================= MOBILE MENU ================= */
-@media (max-width: 992px) {
+/* ================= MOBILE ================= */
+@media (max-width: 900px) {
 
   .hamburger {
     display: flex;
@@ -227,59 +228,51 @@ body {
   .menu {
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    right: -100%;
+    width: 280px;
     height: 100vh;
-
-    background-color: #ffffff;
-    display: none;
+    background: #ffffff;
     flex-direction: column;
-    gap: 8px;
-
-    padding: 90px 24px 24px;
-    z-index: 10001;
-
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    padding: 100px 20px 20px;
+    gap: 0;
+    transition: right 0.3s ease;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.3);
+    z-index: 9998;
   }
 
   .menu.active {
-    display: flex;
+    right: 0;
   }
 
-  .menu li {
-    width: 100%;
-  }
-
-  .menu a {
-    display: block;
+  .menu li a {
     padding: 14px 10px;
-    font-size: 16px;
-    border-bottom: 1px solid #f1f1f1;
+    display: block;
   }
 
-  /* ================= MOBILE DROPDOWN ================= */
+  /* disable hover dropdown */
+  .nav-item:hover .dropdown {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  /* mobile dropdown */
   .dropdown {
     position: static;
-    display: none;
-    margin-top: 8px;
-    padding-left: 16px;
-
+    opacity: 1;
+    visibility: visible;
+    transform: none;
     box-shadow: none;
-    border-radius: 0;
-    border-left: 2px solid #0b5c3b;
+    display: none;
+    padding-left: 15px;
   }
 
-  /* OPEN DROPDOWN ONLY VIA .active (JS controlled) */
-  .nav-item.active > .dropdown {
+  .dropdown.active {
     display: block;
   }
-
-  /* ❌ COMPLETELY DISABLE HOVER ON MOBILE */
-  .nav-item:hover > .dropdown {
-    display: none;
-  }
 }
+
+
+
 
 /* ================= HERO CONTENT ================= */
 .hero-inner {
