@@ -2765,7 +2765,6 @@ body {
 }
 
 /* Mobile styles */
-
 @media (max-width: 768px) {
   /* Make the nav container a positioning context for the absolute menu */
   .nav-container {
@@ -2798,32 +2797,16 @@ body {
     display: flex !important;
   }
 
-  /* Dropdown styles for mobile */
+  /* Adjust dropdowns for mobile (optional – keeps them inside the menu) */
   .dropdown {
     position: static;                   /* makes dropdown expand inline */
     box-shadow: none;
     padding-left: 1rem;
-    opacity: 0;
-    visibility: hidden;
-    height: 0;
-    overflow: hidden;
-    transform: none;
-    background: #f8f8f8;
-    margin: 0;
-    transition: opacity 0.3s ease, height 0.3s ease;
-  }
-
-  /* Show dropdown when its parent has the class */
-  .nav-item.dropdown-open .dropdown {
     opacity: 1;
     visibility: visible;
-    height: auto;
+    transform: none;
+    background: #f8f8f8;
     margin: 0.5rem 0;
-  }
-
-  /* Rotate arrow when dropdown is open */
-  .nav-item.dropdown-open .arrow {
-    transform: rotate(180deg);
   }
 
   /* Optional: hamburger animation to X */
