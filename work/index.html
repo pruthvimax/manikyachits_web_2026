@@ -667,24 +667,19 @@ Phone: +91 7259201729
     }
   });
 </script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
+<script>document.addEventListener('DOMContentLoaded', function() {
   const hamburger = document.getElementById('hamburger');
   const menu = document.getElementById('menu');
   const menuLinks = document.querySelectorAll('#menu a');
 
-  // Toggle menu on hamburger click
+  // ---------- HAMBURGER TOGGLE ----------
   hamburger.addEventListener('click', function(e) {
     e.stopPropagation();
     this.classList.toggle('active');
     menu.classList.toggle('show');
-
-    // Update ARIA attribute for accessibility
-    const expanded = this.classList.contains('active');
-    this.setAttribute('aria-expanded', expanded);
+    this.setAttribute('aria-expanded', this.classList.contains('active'));
   });
 
-  // Close menu when a link is clicked (for single-page navigation)
   menuLinks.forEach(link => {
     link.addEventListener('click', function() {
       hamburger.classList.remove('active');
@@ -693,7 +688,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Close menu when clicking outside (optional)
+  // Close menu when clicking outside
   document.addEventListener('click', function(e) {
     if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
       hamburger.classList.remove('active');
@@ -702,15 +697,44 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Reset menu state on window resize (above mobile breakpoint)
-  window.addEventListener('resize', function() {
-    if (window.innerWidth > 768) {
-      hamburger.classList.remove('active');
-      menu.classList.remove('show');
-      hamburger.setAttribute('aria-expanded', 'false');
+  // ---------- MOBILE DROPDOWNS (About Us & Contact) ----------
+  const isMobile = () => window.innerWidth <= 768;
+  const navItems = document.querySelectorAll('.nav-item');
+
+  function closeAllDropdowns() {
+    navItems.forEach(item => item.classList.remove('dropdown-open'));
+  }
+
+  navItems.forEach(item => {
+    const parentLink = item.querySelector('a:first-child'); // the link with the arrow
+    if (parentLink) {
+      parentLink.addEventListener('click', function(e) {
+        if (isMobile()) {
+          e.preventDefault(); // Stop navigation – the dropdown will act as the menu
+          // Close other dropdowns
+          navItems.forEach(other => {
+            if (other !== item) other.classList.remove('dropdown-open');
+          });
+          // Toggle this one
+          item.classList.toggle('dropdown-open');
+        }
+      });
     }
   });
-}); </script>
 
+  // Close dropdowns when tapping outside
+  document.addEventListener('click', function(e) {
+    if (isMobile() && !e.target.closest('.nav-item')) {
+      closeAllDropdowns();
+    }
+  });
+
+  // Reset dropdowns when resizing from mobile to desktop
+  window.addEventListener('resize', function() {
+    if (!isMobile()) {
+      closeAllDropdowns();
+    }
+  });
+});</script>
 </body>
 </html>
