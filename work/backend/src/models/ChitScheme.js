@@ -1,42 +1,34 @@
 const mongoose = require('mongoose');
 
 const chitSchemeSchema = new mongoose.Schema({
-  fullName: {
+  mobile: {
     type: String,
-    required: [true, 'Full name is required'],
+    required: [true, 'Mobile number is required'],
     trim: true,
-    minlength: [2, 'Name must be at least 2 characters long']
+    validate: {
+      validator: function(v) {
+        return /^[6-9]\d{9}$/.test(v);
+      },
+      message: 'Please enter a valid 10-digit Indian mobile number'
+    }
+  },
+  name: {
+    type: String,
+    required: [true, 'Name is required'],
+    trim: true,
+    minlength: [2, 'Name must be at least 2 characters']
   },
   email: {
     type: String,
     required: [true, 'Email is required'],
     lowercase: true,
     trim: true,
-    match: [/^\S+@\S+\.\S+$/, 'Please enter a valid email']
-  },
-  phone: {
-    type: String,
-    required: [true, 'Phone number is required'],
-    trim: true,
-    minlength: [10, 'Phone number must be at least 10 digits']
-  },
-  city: {
-    type: String,
-    required: [true, 'City is required'],
-    trim: true
-  },
-  chitAmount: {
-    type: String,
-    required: [true, 'Chit amount preference is required'],
-    enum: {
-      values: ['50,000', '1,00,000', '2,00,000', '5,00,000', '10,00,000', 'Other'],
-      message: 'Please select a valid chit amount'
+    validate: {
+      validator: function(v) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+      },
+      message: 'Please enter a valid email address'
     }
-  },
-  message: {
-    type: String,
-    trim: true,
-    default: ''
   },
   status: {
     type: String,

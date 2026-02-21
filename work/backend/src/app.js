@@ -6,93 +6,36 @@ const formRoutes = require('./routes/formRoutes');
 
 const app = express();
 
-// Middleware
-app.use(helmet({
-  crossOriginResourcePolicy: { policy: "cross-origin" }
-}));
-
-// CORS configuration
+// Update CORS to allow your frontend port
+app.use(helmet());
 app.use(cors({
-  origin: process.env.FRONTEND_URL || '*',
-  methods: ['GET', 'POST', 'PATCH', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+    origin: ['http://localhost:5500', 'http://127.0.0.1:5500'], // Add your frontend port
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
 }));
 
-// Logging
-app.use(morgan(process.env.NODE_ENV === 'development' ? 'dev' : 'combined'));
+// Or for testing, you can allow all origins (easier during development):
+// app.use(cors({ origin: '*' }));
 
-// Body parsing
-app.use(express.json({ limit: '10mb' }));
-app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+app.use(morgan('dev'));
+app.use(express.json());
 
-// Routes
 app.use('/api/forms', formRoutes);
 
-// Health check
 app.get('/api/health', (req, res) => {
   res.status(200).json({ 
     success: true,
-    message: 'Manikya API is running',
-    timestamp: new Date().toISOString(),
-    environment: process.env.NODE_ENV
+    message: 'Manikya API is running'
   });
 });
 
-// Root route
-app.get('/', (req, res) => {
-  res.json({
-    success: true,
-    message: 'Welcome to Manikya Chits API',
-    endpoints: {
-      health: '/api/health',
-      contact: 'POST /api/forms/contact',
-      chitScheme: 'POST /api/forms/chit-scheme',
-      career: 'POST /api/forms/career',
-      admin: {
-        contact: 'GET /api/forms/admin/contact',
-        chitScheme: 'GET /api/forms/admin/chit-scheme',
-        career: 'GET /api/forms/admin/career'
-      }
-    }
-  });
-});
-
-// 404 handler
-app.use((req, res) => {
-  res.status(404).json({ 
-    success: false, 
-    message: 'Route not found',
-    path: req.originalUrl
-  });
-});
-
-// Error handling middleware
+// Error handler
 app.use((err, req, res, next) => {
-  console.error('❌ Error:', err.stack);
-  
-  // Handle specific errors
-  if (err.name === 'ValidationError') {
-    return res.status(400).json({
-      success: false,
-      message: 'Validation Error',
-      errors: Object.values(err.errors).map(e => e.message)
-    });
-  }
-  
-  if (err.name === 'CastError') {
-    return res.status(400).json({
-      success: false,
-      message: 'Invalid ID format'
-    });
-  }
-  
-  // Default error
-  res.status(err.status || 500).json({
-    success: false,
-    message: process.env.NODE_ENV === 'development' 
-      ? err.message 
-      : 'Internal server error',
-    ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
+  console.error(err);
+  res.status(500).json({ 
+    success: false, 
+    message: 'Internal server error' 
   });
 });
 
