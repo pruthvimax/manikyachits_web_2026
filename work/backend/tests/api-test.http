@@ -1,0 +1,96 @@
+### Variables
+@baseUrl = http://localhost:5000
+@adminBase = {{baseUrl}}/api/forms/admin
+
+### Health Check
+GET {{baseUrl}}/api/health
+
+### Root endpoint
+GET {{baseUrl}}
+
+### 1. Contact Form Submission
+POST {{baseUrl}}/api/forms/contact
+Content-Type: application/json
+
+{
+    "fullName": "John Doe",
+    "email": "john.doe@example.com",
+    "phone": "9876543210",
+    "message": "I would like to know more about your chit fund schemes and the benefits you offer."
+}
+
+### 2. Contact Form - Validation Error
+POST {{baseUrl}}/api/forms/contact
+Content-Type: application/json
+
+{
+    "fullName": "J",
+    "email": "invalid-email",
+    "phone": "123",
+    "message": "Hi"
+}
+
+### 3. Chit Scheme Inquiry
+POST {{baseUrl}}/api/forms/chit-scheme
+Content-Type: application/json
+
+{
+    "fullName": "Jane Smith",
+    "email": "jane.smith@example.com",
+    "phone": "9876543211",
+    "city": "Bangalore",
+    "chitAmount": "1,00,000",
+    "message": "Interested in monthly chit scheme with 1 lakh amount"
+}
+
+### 4. Career Application
+POST {{baseUrl}}/api/forms/career
+Content-Type: application/json
+
+{
+    "fullName": "Raj Kumar",
+    "email": "raj.kumar@example.com",
+    "phone": "9876543212",
+    "position": "Sales Executive",
+    "experience": "2 years",
+    "qualification": "MBA in Marketing",
+    "currentLocation": "Mumbai",
+    "resumeLink": "https://example.com/resume/raj.pdf",
+    "message": "Looking for growth opportunities in a reputed organization"
+}
+
+### 5. Get All Contact Submissions (Admin)
+GET {{adminBase}}/contact
+
+### 6. Get All Chit Scheme Submissions (Admin)
+GET {{adminBase}}/chit-scheme
+
+### 7. Get All Career Submissions (Admin)
+GET {{adminBase}}/career
+
+### 8. Update Contact Status (Admin)
+@contactId = PLACE_YOUR_CONTACT_ID_HERE
+PATCH {{adminBase}}/contact/{{contactId}}/status
+Content-Type: application/json
+
+{
+    "status": "read"
+}
+
+### 9. Update Chit Scheme Status (Admin)
+@chitId = PLACE_YOUR_CHIT_ID_HERE
+PATCH {{adminBase}}/chit-scheme/{{chitId}}/status
+Content-Type: application/json
+
+{
+    "status": "contacted"
+}
+
+### 10. Update Career Status (Admin)
+@careerId = PLACE_YOUR_CAREER_ID_HERE
+PATCH {{adminBase}}/career/{{careerId}}/status
+Content-Type: application/json
+
+{
+    "status": "shortlisted"
+}
