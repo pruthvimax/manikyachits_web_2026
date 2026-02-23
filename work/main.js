@@ -1,74 +1,91 @@
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Manikya Chits Website Loaded");
 
-    /* ================= MOBILE MENU ================= */
-    const hamburger = document.getElementById("hamburger");
-    const menu = document.querySelector(".menu");
-    const navItems = document.querySelectorAll(".nav-item");
-    const allLinks = document.querySelectorAll(".menu a");
+    // ================= HAMBURGER MENU =================
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.querySelector('.menu');
+    const navItems = document.querySelectorAll('.nav-item');
+    const allLinks = document.querySelectorAll('.menu a');
+    const BREAKPOINT = 992; // must match CSS media query
 
     // Toggle mobile menu
     if (hamburger && menu) {
-        hamburger.addEventListener("click", (e) => {
+        hamburger.addEventListener('click', (e) => {
             e.stopPropagation();
-            hamburger.classList.toggle("active");
-            menu.classList.toggle("active");
-            document.body.style.overflow = menu.classList.contains("active") ? "hidden" : "";
+            const isActive = hamburger.classList.toggle('active');
+            menu.classList.toggle('active');
+            document.body.style.overflow = isActive ? 'hidden' : '';
+            hamburger.setAttribute('aria-expanded', isActive);
         });
     }
 
-    /* ================= MOBILE DROPDOWN ================= */
+    // Mobile dropdown toggles (only when screen width ≤ BREAKPOINT)
     navItems.forEach(item => {
-        const link = item.querySelector("a");
-        const dropdown = item.querySelector(".dropdown");
-        
+        const link = item.querySelector('a');
+        const dropdown = item.querySelector('.dropdown');
+
         if (link && dropdown) {
-            link.addEventListener("click", (e) => {
-                if (window.innerWidth <= 992) {
-                    e.preventDefault();
+            link.addEventListener('click', (e) => {
+                if (window.innerWidth <= BREAKPOINT) {
+                    e.preventDefault();          // don't navigate
                     e.stopPropagation();
-                    
-                    // Close other dropdowns
+
+                    // Close other open dropdowns
                     navItems.forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.classList.remove("active");
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
                         }
                     });
-                    
+
                     // Toggle current dropdown
-                    item.classList.toggle("active");
+                    item.classList.toggle('active');
                 }
             });
         }
     });
 
-    /* ================= CLOSE MENU ON LINK CLICK (MOBILE) ================= */
+    // Close menu when a link is clicked (except dropdown toggles)
     allLinks.forEach(link => {
-        link.addEventListener("click", () => {
-            if (window.innerWidth <= 992) {
-                // Close menu if it's not a dropdown toggle
-                if (!link.nextElementSibling || !link.nextElementSibling.classList.contains("dropdown")) {
-                    menu.classList.remove("active");
-                    hamburger.classList.remove("active");
-                    document.body.style.overflow = "";
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= BREAKPOINT) {
+                // If the clicked link does NOT have a dropdown sibling, close the menu
+                if (!link.nextElementSibling || !link.nextElementSibling.classList.contains('dropdown')) {
+                    menu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
                 }
             }
         });
     });
 
-    /* ================= CLOSE MENU WHEN CLICKING OUTSIDE ================= */
-    document.addEventListener("click", (e) => {
-        if (window.innerWidth <= 992 && menu.classList.contains("active")) {
+    // Close menu when clicking outside (mobile)
+    document.addEventListener('click', (e) => {
+        if (window.innerWidth <= BREAKPOINT && menu && menu.classList.contains('active')) {
             if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
-                menu.classList.remove("active");
-                hamburger.classList.remove("active");
-                document.body.style = "";
-                navItems.forEach(item => item.classList.remove("active"));
+                menu.classList.remove('active');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+                navItems.forEach(item => item.classList.remove('active'));
             }
         }
     });
 
-    /* ================= STICKY NAVBAR ================= */
+    // Reset menu when window resizes above breakpoint
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > BREAKPOINT) {
+            if (menu) menu.classList.remove('active');
+            if (hamburger) {
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+            }
+            document.body.style.overflow = '';
+            navItems.forEach(item => item.classList.remove('active'));
+        }
+    });
+
+    // ================= STICKY NAVBAR =================
     const header = document.querySelector(".site-header");
     const navbar = document.querySelector(".navbar");
 
@@ -84,55 +101,33 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* ================= SMOOTH SCROLL ================= */
+    // ================= SMOOTH SCROLL =================
     document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener("click", function(e) {
             const href = this.getAttribute("href");
-            
-            // Skip if it's just "#" or external link
             if (href === "#" || href.startsWith("http") || href.startsWith("javascript")) return;
-            
+
             const target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
-                
+
                 // Close mobile menu if open
-                if (window.innerWidth <= 992 && menu.classList.contains("active")) {
+                if (window.innerWidth <= BREAKPOINT && menu && menu.classList.contains("active")) {
                     menu.classList.remove("active");
                     hamburger.classList.remove("active");
                     document.body.style.overflow = "";
                 }
-                
+
                 // Smooth scroll to target
                 const headerHeight = navbar ? navbar.offsetHeight : 0;
                 const targetPosition = target.offsetTop - headerHeight - 20;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: "smooth"
-                });
+                window.scrollTo({ top: targetPosition, behavior: "smooth" });
             }
         });
     });
 
-    /* ================= RESIZE HANDLER ================= */
-    window.addEventListener("resize", () => {
-        // Reset mobile menu on resize to desktop
-        if (window.innerWidth > 992) {
-            menu.classList.remove("active");
-            hamburger.classList.remove("active");
-            document.body.style.overflow = "";
-            navItems.forEach(item => item.classList.remove("active"));
-        }
-    });
-
-    /* ================= SCROLL ANIMATIONS ================= */
-    const observerOptions = {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0.1
-    };
-
+    // ================= SCROLL ANIMATIONS =================
+    const observerOptions = { root: null, rootMargin: "0px", threshold: 0.1 };
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -141,86 +136,206 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }, observerOptions);
 
-    // Observe elements for animations
     document.querySelectorAll(".plan-card, .stat, .feature-card, .why-item").forEach(el => {
         observer.observe(el);
     });
+
+    // ================= ACTIVE NAV LINK =================
+    function setActiveNav() {
+        const currentPath = window.location.pathname;
+        const navLinks = document.querySelectorAll(".menu a");
+
+        navLinks.forEach(link => {
+            const linkPath = link.getAttribute("href");
+            if (linkPath === currentPath ||
+                (currentPath.includes(linkPath) && linkPath !== "index.html")) {
+                link.classList.add("active");
+                const parentItem = link.closest(".nav-item");
+                if (parentItem) {
+                    parentItem.querySelector("> a").classList.add("active");
+                }
+            } else {
+                link.classList.remove("active");
+            }
+        });
+    }
+    setActiveNav();
+
+    // ================= STATS COUNTER ANIMATION =================
+    function animateStats() {
+        const stats = document.querySelectorAll(".stat h3");
+        stats.forEach(stat => {
+            const targetValue = parseInt(stat.textContent);
+            let currentValue = 0;
+            const increment = targetValue / 50;
+            const stepTime = 2000 / 50;
+            const timer = setInterval(() => {
+                currentValue += increment;
+                if (currentValue >= targetValue) {
+                    currentValue = targetValue;
+                    clearInterval(timer);
+                }
+                stat.textContent = Math.floor(currentValue) + "+";
+            }, stepTime);
+        });
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateStats();
+                statsObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    const statsSection = document.querySelector(".stats-bar");
+    if (statsSection) statsObserver.observe(statsSection);
+
+    // ================= IMAGE LAZY LOADING =================
+    if ("IntersectionObserver" in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) img.src = img.dataset.src;
+                    if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+                    img.classList.add("loaded");
+                    observer.unobserve(img);
+                }
+            });
+        });
+        document.querySelectorAll("img[data-src]").forEach(img => imageObserver.observe(img));
+    }
+
+    // ================= BACK TO TOP BUTTON =================
+    const backToTop = document.createElement("button");
+    backToTop.innerHTML = "↑";
+    backToTop.className = "back-to-top";
+    backToTop.style.cssText = `
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: #0b5c3b;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 20px;
+        display: none;
+        z-index: 999;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transition: all 0.3s ease;
+        align-items: center;
+        justify-content: center;
+    `;
+
+    backToTop.addEventListener("mouseenter", () => {
+        backToTop.style.transform = "translateY(-5px)";
+        backToTop.style.boxShadow = "0 6px 20px rgba(0,0,0,0.2)";
+    });
+
+    backToTop.addEventListener("mouseleave", () => {
+        backToTop.style.transform = "translateY(0)";
+        backToTop.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
+    });
+
+    backToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    document.body.appendChild(backToTop);
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 500) {
+            backToTop.style.display = "flex";
+        } else {
+            backToTop.style.display = "none";
+        }
+    });
+
+    // ================= TOUCH SWIPE SUPPORT =================
+    let touchStartX = 0;
+    let touchEndX = 0;
+    document.addEventListener("touchstart", e => { touchStartX = e.changedTouches[0].screenX; });
+    document.addEventListener("touchend", e => {
+        touchEndX = e.changedTouches[0].screenX;
+        if (touchEndX < touchStartX - 50) {
+            if (menu && menu.classList.contains("active") && window.innerWidth <= BREAKPOINT) {
+                menu.classList.remove("active");
+                hamburger?.classList.remove("active");
+                document.body.style.overflow = "";
+            }
+        }
+    });
+
+    // ================= COPYRIGHT YEAR =================
+    const copyrightElement = document.querySelector(".footer-bottom");
+    if (copyrightElement) {
+        const currentYear = new Date().getFullYear();
+        copyrightElement.innerHTML = copyrightElement.innerHTML.replace("2025", currentYear);
+    }
 });
 
-/* ================= GLOBAL MODAL FUNCTIONS ================= */
-
-// Open modal
+// ================= GLOBAL MODAL FUNCTIONS (unchanged) =================
 window.openModal = function(e) {
-    if (e && typeof e.preventDefault === "function") {
-        e.preventDefault();
-    }
-    
+    if (e && typeof e.preventDefault === "function") e.preventDefault();
     const modal = document.getElementById("assistModal");
-    if (!modal) {
-        console.error("assistModal NOT found in DOM");
-        return;
-    }
-    
+    if (!modal) return;
     modal.classList.add("active");
     document.body.style.overflow = "hidden";
-    
-    // Focus on first input
     const firstInput = modal.querySelector("input");
-    if (firstInput) {
-        setTimeout(() => firstInput.focus(), 100);
-    }
-    
-    console.log("Modal opened");
+    if (firstInput) setTimeout(() => firstInput.focus(), 100);
 };
 
-// Close modal
 window.closeModal = function() {
     const modal = document.getElementById("assistModal");
     if (!modal) return;
-    
     modal.classList.remove("active");
     document.body.style.overflow = "";
-    
-    // Reset form
     const form = modal.querySelector(".assist-form");
     if (form) form.reset();
-    
-    // Clear errors
-    modal.querySelectorAll(".error-input").forEach(el => {
-        el.classList.remove("error-input");
-    });
-    modal.querySelectorAll(".error").forEach(el => {
-        el.style.display = "none";
-    });
-    
-    console.log("Modal closed");
+    modal.querySelectorAll(".error-input").forEach(el => el.classList.remove("error-input"));
+    modal.querySelectorAll(".error").forEach(el => el.style.display = "none");
 };
 
 // Close modal when clicking background
 document.addEventListener("click", function(e) {
     const modal = document.getElementById("assistModal");
-    if (e.target === modal) {
-        window.closeModal();
-    }
+    if (e.target === modal) window.closeModal();
 });
 
 // Close modal with Escape key
 document.addEventListener("keydown", function(e) {
     if (e.key === "Escape") {
         const modal = document.getElementById("assistModal");
-        if (modal && modal.classList.contains("active")) {
-            window.closeModal();
-        }
+        if (modal && modal.classList.contains("active")) window.closeModal();
     }
 });
 
+// Form validation (unchanged)
 window.validateModal = async function() {
     const mobile = document.getElementById("mobile");
     const name = document.getElementById("name");
     const email = document.getElementById("email");
-    
     let valid = true;
-    
+
+    const showError = (input, msg) => {
+        input.classList.add("error-input");
+        const err = input.nextElementSibling;
+        if (err && err.classList.contains("error")) {
+            err.textContent = msg;
+            err.style.display = "block";
+        }
+    };
+    const hideError = (input) => {
+        input.classList.remove("error-input");
+        const err = input.nextElementSibling;
+        if (err && err.classList.contains("error")) err.style.display = "none";
+    };
+
     // Mobile validation
     const mobileRegex = /^[6-9]\d{9}$/;
     if (!mobile.value.trim()) {
@@ -232,7 +347,7 @@ window.validateModal = async function() {
     } else {
         hideError(mobile);
     }
-    
+
     // Name validation
     if (!name.value.trim()) {
         showError(name, "Name is required");
@@ -243,7 +358,7 @@ window.validateModal = async function() {
     } else {
         hideError(name);
     }
-    
+
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email.value.trim()) {
@@ -255,44 +370,37 @@ window.validateModal = async function() {
     } else {
         hideError(email);
     }
-    
+
     if (valid) {
         const submitBtn = document.querySelector(".assist-btn");
         const originalText = submitBtn.textContent;
-        
         try {
             submitBtn.textContent = "Submitting...";
             submitBtn.disabled = true;
-            
+
             const formData = {
                 mobile: mobile.value.trim(),
                 name: name.value.trim(),
                 email: email.value.trim()
             };
-            
+
             const response = await fetch('http://localhost:5000/api/forms/chit-plan', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             });
-            
+
             const data = await response.json();
-            
             if (data.success) {
                 alert('Thank you! Our advisor will contact you shortly.');
                 window.closeModal();
-                mobile.value = '';
-                name.value = '';
-                email.value = '';
+                mobile.value = ''; name.value = ''; email.value = '';
             } else {
                 alert('Something went wrong. Please try again.');
             }
         } catch (error) {
-            // Even if we get an error, the data might still be saved!
-            console.log('Note: Your data may still be saved. Check the submissions page.');
-            alert('Thank you! Your request has been received.'); // Show success anyway
+            console.log('Note: Your data may still be saved.');
+            alert('Thank you! Your request has been received.');
             window.closeModal();
         } finally {
             submitBtn.textContent = originalText;
@@ -300,29 +408,13 @@ window.validateModal = async function() {
         }
     }
 };
-// Helper function to show error
-function showError(input, message) {
-    input.classList.add("error-input");
-    const errorElement = input.nextElementSibling;
-    if (errorElement && errorElement.classList.contains("error")) {
-        errorElement.textContent = message;
-        errorElement.style.display = "block";
-    }
-}
-
-// Helper function to hide error
-function hideError(input) {
-    input.classList.remove("error-input");
-    const errorElement = input.nextElementSibling;
-    if (errorElement && errorElement.classList.contains("error")) {
-        errorElement.style.display = "none";
-    }
-}
 
 // Remove error while typing
 document.addEventListener("input", function(e) {
     if (e.target.closest(".assist-form input")) {
-        hideError(e.target);
+        const err = e.target.nextElementSibling;
+        if (err && err.classList.contains("error")) err.style.display = "none";
+        e.target.classList.remove("error-input");
     }
 });
 
@@ -333,177 +425,4 @@ if (assistForm) {
         e.preventDefault();
         window.validateModal();
     });
-}
-
-/* ================= ENHANCED FEATURES ================= */
-
-// Add active class to current page in navigation
-function setActiveNav() {
-    const currentPath = window.location.pathname;
-    const navLinks = document.querySelectorAll(".menu a");
-    
-    navLinks.forEach(link => {
-        const linkPath = link.getAttribute("href");
-        if (linkPath === currentPath || 
-            (currentPath.includes(linkPath) && linkPath !== "index.html")) {
-            link.classList.add("active");
-            
-            // Also mark parent if it's a dropdown
-            const parentItem = link.closest(".nav-item");
-            if (parentItem) {
-                parentItem.querySelector("> a").classList.add("active");
-            }
-        } else {
-            link.classList.remove("active");
-        }
-    });
-}
-
-// Call on page load
-setActiveNav();
-
-// Stats counter animation
-function animateStats() {
-    const stats = document.querySelectorAll(".stat h3");
-    
-    stats.forEach(stat => {
-        const targetValue = parseInt(stat.textContent);
-        let currentValue = 0;
-        const increment = targetValue / 50;
-        const duration = 2000;
-        const stepTime = duration / 50;
-        
-        const timer = setInterval(() => {
-            currentValue += increment;
-            if (currentValue >= targetValue) {
-                currentValue = targetValue;
-                clearInterval(timer);
-            }
-            stat.textContent = Math.floor(currentValue) + "+";
-        }, stepTime);
-    });
-}
-
-// Start counter when stats section is visible
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            animateStats();
-            statsObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.5 });
-
-const statsSection = document.querySelector(".stats-bar");
-if (statsSection) {
-    statsObserver.observe(statsSection);
-}
-
-/* ================= IMAGE LAZY LOADING ================= */
-if ("IntersectionObserver" in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                if (img.dataset.src) {
-                    img.src = img.dataset.src;
-                }
-                if (img.dataset.srcset) {
-                    img.srcset = img.dataset.srcset;
-                }
-                img.classList.add("loaded");
-                observer.unobserve(img);
-            }
-        });
-    });
-    
-    document.querySelectorAll("img[data-src]").forEach(img => {
-        imageObserver.observe(img);
-    });
-}
-
-/* ================= BACK TO TOP BUTTON ================= */
-const backToTop = document.createElement("button");
-backToTop.innerHTML = "↑";
-backToTop.className = "back-to-top";
-backToTop.style.cssText = `
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: #0b5c3b;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 20px;
-    display: none;
-    z-index: 999;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    transition: all 0.3s ease;
-`;
-
-backToTop.addEventListener("mouseenter", () => {
-    backToTop.style.transform = "translateY(-5px)";
-    backToTop.style.boxShadow = "0 6px 20px rgba(0,0,0,0.2)";
-});
-
-backToTop.addEventListener("mouseleave", () => {
-    backToTop.style.transform = "translateY(0)";
-    backToTop.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
-});
-
-backToTop.addEventListener("click", () => {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-});
-
-document.body.appendChild(backToTop);
-
-// Show/hide back to top button
-window.addEventListener("scroll", () => {
-    if (window.scrollY > 500) {
-        backToTop.style.display = "flex";
-        backToTop.style.alignItems = "center";
-        backToTop.style.justifyContent = "center";
-    } else {
-        backToTop.style.display = "none";
-    }
-});
-
-/* ================= TOUCH/SWIPE SUPPORT FOR MOBILE ================= */
-let touchStartX = 0;
-let touchEndX = 0;
-
-document.addEventListener("touchstart", e => {
-    touchStartX = e.changedTouches[0].screenX;
-});
-
-document.addEventListener("touchend", e => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-});
-
-function handleSwipe() {
-    const swipeThreshold = 50;
-    
-    if (touchEndX < touchStartX - swipeThreshold) {
-        // Swipe left - close menu if open
-        const menu = document.querySelector(".menu");
-        if (menu && menu.classList.contains("active") && window.innerWidth <= 992) {
-            menu.classList.remove("active");
-            document.querySelector(".hamburger")?.classList.remove("active");
-            document.body.style.overflow = "";
-        }
-    }
-}
-
-/* ================= COPYRIGHT YEAR UPDATER ================= */
-const copyrightElement = document.querySelector(".footer-bottom");
-if (copyrightElement) {
-    const currentYear = new Date().getFullYear();
-    copyrightElement.innerHTML = copyrightElement.innerHTML.replace("2025", currentYear);
 }
