@@ -39,7 +39,8 @@ body {
   padding: 18px 20px;
 }
 
-.nav-inner {
+/* ✅ CHANGED: .nav-inner → .nav-container to match your HTML */
+.nav-container {
   max-width: 1250px;
   margin: auto;
   background: #ffffff;
