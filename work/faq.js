@@ -1,38 +1,42 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
   const faqItems = document.querySelectorAll(".faq-item");
-  const searchInput = document.getElementById("faqSearch");
 
-  faqItems.forEach(item => {
+  faqItems.forEach(function (item) {
+
     const question = item.querySelector(".faq-question");
-    const icon = item.querySelector(".icon");
+    const icon = item.querySelector(".faq-icon");
 
-    question.addEventListener("click", () => {
-      faqItems.forEach(i => {
-        if (i !== item) {
-          i.classList.remove("active");
-          const otherIcon = i.querySelector(".icon");
-          if (otherIcon) otherIcon.textContent = "+";
+    if (!question) return;
+
+    question.addEventListener("click", function () {
+
+      // Close all other FAQ items
+      faqItems.forEach(function (other) {
+        if (other !== item) {
+          other.classList.remove("active");
+
+          const otherIcon = other.querySelector(".faq-icon");
+          if (otherIcon) {
+            otherIcon.textContent = "+";
+          }
         }
       });
 
+      // Toggle current FAQ
       item.classList.toggle("active");
-      if (icon) {
-        icon.textContent = item.classList.contains("active") ? "−" : "+";
-      }
-    });
-  });
 
-  /* SEARCH */
-  if (searchInput) {
-    searchInput.addEventListener("keyup", () => {
-      const value = searchInput.value.toLowerCase();
-      faqItems.forEach(item => {
-        item.style.display = item.innerText.toLowerCase().includes(value)
-          ? "block"
-          : "none";
-      });
+      // Update + / − icon
+      if (icon) {
+        if (item.classList.contains("active")) {
+          icon.textContent = "−";
+        } else {
+          icon.textContent = "+";
+        }
+      }
+
     });
-  }
+
+  });
 
 });
