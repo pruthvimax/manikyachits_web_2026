@@ -667,50 +667,6 @@ Phone: +91 7259201729
     }
   });
 </script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const hamburger = document.getElementById('hamburger');
-  const menu = document.getElementById('menu');
-  const menuLinks = document.querySelectorAll('#menu a');
-
-  // Toggle menu on hamburger click
-  hamburger.addEventListener('click', function(e) {
-    e.stopPropagation();
-    this.classList.toggle('active');
-    menu.classList.toggle('show');
-
-    // Update ARIA attribute for accessibility
-    const expanded = this.classList.contains('active');
-    this.setAttribute('aria-expanded', expanded);
-  });
-
-  // Close menu when a link is clicked (for single-page navigation)
-  menuLinks.forEach(link => {
-    link.addEventListener('click', function() {
-      hamburger.classList.remove('active');
-      menu.classList.remove('show');
-      hamburger.setAttribute('aria-expanded', 'false');
-    });
-  });
-
-  // Close menu when clicking outside (optional)
-  document.addEventListener('click', function(e) {
-    if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
-      hamburger.classList.remove('active');
-      menu.classList.remove('show');
-      hamburger.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  // Reset menu state on window resize (above mobile breakpoint)
-  window.addEventListener('resize', function() {
-    if (window.innerWidth > 768) {
-      hamburger.classList.remove('active');
-      menu.classList.remove('show');
-      hamburger.setAttribute('aria-expanded', 'false');
-    }
-  });
-}); </script>
 
 </body>
 </html>
