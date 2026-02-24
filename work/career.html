@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Careers | Manikya Chits</title>
   <link rel="stylesheet" href="career.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     /* Add this to your career.css or keep it here */
     .menu a.active {
@@ -13,6 +14,345 @@
     
     .menu a.active::before {
       width: 100%;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 99999;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: white;
+      padding: 40px 35px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      animation: modalFadeIn 0.3s ease;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 30px;
+      cursor: pointer;
+      color: #999;
+      transition: color 0.2s;
+      line-height: 1;
+    }
+
+    .close-modal:hover {
+      color: #333;
+    }
+
+    .modal-box h2 {
+      margin: 0 0 25px 0;
+      color: #222;
+      font-size: 26px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .apply-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 15px;
+    }
+
+    .form-row input {
+      flex: 1;
+    }
+
+    .apply-form input,
+    .apply-form select,
+    .apply-form textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      background: #fafafa;
+      font-family: inherit;
+      box-sizing: border-box;
+    }
+
+    .apply-form input:focus,
+    .apply-form select:focus,
+    .apply-form textarea:focus {
+      outline: none;
+      border-color: #FFA500;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(255, 165, 0, 0.1);
+    }
+
+    .apply-form input.error-input,
+    .apply-form select.error-input,
+    .apply-form textarea.error-input {
+      border-color: #ff3333;
+      background: #fff8f8;
+    }
+
+    .error-message {
+      color: #ff3333;
+      font-size: 12px;
+      margin-top: 5px;
+      display: none;
+      padding-left: 4px;
+    }
+
+    .upload-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px;
+      background: #f0f0f0;
+      border: 2px dashed #FFA500;
+      border-radius: 12px;
+      color: #555;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .upload-btn:hover {
+      background: #e8e8e8;
+      border-color: #ff8c00;
+    }
+
+    .upload-btn i {
+      color: #FFA500;
+      font-size: 18px;
+    }
+
+    .submit-btn {
+      padding: 16px;
+      background: #FFA500;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .submit-btn:hover {
+      background: #ff8c00;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(255, 165, 0, 0.3);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .submit-btn i.fa-spinner {
+      animation: spin 1s linear infinite;
+    }
+
+    /* Success Message */
+    .success-message {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #f0fff0 0%, #e8ffe8 100%);
+      border-radius: 16px;
+      margin-top: 20px;
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .success-message i {
+      font-size: 70px;
+      color: #4CAF50;
+      margin-bottom: 20px;
+    }
+
+    .success-message h3 {
+      color: #333;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .success-message p {
+      color: #666;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    .success-message .close-success {
+      background: transparent;
+      border: 2px solid #FFA500;
+      color: #FFA500;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .success-message .close-success:hover {
+      background: #FFA500;
+      color: white;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 768px) {
+      .modal-box {
+        padding: 30px 20px;
+      }
+
+      .form-row {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .modal-box h2 {
+        font-size: 24px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .modal-box {
+        padding: 25px 15px;
+      }
+
+      .apply-form input,
+      .apply-form select,
+      .apply-form textarea {
+        padding: 12px 14px;
+      }
+    }
+
+    /* Job Cards Styling */
+    .job-card {
+      background: white;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .job-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .job-card h3 {
+      color: #333;
+      font-size: 20px;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .job-card p {
+      color: #666;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .job-card p strong {
+      color: #FFA500;
+    }
+
+    .apply-btn {
+      width: 100%;
+      padding: 12px;
+      background: #FFA500;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 15px;
+    }
+
+    .apply-btn:hover {
+      background: #ff8c00;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 165, 0, 0.3);
+    }
+
+    .jobs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .career-title {
+      text-align: center;
+      font-size: 36px;
+      color: #333;
+      margin: 40px 0 20px;
     }
   </style>
 </head>
@@ -80,7 +420,7 @@
   <div class="jobs-grid">
 
     <div class="job-card">
-      <h3>Business Development Manager</h3>
+      <h3>Business Manager</h3>
       <p><strong>Qualification:</strong> Any Graduation / Any Post Graduation</p>
       <p><strong>Experience:</strong> 3–5 Years</p>
       <button class="apply-btn" data-role="Business Development Manager">
@@ -123,32 +463,72 @@
   <div class="modal-box">
     <span class="close-modal" id="closeModal">&times;</span>
 
-    <h2>Submit your CV</h2>
+    <h2>Submit your Application</h2>
 
-    <form class="apply-form">
-      <input type="text" placeholder="First Name" required>
-      <input type="text" placeholder="Last Name" required>
-      <input type="email" placeholder="Email Address" required>
-      <input type="tel" placeholder="Phone Number" required>
-      <input type="text" placeholder="Qualification">
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" style="display: none; text-align: center; margin: 20px 0;">
+      <i class="fas fa-spinner fa-spin" style="font-size: 40px; color: #FFA500;"></i>
+      <p style="margin-top: 10px; color: #666;">Submitting...</p>
+    </div>
 
-      <select id="jobRole">
-        <option value="">Applying For</option>
-        <option>Business Development Manager</option>
-        <option>Assistant Manager</option>
-        <option>Sales Executive</option>
-        <option>Customer Support</option>
+    <form class="apply-form" id="careerForm">
+      <div class="form-row">
+        <div>
+          <input type="text" id="firstName" placeholder="First Name *" required>
+          <div class="error-message" id="firstNameError"></div>
+        </div>
+        <div>
+          <input type="text" id="lastName" placeholder="Last Name *" required>
+          <div class="error-message" id="lastNameError"></div>
+        </div>
+      </div>
+
+      <div>
+        <input type="email" id="email" placeholder="Email Address *" required>
+        <div class="error-message" id="emailError"></div>
+      </div>
+
+      <div>
+        <input type="tel" id="phoneNumber" placeholder="Phone Number *" required>
+        <div class="error-message" id="phoneError"></div>
+      </div>
+
+      <div>
+        <input type="text" id="qualification" placeholder="Qualification">
+        <div class="error-message" id="qualificationError"></div>
+      </div>
+
+      <select id="jobRole" required>
+        <option value="">Applying For *</option>
+        <option value="Business Development Manager">Business Development Manager</option>
+        <option value="Assistant Manager">Assistant Manager</option>
+        <option value="Sales Executive">Sales Executive</option>
+        <option value="Customer Support">Customer Support</option>
       </select>
+      <div class="error-message" id="jobRoleError"></div>
 
-      <label class="upload-btn">
-        Upload Resume
-        <input type="file" hidden>
+      <label class="upload-btn" id="resumeLabel">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <span id="resumeText">Upload Resume (PDF, DOC)</span>
+        <input type="file" id="resume" accept=".pdf,.doc,.docx" hidden>
       </label>
+      <div class="error-message" id="resumeError"></div>
 
-      <textarea placeholder="Leave a comment"></textarea>
+      <textarea id="comments" placeholder="Leave a comment (optional)" rows="4"></textarea>
+      <div class="error-message" id="commentsError"></div>
 
-      <button type="submit" class="submit-btn">Submit</button>
+      <button type="submit" class="submit-btn" id="submitBtn">
+        <i class="fas fa-paper-plane"></i> Submit Application
+      </button>
     </form>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="success-message">
+      <i class="fas fa-check-circle"></i>
+      <h3>Application Submitted!</h3>
+      <p>Thank you for your interest in joining Manikya Chits. We'll review your application and contact you soon.</p>
+      <button class="close-success" id="closeSuccess">Close</button>
+    </div>
   </div>
 </div>
 
@@ -158,21 +538,235 @@
   const modal = document.getElementById("jobModal");
   const closeBtn = document.getElementById("closeModal");
   const roleSelect = document.getElementById("jobRole");
+  const careerForm = document.getElementById("careerForm");
+  const successMessage = document.getElementById("successMessage");
+  const closeSuccess = document.getElementById("closeSuccess");
+  const loadingSpinner = document.getElementById("loadingSpinner");
+  const submitBtn = document.getElementById("submitBtn");
+  const resumeInput = document.getElementById("resume");
+  const resumeText = document.getElementById("resumeText");
 
+  // File upload handler
+  resumeInput.addEventListener('change', function() {
+    if (this.files && this.files[0]) {
+      resumeText.textContent = this.files[0].name;
+    } else {
+      resumeText.textContent = 'Upload Resume (PDF, DOC)';
+    }
+  });
+
+  // Open modal with selected role
   document.querySelectorAll(".apply-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       modal.style.display = "flex";
       roleSelect.value = btn.dataset.role;
+      // Reset form
+      careerForm.reset();
+      successMessage.style.display = "none";
+      careerForm.style.display = "block";
+      clearErrors();
+      resumeText.textContent = 'Upload Resume (PDF, DOC)';
     });
   });
 
-  closeBtn.addEventListener("click", () => {
+  // Close modal
+  function closeModal() {
     modal.style.display = "none";
-  });
+    careerForm.style.display = "block";
+    successMessage.style.display = "none";
+    clearErrors();
+  }
+
+  closeBtn.addEventListener("click", closeModal);
+  closeSuccess.addEventListener("click", closeModal);
 
   modal.addEventListener("click", (e) => {
     if (e.target === modal) {
-      modal.style.display = "none";
+      closeModal();
+    }
+  });
+
+  // Helper functions
+  function showError(elementId, message) {
+    const errorElement = document.getElementById(elementId);
+    if (errorElement) {
+      errorElement.textContent = message;
+      errorElement.style.display = 'block';
+      
+      // Highlight the input
+      const input = errorElement.previousElementSibling;
+      if (input) {
+        input.classList.add('error-input');
+      }
+    }
+  }
+
+  function clearErrors() {
+    document.querySelectorAll('.error-message').forEach(el => {
+      el.style.display = 'none';
+      el.textContent = '';
+    });
+    
+    document.querySelectorAll('.apply-form input, .apply-form select, .apply-form textarea').forEach(el => {
+      el.classList.remove('error-input');
+    });
+  }
+
+  function showLoading(show) {
+    if (loadingSpinner) {
+      loadingSpinner.style.display = show ? 'block' : 'none';
+    }
+    if (submitBtn) {
+      submitBtn.disabled = show;
+    }
+    if (careerForm) {
+      const inputs = careerForm.querySelectorAll('input, select, textarea, .upload-btn');
+      inputs.forEach(input => {
+        if (input.tagName !== 'BUTTON') {
+          input.disabled = show;
+        }
+      });
+    }
+  }
+
+  // Form submission
+  if (careerForm) {
+    careerForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      // Clear previous errors
+      clearErrors();
+      
+      // Get form data
+      const formData = {
+        firstName: document.getElementById('firstName')?.value.trim() || '',
+        lastName: document.getElementById('lastName')?.value.trim() || '',
+        email: document.getElementById('email')?.value.trim() || '',
+        phoneNumber: document.getElementById('phoneNumber')?.value.trim() || '',
+        qualification: document.getElementById('qualification')?.value.trim() || '',
+        jobRole: document.getElementById('jobRole')?.value || '',
+        comments: document.getElementById('comments')?.value.trim() || ''
+      };
+      
+      // Basic validation
+      let isValid = true;
+      
+      // First Name validation
+      if (!formData.firstName) {
+        showError('firstNameError', 'First name is required');
+        isValid = false;
+      } else if (formData.firstName.length < 2) {
+        showError('firstNameError', 'First name must be at least 2 characters');
+        isValid = false;
+      }
+      
+      // Last Name validation
+      if (!formData.lastName) {
+        showError('lastNameError', 'Last name is required');
+        isValid = false;
+      } else if (formData.lastName.length < 2) {
+        showError('lastNameError', 'Last name must be at least 2 characters');
+        isValid = false;
+      }
+      
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!formData.email) {
+        showError('emailError', 'Email is required');
+        isValid = false;
+      } else if (!emailRegex.test(formData.email)) {
+        showError('emailError', 'Please enter a valid email address');
+        isValid = false;
+      }
+      
+      // Phone validation
+      const phoneRegex = /^[6-9]\d{9}$/;
+      if (!formData.phoneNumber) {
+        showError('phoneError', 'Phone number is required');
+        isValid = false;
+      } else if (!phoneRegex.test(formData.phoneNumber)) {
+        showError('phoneError', 'Please enter a valid 10-digit Indian mobile number');
+        isValid = false;
+      }
+      
+      // Job Role validation
+      if (!formData.jobRole) {
+        showError('jobRoleError', 'Please select a job role');
+        isValid = false;
+      }
+      
+      // If validation fails, stop here
+      if (!isValid) {
+        const firstError = document.querySelector('.error-message[style*="display: block"]');
+        if (firstError) {
+          firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+      }
+      
+      // Show loading
+      showLoading(true);
+      
+      try {
+        const response = await fetch('http://localhost:5000/api/forms/career', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          // Hide form, show success message
+          careerForm.style.display = 'none';
+          successMessage.style.display = 'block';
+          
+          // Scroll to success message
+          successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          // Show errors from server
+          if (data.errors && Array.isArray(data.errors)) {
+            data.errors.forEach(error => {
+              if (error.toLowerCase().includes('first name')) {
+                showError('firstNameError', error);
+              } else if (error.toLowerCase().includes('last name')) {
+                showError('lastNameError', error);
+              } else if (error.toLowerCase().includes('email')) {
+                showError('emailError', error);
+              } else if (error.toLowerCase().includes('phone') || error.toLowerCase().includes('mobile')) {
+                showError('phoneError', error);
+              } else if (error.toLowerCase().includes('job role')) {
+                showError('jobRoleError', error);
+              } else if (error.toLowerCase().includes('comment')) {
+                showError('commentsError', error);
+              }
+            });
+          } else {
+            alert(data.message || 'Something went wrong. Please try again.');
+          }
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Network error. Please check your connection and try again.');
+      } finally {
+        showLoading(false);
+      }
+    });
+  }
+
+  // Remove error on input
+  document.querySelectorAll('#careerForm input, #careerForm select, #careerForm textarea').forEach(input => {
+    if (input) {
+      input.addEventListener('input', function() {
+        this.classList.remove('error-input');
+        const errorId = this.id + 'Error';
+        const errorElement = document.getElementById(errorId);
+        if (errorElement) {
+          errorElement.style.display = 'none';
+        }
+      });
     }
   });
 
@@ -187,14 +781,11 @@
     });
   }
 
-  // Remove any active class from menu items (no page should be highlighted)
+  // Remove any active class from menu items
   document.addEventListener('DOMContentLoaded', function() {
-    // Remove active class from all menu links
     document.querySelectorAll('.menu a').forEach(link => {
       link.classList.remove('active');
     });
-    
-    // Also remove any active class from dropdown items
     document.querySelectorAll('.dropdown a').forEach(link => {
       link.classList.remove('active');
     });

@@ -226,7 +226,7 @@
       <p class="subtitle">
         Join Digital Chits Anytime, Anywhere.
       </p>
-      <a href="#" class="cta-btn">Speak to Advisor →</a>
+      <a href="javascript:void(0)" class="cta-btn" onclick="openModal(event)">Speak to Advisor →</a>
       <div class="stores">
         <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store">
         <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play Store">
@@ -377,26 +377,26 @@
 <div class="assist-modal" id="assistModal">
   <div class="assist-box">
     <button class="assist-close" onclick="closeModal()">×</button>
-    <h2>Get Personalized Assistance</h2>
+    <h2>Request a Call Back</h2>
 
     <div class="assist-form">
       <div class="field">
-        <input type="text" id="mobile" placeholder="Mobile Number">
+        <input type="text" id="mobile" placeholder="Mobile Number *" required>
         <small class="error" id="mobileError">Mobile number is required</small>
       </div>
 
       <div class="field">
-        <input type="text" id="name" placeholder="Full Name">
+        <input type="text" id="name" placeholder="Full Name *" required>
         <small class="error" id="nameError">Name is required</small>
       </div>
 
       <div class="field">
-        <input type="email" id="email" placeholder="Email Address">
+        <input type="email" id="email" placeholder="Email Address *" required>
         <small class="error" id="emailError">Email is required</small>
       </div>
     </div>
 
-    <button class="assist-btn" onclick="validateModal()">Continue →</button>
+    <button class="assist-btn" onclick="validateModal()">Request Call Back →</button>
   </div>
 </div>
 

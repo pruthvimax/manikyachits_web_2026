@@ -400,7 +400,7 @@ window.validateModal = async function() {
             }
         } catch (error) {
             console.log('Note: Your data may still be saved.');
-            alert('Thank you! Your request has been received.');
+            
             window.closeModal();
         } finally {
             submitBtn.textContent = originalText;

@@ -1,62 +1,61 @@
 const mongoose = require('mongoose');
 
 const careerSchema = new mongoose.Schema({
-  fullName: {
+  firstName: {
     type: String,
-    required: [true, 'Full name is required'],
+    required: [true, 'First name is required'],
     trim: true,
-    minlength: [2, 'Name must be at least 2 characters long']
+    minlength: [2, 'First name must be at least 2 characters']
+  },
+  lastName: {
+    type: String,
+    required: [true, 'Last name is required'],
+    trim: true,
+    minlength: [2, 'Last name must be at least 2 characters']
   },
   email: {
     type: String,
     required: [true, 'Email is required'],
     lowercase: true,
     trim: true,
-    match: [/^\S+@\S+\.\S+$/, 'Please enter a valid email']
+    validate: {
+      validator: function(v) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+      },
+      message: 'Please enter a valid email address'
+    }
   },
-  phone: {
+  phoneNumber: {
     type: String,
     required: [true, 'Phone number is required'],
     trim: true,
-    minlength: [10, 'Phone number must be at least 10 digits']
-  },
-  position: {
-    type: String,
-    required: [true, 'Position applied for is required'],
-    trim: true,
-    enum: {
-      values: ['Sales Executive', 'Branch Manager', 'Customer Support', 'Field Officer', 'Accounts Executive', 'Other'],
-      message: 'Please select a valid position'
+    validate: {
+      validator: function(v) {
+        return /^[6-9]\d{9}$/.test(v);
+      },
+      message: 'Please enter a valid 10-digit Indian mobile number'
     }
-  },
-  experience: {
-    type: String,
-    required: [true, 'Years of experience is required'],
-    trim: true
   },
   qualification: {
     type: String,
-    required: [true, 'Qualification is required'],
     trim: true
   },
-  currentLocation: {
+  jobRole: {
     type: String,
-    required: [true, 'Current location is required'],
+    required: [true, 'Job role is required'],
+    enum: ['Business Development Manager', 'Assistant Manager', 'Sales Executive', 'Customer Support']
+  },
+  resume: {
+    type: String, // This will store the file path or URL
+    default: ''
+  },
+  comments: {
+    type: String,
     trim: true
-  },
-  resumeLink: {
-    type: String,
-    trim: true,
-    default: ''
-  },
-  message: {
-    type: String,
-    trim: true,
-    default: ''
   },
   status: {
     type: String,
-    enum: ['new', 'shortlisted', 'rejected', 'hired'],
+    enum: ['new', 'reviewed', 'shortlisted', 'rejected'],
     default: 'new'
   }
 }, {

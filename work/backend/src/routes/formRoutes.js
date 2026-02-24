@@ -1,13 +1,30 @@
 const express = require('express');
-const router = express.Router();  // ← THIS LINE WAS MISSING!
+const router = express.Router();
+
+
+// Add these imports at the top
+const { validateCareerForm } = require('../middleware/careerValidation');
+const { submitCareerApplication, getCareerApplications } = require('../controllers/careerController');
+
 
 const { validateChitPlanForm } = require('../middleware/validation');
 const { submitChitPlan, getChitPlanSubmissions } = require('../controllers/formController');
 
-// POST - Submit chit plan form
-router.post('/chit-plan', validateChitPlanForm, submitChitPlan);
+// Import contact validation and controller
+const { validateContactForm } = require('../middleware/contactValidation');
+const { submitContactForm, getContactSubmissions } = require('../controllers/contactController');
 
-// GET - View submissions (for testing)
+// Chit Plan routes
+router.post('/chit-plan', validateChitPlanForm, submitChitPlan);
 router.get('/chit-plan/submissions', getChitPlanSubmissions);
 
-module.exports = router;  // Export the router
+// Contact form routes - ADD THESE LINES
+router.post('/contact', validateContactForm, submitContactForm);
+router.get('/contact/submissions', getContactSubmissions);
+
+
+// Add these routes with your other routes
+router.post('/career', validateCareerForm, submitCareerApplication);
+router.get('/career/submissions', getCareerApplications);
+
+module.exports = router;
