@@ -720,11 +720,84 @@
   </div>
 </footer>
 
+
+
 <script>
     // Set current year in footer
     document.getElementById('currentYear').textContent = new Date().getFullYear();
     
-    // Mobile menu toggle
+    // Contact Form Validation and Submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Reset errors
+        document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+        document.querySelectorAll('input, select, textarea').forEach(el => el.classList.remove('error'));
+        
+        let isValid = true;
+        
+        // Name validation
+        const name = document.getElementById('fullName').value.trim();
+        if (!name || name.length < 2) {
+            document.getElementById('nameError').textContent = 'Please enter a valid name (minimum 2 characters)';
+            document.getElementById('fullName').classList.add('error');
+            isValid = false;
+        }
+        
+        // Phone validation
+        const phone = document.getElementById('phoneNumber').value.trim();
+        const phoneRegex = /^[6-9]\d{9}$/;
+        if (!phoneRegex.test(phone)) {
+            document.getElementById('phoneError').textContent = 'Please enter a valid 10-digit Indian mobile number';
+            document.getElementById('phoneNumber').classList.add('error');
+            isValid = false;
+        }
+        
+        // Email validation
+        const email = document.getElementById('email').value.trim();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            document.getElementById('emailError').textContent = 'Please enter a valid email address';
+            document.getElementById('email').classList.add('error');
+            isValid = false;
+        }
+        
+        // Subject validation
+        const subject = document.getElementById('subject').value;
+        if (!subject) {
+            document.getElementById('subjectError').textContent = 'Please select a subject';
+            document.getElementById('subject').classList.add('error');
+            isValid = false;
+        }
+        
+        // Message validation
+        const message = document.getElementById('message').value.trim();
+        if (!message || message.length < 10) {
+            document.getElementById('messageError').textContent = 'Please enter a message (minimum 10 characters)';
+            document.getElementById('message').classList.add('error');
+            isValid = false;
+        }
+        
+        if (isValid) {
+            // Simulate form submission
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // You can add actual form submission here
+            // Example: fetch('/submit-contact', { method: 'POST', body: new FormData(this) })
+        }
+    });
+    
+    // Reset form for another message
+    document.getElementById('sendAnother').addEventListener('click', function() {
+        document.getElementById('contactForm').reset();
+        document.getElementById('contactForm').style.display = 'block';
+        document.getElementById('successMessage').style.display = 'none';
+        document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+        document.querySelectorAll('input, select, textarea').forEach(el => el.classList.remove('error'));
+    });
+    
+    // Mobile menu toggle (if not in main.js)
     const hamburger = document.getElementById('hamburger');
     const menu = document.getElementById('menu');
     
@@ -735,6 +808,8 @@
         });
     }
 </script>
+
+
 
 <script>
   const overlay = document.getElementById("popupOverlay");
