@@ -191,7 +191,54 @@ body {
     transform: translateY(0);
 }
 
+/* Video styling */
+.hero-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 30px;
+  transition: transform 0.3s ease;
+  object-fit: cover; /* Ensures video covers the area properly */
+}
 
+.video-card {
+  position: relative;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25);
+  width: 100%;
+  max-width: 500px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.video-card:hover {
+  transform: translateY(-10px);
+}
+
+.video-card:hover .play {
+  opacity: 1;
+}
+
+.play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 64px;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* When video is playing, hide the play button */
+.video-card.playing .play {
+  opacity: 0;
+  pointer-events: none;
+}
 
 /* ================= HERO CONTENT ================= */
 .hero-inner {
@@ -450,6 +497,8 @@ body {
         align-items: center;
     }
 }
+
+
 /* ================= CHIT PLANS SECTION ================= */
 .chit-section {
     background: #fafafa;

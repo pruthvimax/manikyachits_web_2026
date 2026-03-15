@@ -98,12 +98,15 @@
         </div>
       </div>
 
-      <div class="hero-media">
-        <div class="video-card">
-          <img src="assets/images/image.png" alt="Manikya Chits Hero Image">
-          <span class="play">▶</span>
-        </div>
-      </div>
+     <div class="hero-media">
+  <div class="video-card">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="assets/videos/1000152870.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <span class="play" onclick="toggleVideo(this)">▶</span>
+  </div>
+</div>
 
     </div>
   </div>
@@ -666,6 +669,38 @@ Phone: +91 7259201729
       overlay.style.display = "none";
     }
   });
+</script>
+<script>
+// Function to toggle video play/pause when clicking the play button
+function toggleVideo(playButton) {
+  const videoCard = playButton.closest('.video-card');
+  const video = videoCard.querySelector('video');
+  
+  if (video.paused) {
+    video.play();
+    playButton.style.opacity = '0';
+  } else {
+    video.pause();
+    playButton.style.opacity = '1';
+  }
+}
+
+// Hide play button when video is playing, show when paused
+document.addEventListener('DOMContentLoaded', function() {
+  const videos = document.querySelectorAll('.hero-video');
+  
+  videos.forEach(video => {
+    video.addEventListener('play', function() {
+      const playButton = this.closest('.video-card').querySelector('.play');
+      playButton.style.opacity = '0';
+    });
+    
+    video.addEventListener('pause', function() {
+      const playButton = this.closest('.video-card').querySelector('.play');
+      playButton.style.opacity = '1';
+    });
+  });
+});
 </script>
 
 </body>

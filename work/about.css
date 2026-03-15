@@ -841,3 +841,427 @@
     font-size: 22px;
   }
 }
+/* ================= MOBILE RESPONSIVE STYLES ================= */
+
+/* Tablet (768px - 992px) */
+@media (max-width: 992px) {
+  .about-container {
+    flex-direction: column;
+    gap: 40px;
+    padding: 0 15px;
+  }
+
+  .about-text h1 {
+    font-size: 36px;
+    text-align: center;
+  }
+
+  .about-text {
+    text-align: center;
+  }
+
+  .mv-container {
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 15px;
+  }
+
+  .mv-card {
+    padding: 30px 20px;
+  }
+
+  .core-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+
+  .core-card {
+    padding: 40px 30px;
+  }
+
+  .management-container {
+    flex-direction: column;
+    gap: 40px;
+    padding: 0 15px;
+  }
+
+  .management-text {
+    order: 2;
+  }
+
+  .management-image-card {
+    order: 1;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .management-title {
+    font-size: 30px;
+  }
+
+  .team-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .team-card {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+/* Mobile (576px - 768px) */
+@media (max-width: 768px) {
+  /* About Section */
+  .about-section {
+    padding: 100px 15px 50px;
+  }
+
+  .about-text h1 {
+    font-size: 32px;
+  }
+
+  .about-text p {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .image-frame {
+    padding: 10px;
+  }
+
+  /* Mission Vision */
+  .mv-section {
+    padding: 50px 15px;
+  }
+
+  .mv-card h3 {
+    font-size: 20px;
+  }
+
+  .mv-card p {
+    font-size: 14px;
+  }
+
+  /* Core Values */
+  .core-values-section {
+    padding: 50px 15px;
+  }
+
+  .core-title {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  .core-card {
+    padding: 30px 20px;
+  }
+
+  .core-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .core-item {
+    padding: 15px 10px;
+  }
+
+  .core-number {
+    font-size: 50px;
+    top: -10px;
+    left: -5px;
+  }
+
+  .core-icon {
+    width: 40px;
+  }
+
+  .core-item h3 {
+    font-size: 16px;
+  }
+
+  .core-item p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  /* Management Section */
+  .management-section {
+    padding: 50px 15px;
+  }
+
+  .management-title {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  .management-text p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .director-quote {
+    padding: 15px;
+  }
+
+  .director-quote p {
+    font-size: 14px;
+  }
+
+  .director-info h4 {
+    font-size: 16px;
+  }
+
+  .director-info span {
+    font-size: 13px;
+  }
+
+  /* License Section */
+  .licenses-section {
+    padding: 50px 15px;
+  }
+
+  .licenses-title {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  .licenses-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .license-card {
+    padding: 25px 20px;
+    max-width: 100%;
+  }
+
+  .license-card h4 {
+    font-size: 16px;
+  }
+
+  .license-card .value {
+    font-size: 14px;
+  }
+}
+
+/* Small Mobile (below 576px) */
+@media (max-width: 576px) {
+  /* About Section */
+  .about-section {
+    padding: 90px 12px 40px;
+  }
+
+  .about-text h1 {
+    font-size: 28px;
+  }
+
+  .about-text h2 {
+    font-size: 20px;
+  }
+
+  .about-text p {
+    font-size: 14px;
+  }
+
+  /* Mission Vision */
+  .mv-card {
+    padding: 25px 15px;
+  }
+
+  .mv-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+  }
+
+  .mv-card h3 {
+    font-size: 18px;
+  }
+
+  /* Core Values */
+  .core-values-section {
+    padding: 40px 12px;
+  }
+
+  .core-title {
+    font-size: 26px;
+  }
+
+  .core-grid {
+    grid-template-columns: 1fr;  /* Single column on mobile */
+    gap: 20px;
+  }
+
+  .core-card {
+    padding: 25px 15px;
+  }
+
+  .core-item {
+    text-align: center;
+    padding: 20px 15px;
+    background: #f9f9f9;
+    border-radius: 12px;
+  }
+
+  .core-number {
+    font-size: 60px;
+    top: -5px;
+    left: 5px;
+  }
+
+  .core-icon {
+    width: 45px;
+    margin-bottom: 10px;
+  }
+
+  .core-item h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .core-item p {
+    font-size: 13px;
+  }
+
+  /* Management Section */
+  .management-section {
+    padding: 40px 12px;
+  }
+
+  .management-title {
+    font-size: 26px;
+  }
+
+  .management-container {
+    gap: 30px;
+  }
+
+  .management-text p {
+    font-size: 13px;
+  }
+
+  .director-quote p {
+    font-size: 13px;
+  }
+
+  .director-quote span {
+    font-size: 12px;
+  }
+
+  .management-image-card {
+    max-width: 100%;
+  }
+
+  .director-info {
+    padding: 15px;
+  }
+
+  .director-info h4 {
+    font-size: 15px;
+  }
+
+  .director-info span {
+    font-size: 12px;
+  }
+
+  /* License Section */
+  .licenses-section {
+    padding: 40px 12px;
+  }
+
+  .licenses-title {
+    font-size: 26px;
+  }
+
+  .license-card {
+    padding: 20px 15px;
+  }
+
+  .license-icon {
+    font-size: 30px;
+  }
+
+  .license-card h4 {
+    font-size: 15px;
+  }
+
+  .license-card .label {
+    font-size: 12px;
+  }
+
+  .license-card .value {
+    font-size: 13px;
+  }
+
+  .license-btn {
+    font-size: 13px;
+    margin-top: 15px;
+  }
+}
+
+/* Fix for very small devices */
+@media (max-width: 360px) {
+  .about-text h1 {
+    font-size: 24px;
+  }
+
+  .core-number {
+    font-size: 45px;
+  }
+
+  .core-item h3 {
+    font-size: 16px;
+  }
+
+  .core-item p {
+    font-size: 12px;
+  }
+}
+
+/* Fix for navbar on mobile */
+@media (max-width: 992px) {
+  .nav-container {
+    padding: 12px 20px;
+  }
+
+  .menu {
+    padding-top: 80px;
+  }
+
+  .menu a {
+    font-size: 15px;
+    padding: 12px 15px;
+  }
+
+  .dropdown {
+    margin-left: 20px;
+    border-left: 2px solid #0b5c3b;
+  }
+
+  .dropdown li a {
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+}
+
+/* Fix for overlapping content on mobile */
+@media (max-width: 768px) {
+  .site-header {
+    top: 10px;
+  }
+
+  .nav-container {
+    padding: 12px 20px;
+  } 
+
+  .logo img {
+    height: 30px;
+  }
+
+  .hamburger span {
+    width: 22px;
+    height: 2.5px;
+  }
+}
