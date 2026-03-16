@@ -1265,3 +1265,423 @@
     height: 2.5px;
   }
 }
+
+/* ================= FIX FOR DROPDOWN NAVIGATION ================= */
+/* This ensures dropdown links work on desktop */
+@media (min-width: 993px) {
+  .nav-item .dropdown {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.25s ease;
+    display: block !important; /* Override any mobile styles */
+  }
+  
+  .nav-item:hover .dropdown {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+    display: block !important;
+  }
+  
+  .dropdown li a {
+    pointer-events: auto !important; /* Ensure links are clickable */
+  }
+}
+
+/* Fix for dropdown links on desktop */
+.nav-item .dropdown li a {
+  position: relative;
+  z-index: 1001;
+}
+
+/* Ensure no overlapping elements block clicks */
+.dropdown {
+  pointer-events: none;
+}
+
+.nav-item:hover .dropdown {
+  pointer-events: auto;
+}
+
+/* ================= PURE CSS MENU (NO JAVASCRIPT) ================= */
+.menu-toggle {
+  display: none;
+}
+
+/* Hide hamburger on desktop */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 10002;
+}
+
+.hamburger span {
+  width: 26px;
+  height: 3px;
+  background-color: #0b5c3b;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Mobile styles */
+@media (max-width: 992px) {
+  .hamburger {
+    display: flex;
+    margin-left: auto;
+  }
+  
+  .menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100vh;
+    background: white;
+    flex-direction: column;
+    padding: 80px 20px;
+    transition: left 0.3s ease;
+    z-index: 10001;
+    margin: 0;
+    display: flex !important;
+  }
+  
+  .menu-toggle:checked ~ .menu {
+    left: 0;
+  }
+  
+  .menu-toggle:checked + .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+  
+  .menu-toggle:checked + .hamburger span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .menu-toggle:checked + .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+  
+  .menu li {
+    width: 100%;
+  }
+  
+  .menu a {
+    display: block;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  /* Dropdowns on mobile */
+  .dropdown {
+    position: static;
+    display: none;
+    padding-left: 20px;
+    box-shadow: none;
+    border-left: 2px solid #0b5c3b;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  
+  .nav-item:hover .dropdown {
+    display: none;
+  }
+  
+  .nav-item:focus-within .dropdown,
+  .nav-item.active .dropdown {
+    display: block;
+  }
+}
+
+/* Desktop dropdown styles */
+@media (min-width: 993px) {
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: 0.3s;
+    padding: 10px 0;
+    z-index: 1000;
+  }
+  
+  .nav-item:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .dropdown li a {
+    padding: 10px 20px;
+    display: block;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .dropdown li a:hover {
+    background: #f5f5f5;
+    color: #0b5c3b;
+  }
+}
+
+/* ================= MOBILE FOOTER STYLES (like index.html) ================= */
+
+/* Tablet (768px - 992px) */
+@media (max-width: 992px) {
+  .footer-main {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  
+  .info-col {
+    grid-column: span 2;
+  }
+  
+  .footer-col h4 {
+    margin-bottom: 20px;
+    font-size: 1rem;
+  }
+  
+  .footer-links li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-links li a {
+    font-size: 0.9rem;
+  }
+  
+  .company-description {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+  
+  .contact-info p {
+    font-size: 0.85rem;
+  }
+}
+
+/* Mobile (576px - 768px) */
+@media (max-width: 768px) {
+  .kcpl-footer {
+    padding-top: 50px;
+    margin-top: 40px;
+  }
+  
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-bottom: 40px;
+  }
+  
+  .info-col {
+    grid-column: span 1;
+  }
+  
+  .footer-col {
+    text-align: center;
+  }
+  
+  .footer-logo-img {
+    width: 140px;
+    margin: 0 auto 20px;
+    display: block;
+  }
+  
+  .company-description {
+    text-align: center;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .contact-info {
+    text-align: center;
+  }
+  
+  .contact-info p {
+    justify-content: center;
+  }
+  
+  .social-links {
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .footer-col h4 {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+  }
+  
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .footer-links li {
+    margin-bottom: 8px;
+  }
+  
+  .footer-links li a {
+    font-size: 0.9rem;
+  }
+  
+  .footer-links li a:hover {
+    padding-left: 0;
+  }
+  
+  .mt-30 {
+    margin-top: 25px;
+  }
+}
+
+/* Small Mobile (below 576px) */
+@media (max-width: 576px) {
+  .kcpl-footer {
+    padding-top: 40px;
+  }
+  
+  .footer-main {
+    gap: 25px;
+    padding-bottom: 30px;
+  }
+  
+  .footer-logo-img {
+    width: 120px;
+  }
+  
+  .company-description {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  
+  .contact-info p {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+  }
+  
+  .social-links {
+    gap: 12px;
+  }
+  
+  .social-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+  }
+  
+  .footer-col h4 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+  
+  .footer-links li a {
+    font-size: 0.85rem;
+  }
+  
+  .footer-bottom-strip {
+    padding: 12px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Fix for very small devices */
+@media (max-width: 360px) {
+  .footer-logo-img {
+    width: 100px;
+  }
+  
+  .company-description {
+    font-size: 0.8rem;
+  }
+  
+  .contact-info p {
+    font-size: 0.75rem;
+  }
+  
+  .social-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+  
+  .footer-bottom-strip {
+    font-size: 0.7rem;
+    padding: 10px;
+  }
+}
+
+/* Ensure footer links are properly spaced */
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links li a {
+  text-decoration: none;
+  color: var(--text-gray);
+  transition: color 0.3s ease;
+}
+
+.footer-links li a:hover {
+  color: var(--green);
+}
+
+/* Contact info styling for mobile */
+.contact-info p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 768px) {
+  .contact-info p {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+/* Social icons hover effect */
+.social-icon {
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  background: var(--green);
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* Footer bottom strip */
+.footer-bottom-strip {
+  background-color: var(--green);
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 576px) {
+  .footer-bottom-strip {
+    padding: 12px;
+    font-size: 0.75rem;
+  }
+}

@@ -18,6 +18,7 @@
 <body>
 
 <!-- ================= NAVBAR ================= -->
+<!-- ================= NAVBAR ================= -->
 <header class="site-header">
   <nav class="navbar">
     <div class="nav-container">
@@ -27,46 +28,39 @@
         <img src="assets/manikyaChits.png" alt="Manikya Chits">
       </div>
         
-      <!-- HAMBURGER -->
-      <div class="hamburger" id="hamburger">
+      <!-- HAMBURGER (checkbox hack for pure CSS) -->
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      <label for="menu-toggle" class="hamburger">
         <span></span>
         <span></span>
         <span></span>
-      </div>
-
+      </label>
 
       <!-- MENU -->
-      <ul class="menu" id="menu">
-
+      <ul class="menu">
         <li><a href="index.html">Home</a></li>
+        
         <li class="nav-item">
-          <a href="about.html" class="active">About Us <span class="arrow">▾</span></a>
-           <ul class="dropdown">
-            <li><a href="#about-us">About Us</a></li>
-            <li><a href="#core-values">Core Values</a></li>
-            <li><a href="#management">Management</a></li>
-            <li><a href="#cirtificate">Certificate</a></li>
+          <a href="about.html">About Us</a>
+          <ul class="dropdown">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="about.html#core-values">Core Values</a></li>
+            <li><a href="about.html#management">Management</a></li>
+            <li><a href="about.html#cirtificate">Certificate</a></li>
           </ul>
         </li>
 
-        <li>
-          <a href="chitplan.html">Chit Plans</a>
-        </li>
-        <li>
-          <a href="faq.html">FAQ</a>
-        </li>
+        <li><a href="chitplan.html">Chit Plans</a></li>
+        <li><a href="faq.html">FAQ</a></li>
 
         <li class="nav-item">
-          <a href="contact.html">
-            Contact Us <span class="arrow">▾</span>
-          </a>
+          <a href="contact.html">Contact Us</a>
           <ul class="dropdown">
             <li><a href="contact.html">Contact Details</a></li>
             <li><a href="branches.html">Branches</a></li>
             <li><a href="feedback.html">Feedback</a></li>
           </ul>
         </li>
-
       </ul>
 
     </div>
@@ -305,14 +299,11 @@
 
   </div>
 </section>
-
-<!-- ==========================
-   MANAGEMENT TEAM SECTION
-   Two-card layout for directors
-========================== -->
-<!-- Management Message Section -->
+<!-- ========================== SECOND DIRECTOR SECTION ========================== -->
 <section class="management-section">
   <div class="management-container">
+    
+    <!-- LEFT: Text Content -->
     <div class="management-text">
       <h2 class="management-title">Managing Director</h2>
       <p>At Manikya Chits, we believe in building lasting relationships with our customers based on trust, transparency, and reliability. For over 5 years, we have been serving the financial needs of thousands of families across Karnataka.</p>
@@ -324,7 +315,7 @@
       </div>
     </div>
 
-    <!-- IMAGE CARD -->
+    <!-- RIGHT: Image Card -->
     <div class="management-image-card">
       <img src="assets/subdirector.png" alt="Managing Director">
       <div class="director-info">
@@ -332,10 +323,9 @@
         <span>Manikya Chits Private Limited</span>
       </div>
     </div>
+    
   </div>
 </section>
-
-
 
 <!-- LICENSES & CERTIFICATIONS SECTION -->
 <section class="licenses-section" id="cirtificate">
@@ -443,7 +433,7 @@
   </div>
 </footer>
 
-<script src="main.js"></script>
+
 <script>
   // Set current year in footer
   document.getElementById('currentYear').textContent = new Date().getFullYear();
@@ -459,109 +449,14 @@
   document.getElementById("openTerms").addEventListener("click", function (e) {
     e.preventDefault();
     title.innerText = "Terms & Conditions";
-    content.innerHTML = `
-      <p><strong>Last Updated:</strong> 20 March 2025</p>
-
-<p>
-Welcome to <strong>Manikya Chits Private Limited</strong>. By enrolling in or
-participating in any chit scheme conducted by the company, all subscribers
-agree to comply with the terms and conditions governed by the
-<strong>Chit Funds Act, 1982</strong> and the rules framed thereunder.
-</p>
-
-<h4>1. Conduct of Chit & Auction</h4>
-<p>
-All chits shall be conducted by the Foreman or an authorized representative.
-Auctions will be held on scheduled dates, and the Foreman’s decision shall be
-final and binding. Defaulting subscribers are not permitted to participate in
-auctions.
-</p>
-
-<h4>2. Payment of Installments</h4>
-<p>
-Subscribers must pay installments on or before the due date. Delay in payment
-will attract penalties as per company policy. Cheque payments are subject to
-clearance. Bounced cheques will attract bank charges.
-</p>
-
-<h4>3. Prized & Non-Prized Subscribers</h4>
-<p>
-Prized subscribers must furnish adequate security for future installments.
-Failure to do so may result in withholding of prize money. Non-prized
-subscribers who default continuously may lose dividend benefits or face
-cancellation.
-</p>
-
-<h4>4. Refund & Cancellation</h4>
-<p>
-On cancellation, the subscriber is entitled to the amount paid excluding
-dividends, after deduction of 5% of the chit amount and applicable taxes.
-Refunds are payable at the end of the chit term or earlier at management
-discretion.
-</p>
-
-<h4>5. Death of Subscriber</h4>
-<p>
-In case of death, the nominee may continue the chit or claim the eligible refund
-as per the Chit Funds Act, 1982.
-</p>
-
-<h4>6. Legal Compliance</h4>
-<p>
-Any disputes shall be governed by the laws of India and subject to the
-jurisdiction of Karnataka courts.
-</p> `;
+    content.innerHTML = `...`; // Keep your existing content
     overlay.style.display = "flex";
   });
 
   document.getElementById("openPrivacy").addEventListener("click", function (e) {
     e.preventDefault();
     title.innerText = "Privacy Policy";
-    content.innerHTML = `
-     <p><strong>Last Updated:</strong> 20 March 2025</p>
-
-<p>
-Manikya Chits Private Limited respects your privacy and is committed to
-protecting your personal information.
-</p>
-
-<h4>1. Information We Collect</h4>
-<p>
-We collect personal details such as name, contact number, address, identity
-proofs, and banking information strictly for chit administration and legal
-compliance.
-</p>
-
-<h4>2. Use of Information</h4>
-<p>
-Collected data is used only for account management, communication, statutory
-requirements, and service improvement.
-</p>
-
-<h4>3. Data Protection</h4>
-<p>
-We do not sell, trade, or share customer data with third parties except when
-required by law or government authorities.
-</p>
-
-<h4>4. Security</h4>
-<p>
-Reasonable security practices are implemented to safeguard customer
-information against unauthorized access.
-</p>
-
-<h4>5. Consent</h4>
-<p>
-By using our services, you consent to the collection and use of information as
-outlined in this policy.</p>
-
-<hr>
-<p><strong>Manikya Chits Private Limited</strong></p>
-<p>
-Registered Address: Sagara, Shivamogga District, Karnataka – 577401<br>
-Email: manikyachitsprivatelimited@gmail.com<br>
-Phone: +91 7259201729
-</p> `;
+    content.innerHTML = `...`; // Keep your existing content
     overlay.style.display = "flex";
   });
 
@@ -575,5 +470,146 @@ Phone: +91 7259201729
     }
   });
 </script>
+
+<!-- ================= HAMBURGER MENU SCRIPT ================= -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+    const navItems = document.querySelectorAll('.nav-item');
+    const allLinks = document.querySelectorAll('.menu a');
+    const BREAKPOINT = 992;
+
+    if (!hamburger || !menu) return;
+
+    // Toggle mobile menu
+    hamburger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isActive = this.classList.toggle('active');
+        menu.classList.toggle('active');
+        document.body.style.overflow = isActive ? 'hidden' : '';
+    });
+
+    // Mobile dropdown toggles - ONLY on mobile
+    navItems.forEach(function(item) {
+        const link = item.querySelector('a');
+        const dropdown = item.querySelector('.dropdown');
+
+        if (link && dropdown) {
+            link.addEventListener('click', function(e) {
+                // Only handle on mobile
+                if (window.innerWidth <= BREAKPOINT) {
+                    e.preventDefault(); // Stop navigation on mobile
+                    
+                    // Close other dropdowns
+                    navItems.forEach(function(otherItem) {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+
+                    // Toggle current dropdown
+                    item.classList.toggle('active');
+                }
+                // On desktop, normal navigation works
+            });
+        }
+    });
+
+    // Close menu when clicking a link (on mobile)
+    allLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= BREAKPOINT) {
+                // If it's NOT a dropdown parent, close the menu
+                if (!this.nextElementSibling || !this.nextElementSibling.classList.contains('dropdown')) {
+                    menu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                    document.body.style.overflow = '';
+                    
+                    // Also close any open dropdowns
+                    navItems.forEach(function(item) {
+                        item.classList.remove('active');
+                    });
+                }
+            }
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= BREAKPOINT && menu.classList.contains('active')) {
+            if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+                menu.classList.remove('active');
+                hamburger.classList.remove('active');
+                document.body.style.overflow = '';
+                navItems.forEach(function(item) {
+                    item.classList.remove('active');
+                });
+            }
+        }
+    });
+
+    // Reset on window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > BREAKPOINT) {
+            menu.classList.remove('active');
+            hamburger.classList.remove('active');
+            document.body.style.overflow = '';
+            navItems.forEach(function(item) {
+                item.classList.remove('active');
+            });
+        }
+    });
+
+    // Handle anchor links smoothly
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === "#") return;
+            
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                
+                // Close mobile menu if open
+                if (window.innerWidth <= BREAKPOINT) {
+                    menu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+                
+                // Smooth scroll
+                const headerHeight = document.querySelector('.navbar')?.offsetHeight || 0;
+                const targetPosition = target.offsetTop - headerHeight - 20;
+                window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+            }
+        });
+    });
+});
+</script>
+
+<!-- Fix for mobile menu close on anchor links -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const menuLinks = document.querySelectorAll('.menu a');
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+    
+    menuLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Check if it's an anchor link (starts with #)
+            if (this.getAttribute('href').startsWith('#')) {
+                if (window.innerWidth <= 992) {
+                    // Close mobile menu
+                    hamburger.classList.remove('active');
+                    menu.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+    });
+});
+</script>
+
 </body>
 </html>

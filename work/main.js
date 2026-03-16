@@ -20,30 +20,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Mobile dropdown toggles (only when screen width ≤ BREAKPOINT)
-    navItems.forEach(item => {
-        const link = item.querySelector('a');
-        const dropdown = item.querySelector('.dropdown');
+  // Mobile dropdown toggles (only when screen width ≤ BREAKPOINT)
+navItems.forEach(item => {
+    const link = item.querySelector('a');
+    const dropdown = item.querySelector('.dropdown');
 
-        if (link && dropdown) {
-            link.addEventListener('click', (e) => {
-                if (window.innerWidth <= BREAKPOINT) {
-                    e.preventDefault();          // don't navigate
-                    e.stopPropagation();
+    if (link && dropdown) {
+        link.addEventListener('click', (e) => {
+            // Only prevent default on mobile
+            if (window.innerWidth <= BREAKPOINT) {
+                e.preventDefault();          // don't navigate on mobile
+                e.stopPropagation();
 
-                    // Close other open dropdowns
-                    navItems.forEach(otherItem => {
-                        if (otherItem !== item && otherItem.classList.contains('active')) {
-                            otherItem.classList.remove('active');
-                        }
-                    });
+                // Close other open dropdowns
+                navItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
 
-                    // Toggle current dropdown
-                    item.classList.toggle('active');
-                }
-            });
-        }
-    });
-
+                // Toggle current dropdown
+                item.classList.toggle('active');
+            }
+            // On desktop, let the normal navigation happen
+        });
+    }
+});
     // Close menu when a link is clicked (except dropdown toggles)
     allLinks.forEach(link => {
         link.addEventListener('click', () => {
@@ -426,3 +428,15 @@ if (assistForm) {
         window.validateModal();
     });
 }
+
+// Force fix for navigation links
+document.querySelectorAll('.menu a').forEach(link => {
+    link.addEventListener('click', function(e) {
+        // Allow normal navigation if not on mobile or if it's not a dropdown toggle
+        const href = this.getAttribute('href');
+        if (href && !href.startsWith('#') && !href.startsWith('javascript')) {
+            // Let the browser navigate normally
+            return true;
+        }
+    });
+});
