@@ -12,155 +12,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
   >
 
-  <link rel="stylesheet" href="chitplan.css" />
-  <!-- Font Awesome 6 (Free) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- Modal CSS - Improved -->
-  <style>
-    /* Modal Styles - Improved */
-    .assist-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.6);
-      z-index: 99999;
-      justify-content: center;
-      align-items: center;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-    }
-
-    .assist-modal.active {
-      display: flex;
-    }
-
-    .assist-box {
-      background: white;
-      padding: 35px 30px 30px;
-      border-radius: 16px;
-      width: 90%;
-      max-width: 420px;
-      position: relative;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-      animation: modalFadeIn 0.3s ease;
-    }
-
-    @keyframes modalFadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .assist-close {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 28px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: #999;
-      transition: color 0.2s;
-      line-height: 1;
-    }
-
-    .assist-close:hover {
-      color: #333;
-    }
-
-    .assist-box h2 {
-      margin: 0 0 25px 0;
-      color: #222;
-      font-size: 24px;
-      font-weight: 600;
-      text-align: center;
-      padding-right: 20px;
-    }
-
-    .field {
-      margin-bottom: 20px;
-    }
-
-    .field input {
-      width: 100%;
-      padding: 14px 16px;
-      border: 1.5px solid #e0e0e0;
-      border-radius: 10px;
-      font-size: 15px;
-      transition: all 0.2s;
-      box-sizing: border-box;
-      background: #fafafa;
-    }
-
-    .field input:focus {
-      outline: none;
-      border-color: #FFA500;
-      background: white;
-      box-shadow: 0 0 0 3px rgba(255, 165, 0, 0.1);
-    }
-
-    .field input.error-input {
-      border-color: #ff3333;
-      background: #fff8f8;
-    }
-
-    .error {
-      color: #ff3333;
-      font-size: 12px;
-      margin-top: 6px;
-      display: none;
-      padding-left: 4px;
-      font-weight: 500;
-    }
-
-    .assist-btn {
-      width: 100%;
-      padding: 16px;
-      background: #FFA500;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      margin-top: 10px;
-      letter-spacing: 0.5px;
-    }
-
-    .assist-btn:hover {
-      background: #ff8c00;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(255, 165, 0, 0.3);
-    }
-
-    .assist-btn:active {
-      transform: translateY(0);
-    }
-
-    .assist-btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
-    }
-
-    /* Placeholder styling */
-    .field input::placeholder {
-      color: #aaa;
-      font-size: 14px;
-    }
-  </style>
 </head>
 <body>
 
@@ -174,12 +26,13 @@
         <img src="assets/manikyaChits.png" alt="Manikya Chits">
       </div>
         
-      <!-- HAMBURGER -->
-      <div class="hamburger" id="hamburger">
+      <!-- HAMBURGER - Checkbox method (same as about page) -->
+      <input type="checkbox" id="menu-toggle" class="menu-toggle">
+      <label for="menu-toggle" class="hamburger" id="hamburger">
         <span></span>
         <span></span>
         <span></span>
-      </div>
+      </label>
 
       <!-- MENU -->
       <ul class="menu" id="menu">
@@ -586,8 +439,8 @@
   </div>
 </footer>
 
-<!-- Link to main.js which contains all the functions -->
-<script src="main.js"></script>
+<!-- Link to chitplan.js (filter functionality only) -->
+<script src="chitplan.js"></script>
 
 <!-- Year updater -->
 <script>
@@ -655,25 +508,22 @@
   });
 </script>
 
-<!-- Ensure modal functions are available globally -->
+<!-- Modal Functions -->
 <script>
-  // Make sure the modal functions from main.js are accessible
-  window.openModal = window.openModal || function(e) {
-    if (e && typeof e.preventDefault === "function") {
-      e.preventDefault();
-    }
+  // Open modal
+  window.openModal = function(e) {
+    if (e && e.preventDefault) e.preventDefault();
     const modal = document.getElementById("assistModal");
     if (modal) {
       modal.classList.add("active");
       document.body.style.overflow = "hidden";
       const firstInput = modal.querySelector("input");
-      if (firstInput) {
-        setTimeout(() => firstInput.focus(), 100);
-      }
+      if (firstInput) setTimeout(() => firstInput.focus(), 100);
     }
   };
 
-  window.closeModal = window.closeModal || function() {
+  // Close modal
+  window.closeModal = function() {
     const modal = document.getElementById("assistModal");
     if (modal) {
       modal.classList.remove("active");
@@ -686,95 +536,67 @@
           input.classList.remove("error-input");
         });
       }
-      modal.querySelectorAll(".error").forEach(el => {
-        el.style.display = "none";
-      });
+      modal.querySelectorAll(".error").forEach(el => el.style.display = "none");
     }
   };
 
-  window.validateModal = window.validateModal || async function() {
+  // Close when clicking background
+  document.addEventListener("click", function(e) {
+    const modal = document.getElementById("assistModal");
+    if (e.target === modal) window.closeModal();
+  });
+
+  // Close with Escape key
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") {
+      const modal = document.getElementById("assistModal");
+      if (modal && modal.classList.contains("active")) window.closeModal();
+    }
+  });
+
+  // Validate modal
+  window.validateModal = function() {
     const mobile = document.getElementById("mobile");
     const name = document.getElementById("name");
     const email = document.getElementById("email");
-    
     let valid = true;
-    
-    // Mobile validation
+
     const mobileRegex = /^[6-9]\d{9}$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Mobile
     if (!mobile.value.trim()) {
       showError(mobile, "Mobile number is required");
       valid = false;
     } else if (!mobileRegex.test(mobile.value.trim())) {
-      showError(mobile, "Please enter a valid 10-digit Indian mobile number");
+      showError(mobile, "Enter valid 10 digit mobile number");
       valid = false;
     } else {
       hideError(mobile);
     }
-    
-    // Name validation
+
+    // Name
     if (!name.value.trim()) {
       showError(name, "Name is required");
-      valid = false;
-    } else if (name.value.trim().length < 2) {
-      showError(name, "Name must be at least 2 characters");
       valid = false;
     } else {
       hideError(name);
     }
-    
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Email
     if (!email.value.trim()) {
       showError(email, "Email is required");
       valid = false;
     } else if (!emailRegex.test(email.value.trim())) {
-      showError(email, "Please enter a valid email address");
+      showError(email, "Enter valid email address");
       valid = false;
     } else {
       hideError(email);
     }
-    
+
     if (valid) {
-      const submitBtn = document.querySelector(".assist-btn");
-      const originalText = submitBtn.textContent;
-      
-      try {
-        submitBtn.textContent = "Submitting...";
-        submitBtn.disabled = true;
-        
-        const formData = {
-          mobile: mobile.value.trim(),
-          name: name.value.trim(),
-          email: email.value.trim()
-        };
-        
-        const response = await fetch('http://localhost:5000/api/forms/chit-plan', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData)
-        });
-        
-        const data = await response.json();
-        
-        if (data.success) {
-          alert('Thank you! Our advisor will contact you shortly.');
-          window.closeModal();
-          mobile.value = '';
-          name.value = '';
-          email.value = '';
-        } else {
-          alert('Something went wrong. Please try again.');
-        }
-      } catch (error) {
-        console.log('Note: Your data may still be saved. Check the submissions page.');
-        alert('Thank you! Your request has been received.');
-        window.closeModal();
-      } finally {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-      }
+      alert('Thank you! Our advisor will contact you shortly.');
+      closeModal();
     }
   };
 
@@ -801,15 +623,6 @@
       hideError(e.target);
     }
   });
-
-  // Form submit handler
-  const assistForm = document.querySelector(".assist-form");
-  if (assistForm) {
-    assistForm.addEventListener("submit", function(e) {
-      e.preventDefault();
-      window.validateModal();
-    });
-  }
 </script>
 
 </body>
