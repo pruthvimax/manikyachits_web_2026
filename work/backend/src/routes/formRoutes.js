@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-
+const feedbackController = require('../controllers/feedbackController');
+const { validateFeedback } = require('../middleware/feedbackValidation');
 
 // Add these imports at the top
 const { validateCareerForm } = require('../middleware/careerValidation');
@@ -26,5 +27,11 @@ router.get('/contact/submissions', getContactSubmissions);
 // Add these routes with your other routes
 router.post('/career', validateCareerForm, submitCareerApplication);
 router.get('/career/submissions', getCareerApplications);
+
+// Feedback routes
+router.post('/feedback', validateFeedback, feedbackController.submitFeedback);
+router.get('/feedback', feedbackController.getFeedback);
+router.patch('/feedback/:id/helpful', feedbackController.markHelpful);
+
 
 module.exports = router;

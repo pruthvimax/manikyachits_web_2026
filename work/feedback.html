@@ -17,52 +17,36 @@
 <header class="site-header">
     <nav class="navbar">
         <div class="nav-container">
-            
-            <!-- LOGO -->
             <div class="logo">
                 <img src="assets/manikyaChits.png" alt="Manikya Chits">
             </div>
-                
-            <!-- HAMBURGER -->
             <button class="hamburger" id="hamburger" aria-label="Menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
-
-            <!-- MENU -->
-          <ul class="menu" id="menu">
-
-        <li><a href="index.html">Home</a></li>
-        <li class="nav-item">
-          <a href="about.html">About Us <span class="arrow">▾</span></a>
-           <ul class="dropdown">
-           <li><a href="about.html">About Us</a></li>
-            <li><a href="about.html#core-values">Core Values</a></li>
-            <li><a href="about.html#management">Management</a></li>
-            <li><a href="about.html#certificate">Certificate</a></li>
-          </ul>
-        </li>
-
-        <li>
-          <a href="chitplan.html" class="active">Chit Plans</a>
-        </li>
-        <li>
-          <a href="faq.html">FAQ</a>
-        </li>
-
-        <li class="nav-item">
-          <a href="contact.html">
-            Contact Us <span class="arrow">▾</span>
-          </a>
-          <ul class="dropdown">
-            <li><a href="contact.html">Contact Details</a></li>
-            <li><a href="branches.html">Branches</a></li>
-            <li><a href="feedback.html">Feedback</a></li>
-          </ul>
-        </li>
-
-      </ul>
+            <ul class="menu" id="menu">
+                <li><a href="index.html">Home</a></li>
+                <li class="nav-item">
+                    <a href="about.html">About Us <span class="arrow">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="about.html#core-values">Core Values</a></li>
+                        <li><a href="about.html#management">Management</a></li>
+                        <li><a href="about.html#certificate">Certificate</a></li>
+                    </ul>
+                </li>
+                <li><a href="chitplan.html">Chit Plans</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li class="nav-item">
+                    <a href="contact.html">Contact Us <span class="arrow">▾</span></a>
+                    <ul class="dropdown">
+                        <li><a href="contact.html">Contact Details</a></li>
+                        <li><a href="branches.html">Branches</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </nav>
 </header>
@@ -72,42 +56,30 @@
     <div class="feedback-hero-content">
         <h1>Your Feedback Matters</h1>
         <p>Share your experience with Manikya Chits and help us serve you better. We value every suggestion and review.</p>
-        
         <div class="feedback-stats">
             <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-star"></i>
-                </div>
+                <div class="stat-icon"><i class="fas fa-star"></i></div>
                 <div class="stat-info">
-                    <h3>4.8</h3>
+                    <h3 id="avgRating">4.8</h3>
                     <p>Average Rating</p>
                 </div>
             </div>
-            
             <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-comments"></i>
-                </div>
+                <div class="stat-icon"><i class="fas fa-comments"></i></div>
                 <div class="stat-info">
-                    <h3>1,247</h3>
+                    <h3 id="totalFeedback">1,247</h3>
                     <p>Total Feedback</p>
                 </div>
             </div>
-            
             <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-check-circle"></i>
-                </div>
+                <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
                 <div class="stat-info">
-                    <h3>98%</h3>
+                    <h3 id="positivePercent">98%</h3>
                     <p>Positive Reviews</p>
                 </div>
             </div>
-            
             <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fas fa-clock"></i>
-                </div>
+                <div class="stat-icon"><i class="fas fa-clock"></i></div>
                 <div class="stat-info">
                     <h3>24h</h3>
                     <p>Response Time</p>
@@ -119,11 +91,9 @@
 
 <!-- FEEDBACK CONTAINER -->
 <section class="feedback-container">
-    <!-- SUBMIT FEEDBACK FORM -->
     <div class="submit-feedback">
         <h2><i class="fas fa-edit"></i> Submit Your Feedback</h2>
         <p>Tell us about your experience with Manikya Chits. Your feedback helps us improve.</p>
-        
         <form id="feedbackForm" class="feedback-form">
             <div class="form-row">
                 <div class="form-group">
@@ -131,14 +101,12 @@
                     <input type="text" id="name" name="name" placeholder="Enter your full name" required>
                     <div class="error-message" id="nameError"></div>
                 </div>
-                
                 <div class="form-group">
                     <label for="email"><i class="fas fa-envelope"></i> Email Address *</label>
                     <input type="email" id="email" name="email" placeholder="Enter your email address" required>
                     <div class="error-message" id="emailError"></div>
                 </div>
             </div>
-            
             <div class="form-group">
                 <label for="category"><i class="fas fa-tag"></i> Feedback Category *</label>
                 <select id="category" name="category" required>
@@ -153,7 +121,6 @@
                 </select>
                 <div class="error-message" id="categoryError"></div>
             </div>
-            
             <div class="form-group rating-group">
                 <label><i class="fas fa-star"></i> Rate Your Experience *</label>
                 <div class="rating-stars" id="ratingStars">
@@ -170,18 +137,15 @@
                 <input type="hidden" id="rating" name="rating" value="0" required>
                 <div class="error-message" id="ratingError"></div>
             </div>
-            
             <div class="form-group">
                 <label for="message"><i class="fas fa-comment"></i> Your Feedback *</label>
                 <textarea id="message" name="message" rows="5" placeholder="Please share your detailed feedback..." required></textarea>
                 <div class="error-message" id="messageError"></div>
             </div>
-            
             <button type="submit" class="submit-btn" id="submitBtn">
                 <i class="fas fa-paper-plane"></i> Submit Feedback
             </button>
         </form>
-        
         <div id="successMessage" class="success-message">
             <i class="fas fa-check-circle"></i>
             <h3>Thank You for Your Feedback!</h3>
@@ -189,11 +153,9 @@
             <button id="sendAnother" class="outline-btn">Send Another Message</button>
         </div>
     </div>
-    
-    <!-- VIEW FEEDBACK -->
+
     <div class="view-feedback">
         <h2><i class="fas fa-comments"></i> What Others Say</h2>
-        
         <div class="feedback-filter">
             <button class="filter-btn active" data-filter="all">All Feedback</button>
             <button class="filter-btn" data-filter="5">5 Stars</button>
@@ -201,11 +163,7 @@
             <button class="filter-btn" data-filter="recent">Recent</button>
             <button class="filter-btn" data-filter="popular">Most Helpful</button>
         </div>
-        
-        <div class="feedback-list" id="feedbackList">
-            <!-- Feedback items will be dynamically added here -->
-        </div>
-        
+        <div class="feedback-list" id="feedbackList"></div>
         <div id="noFeedbackMessage" class="no-feedback">
             <i class="fas fa-comment-slash"></i>
             <h3>No Feedback Yet</h3>
@@ -214,220 +172,372 @@
     </div>
 </section>
 
-<!--footer section -->
-
+<!-- FOOTER -->
 <footer class="kcpl-footer">
-  <div class="footer-container">
-    <div class="footer-main">
-      <div class="footer-col info-col">
-        <img src="assets/manikyaChits.png" alt="Logo" class="footer-logo-img">
-        <p class="company-description">
-          Manikya Chits Private Limited is a government-approved chit fund company 
-          that has been serving the community with trust and dedication since 2022.
-        </p>
-        
-        <div class="contact-info">
-          <p>Sagara, Shivamogga District<br>Karnataka, India - 577401</p>
-          <p>Talk to Advisor: <strong>+91 7259201729</strong></p>
-          <p>Support: <strong>+91 7259201729</strong></p>
-          <p>E-Mail: <span class="green-text">manikyachitsprivatelimited@gmail.com</span></p>
+    <div class="footer-container">
+        <div class="footer-main">
+            <div class="footer-col info-col">
+                <img src="assets/manikyaChits.png" alt="Logo" class="footer-logo-img">
+                <p class="company-description">Manikya Chits Private Limited is a government-approved chit fund company that has been serving the community with trust and dedication since 2022.</p>
+                <div class="contact-info">
+                    <p>Sagara, Shivamogga District<br>Karnataka, India - 577401</p>
+                    <p>Talk to Advisor: <strong>+91 7259201729</strong></p>
+                    <p>Support: <strong>+91 7259201729</strong></p>
+                    <p>E-Mail: <span class="green-text">manikyachitsprivatelimited@gmail.com</span></p>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/p/manikya-chits-61552792953767/" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.linkedin.com/in/manikya-chits-private-limited-undefined-8408923b0/" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/channel/UCPvoA77wvjq_Yea3hCzC-Hw" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/manikya_chits_pvt_limited/?hl=en" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="about.html#management">Management</a></li>
+                    <li><a href="career.html">Career</a></li>
+                </ul>
+                <h4 class="mt-30">Legal</h4>
+                <ul class="footer-links">
+                    <li><a href="#" id="openTerms">Terms & Conditions</a></li>
+                    <li><a href="#" id="openPrivacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="popup-overlay" id="popupOverlay">
+                <div class="popup-box">
+                    <span class="close-btn" id="closePopup">&times;</span>
+                    <h2 id="popupTitle"></h2>
+                    <div class="popup-content" id="popupContent"></div>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul class="footer-links">
+                    <li><a href="chitplan.html">Chit Plans</a></li>
+                    <li><a href="branches.html">Branches</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul class="footer-links">
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="feedback.html">Suggestions / Feedback</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="blog.html">Blogs</a></li>
+                    <li><a href="assets/licence.pdf" target="_blank">Certificate</a></li>
+                </ul>
+            </div>
         </div>
-        
-        <div class="social-links">
-          <a href="https://www.facebook.com/p/manikya-chits-61552792953767/" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.linkedin.com/in/manikya-chits-private-limited-undefined-8408923b0/" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://www.youtube.com/channel/UCPvoA77wvjq_Yea3hCzC-Hw" class="social-icon"><i class="fab fa-youtube"></i></a>
-          <a href="https://www.instagram.com/manikya_chits_pvt_limited/?hl=en" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
-        </div>
-      </div>
-      
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul class="footer-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="about.html#management">Management</a></li>
-          <li><a href="career.html">Career</a></li>
-        </ul>
-        <h4 class="mt-30">Legal</h4>
-        <ul class="footer-links">
-          <li><a href="#" id="openTerms">Terms & Conditions</a></li>
-          <li><a href="#" id="openPrivacy">Privacy Policy</a></li>
-        </ul>
-      </div>
-      <!-- POPUP OVERLAY -->
-<div class="popup-overlay" id="popupOverlay">
-  <div class="popup-box">
-    <span class="close-btn" id="closePopup">&times;</span>
-
-    <h2 id="popupTitle"></h2>
-    <div class="popup-content" id="popupContent">
-      <!-- Content injected by JS -->
     </div>
-  </div>
-</div>
-      
-      <div class="footer-col">
-        <h4>Services</h4>
-        <ul class="footer-links">
-          <li><a href="chitplan.html">Chit Plans</a></li>
-          <li><a href="branches.html">Branches</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-col">
-        <h4>Support</h4>
-        <ul class="footer-links">
-          <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="faq.html">FAQ</a></li>
-          <li><a href="feedback.html">Suggestions / Feedback</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-col">
-        <h4>Resources</h4>
-        <ul class="footer-links">
-          <li><a href="blog.html">Blogs</a></li>
-          <li><a href="assets/licence.pdf" target="_blank">Certificate</a></li>
-        </ul>
-      </div>
+    <div class="footer-bottom-strip">
+        <p>&copy; <span id="currentYear"></span> Manikya Chits Private Limited. All rights reserved.</p>
     </div>
-  </div>
-  
-  <div class="footer-bottom-strip">
-    <p>&copy; <span id="currentYear"></span> Manikya Chits Private Limited. All rights reserved.</p>
-  </div>
 </footer>
 
 <script>
-  // Set current year in footer
-  document.getElementById('currentYear').textContent = new Date().getFullYear();
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
 </script>
 
 <script>
-  const overlay = document.getElementById("popupOverlay");
-  const title = document.getElementById("popupTitle");
-  const content = document.getElementById("popupContent");
-  const closeBtn = document.getElementById("closePopup");
+    // Popup overlay
+    const overlay = document.getElementById("popupOverlay");
+    const title = document.getElementById("popupTitle");
+    const content = document.getElementById("popupContent");
+    const closeBtn = document.getElementById("closePopup");
 
-  document.getElementById("openTerms").addEventListener("click", function (e) {
-    e.preventDefault();
-    title.innerText = "Terms & Conditions";
-    content.innerHTML = `
-      <p><strong>Last Updated:</strong> 20 March 2025</p>
+    document.getElementById("openTerms").addEventListener("click", function (e) {
+        e.preventDefault();
+        title.innerText = "Terms & Conditions";
+        content.innerHTML = `<p><strong>Last Updated:</strong> 20 March 2025</p>
+        <p>Welcome to <strong>Manikya Chits Private Limited</strong>. By enrolling in or participating in any chit scheme conducted by the company, all subscribers agree to comply with the terms and conditions governed by the <strong>Chit Funds Act, 1982</strong> and the rules framed thereunder.</p>
+        <h4>1. Conduct of Chit & Auction</h4>
+        <p>All chits shall be conducted by the Foreman or an authorized representative. Auctions will be held on scheduled dates, and the Foreman's decision shall be final and binding. Defaulting subscribers are not permitted to participate in auctions.</p>
+        <h4>2. Payment of Installments</h4>
+        <p>Subscribers must pay installments on or before the due date. Delay in payment will attract penalties as per company policy. Cheque payments are subject to clearance. Bounced cheques will attract bank charges.</p>
+        <h4>3. Prized & Non-Prized Subscribers</h4>
+        <p>Prized subscribers must furnish adequate security for future installments. Failure to do so may result in withholding of prize money. Non-prized subscribers who default continuously may lose dividend benefits or face cancellation.</p>
+        <h4>4. Refund & Cancellation</h4>
+        <p>On cancellation, the subscriber is entitled to the amount paid excluding dividends, after deduction of 5% of the chit amount and applicable taxes. Refunds are payable at the end of the chit term or earlier at management discretion.</p>
+        <h4>5. Death of Subscriber</h4>
+        <p>In case of death, the nominee may continue the chit or claim the eligible refund as per the Chit Funds Act, 1982.</p>
+        <h4>6. Legal Compliance</h4>
+        <p>Any disputes shall be governed by the laws of India and subject to the jurisdiction of Karnataka courts.</p>`;
+        overlay.style.display = "flex";
+    });
 
-<p>
-Welcome to <strong>Manikya Chits Private Limited</strong>. By enrolling in or
-participating in any chit scheme conducted by the company, all subscribers
-agree to comply with the terms and conditions governed by the
-<strong>Chit Funds Act, 1982</strong> and the rules framed thereunder.
-</p>
+    document.getElementById("openPrivacy").addEventListener("click", function (e) {
+        e.preventDefault();
+        title.innerText = "Privacy Policy";
+        content.innerHTML = `<p><strong>Last Updated:</strong> 20 March 2025</p>
+        <p>Manikya Chits Private Limited respects your privacy and is committed to protecting your personal information.</p>
+        <h4>1. Information We Collect</h4>
+        <p>We collect personal details such as name, contact number, address, identity proofs, and banking information strictly for chit administration and legal compliance.</p>
+        <h4>2. Use of Information</h4>
+        <p>Collected data is used only for account management, communication, statutory requirements, and service improvement.</p>
+        <h4>3. Data Protection</h4>
+        <p>We do not sell, trade, or share customer data with third parties except when required by law or government authorities.</p>
+        <h4>4. Security</h4>
+        <p>Reasonable security practices are implemented to safeguard customer information against unauthorized access.</p>
+        <h4>5. Consent</h4>
+        <p>By using our services, you consent to the collection and use of information as outlined in this policy.</p>
+        <hr>
+        <p><strong>Manikya Chits Private Limited</strong></p>
+        <p>Registered Address: Sagara, Shivamogga District, Karnataka – 577401<br>Email: manikyachitsprivatelimited@gmail.com<br>Phone: +91 7259201729</p>`;
+        overlay.style.display = "flex";
+    });
 
-<h4>1. Conduct of Chit & Auction</h4>
-<p>
-All chits shall be conducted by the Foreman or an authorized representative.
-Auctions will be held on scheduled dates, and the Foreman’s decision shall be
-final and binding. Defaulting subscribers are not permitted to participate in
-auctions.
-</p>
-
-<h4>2. Payment of Installments</h4>
-<p>
-Subscribers must pay installments on or before the due date. Delay in payment
-will attract penalties as per company policy. Cheque payments are subject to
-clearance. Bounced cheques will attract bank charges.
-</p>
-
-<h4>3. Prized & Non-Prized Subscribers</h4>
-<p>
-Prized subscribers must furnish adequate security for future installments.
-Failure to do so may result in withholding of prize money. Non-prized
-subscribers who default continuously may lose dividend benefits or face
-cancellation.
-</p>
-
-<h4>4. Refund & Cancellation</h4>
-<p>
-On cancellation, the subscriber is entitled to the amount paid excluding
-dividends, after deduction of 5% of the chit amount and applicable taxes.
-Refunds are payable at the end of the chit term or earlier at management
-discretion.
-</p>
-
-<h4>5. Death of Subscriber</h4>
-<p>
-In case of death, the nominee may continue the chit or claim the eligible refund
-as per the Chit Funds Act, 1982.
-</p>
-
-<h4>6. Legal Compliance</h4>
-<p>
-Any disputes shall be governed by the laws of India and subject to the
-jurisdiction of Karnataka courts.
-</p> `;
-    overlay.style.display = "flex";
-  });
-
-  document.getElementById("openPrivacy").addEventListener("click", function (e) {
-    e.preventDefault();
-    title.innerText = "Privacy Policy";
-    content.innerHTML = `
-     <p><strong>Last Updated:</strong> 20 March 2025</p>
-
-<p>
-Manikya Chits Private Limited respects your privacy and is committed to
-protecting your personal information.
-</p>
-
-<h4>1. Information We Collect</h4>
-<p>
-We collect personal details such as name, contact number, address, identity
-proofs, and banking information strictly for chit administration and legal
-compliance.
-</p>
-
-<h4>2. Use of Information</h4>
-<p>
-Collected data is used only for account management, communication, statutory
-requirements, and service improvement.
-</p>
-
-<h4>3. Data Protection</h4>
-<p>
-We do not sell, trade, or share customer data with third parties except when
-required by law or government authorities.
-</p>
-
-<h4>4. Security</h4>
-<p>
-Reasonable security practices are implemented to safeguard customer
-information against unauthorized access.
-</p>
-
-<h4>5. Consent</h4>
-<p>
-By using our services, you consent to the collection and use of information as
-outlined in this policy.</p>
-
-<hr>
-<p><strong>Manikya Chits Private Limited</strong></p>
-<p>
-Registered Address: Sagara, Shivamogga District, Karnataka – 577401<br>
-Email: manikyachitsprivatelimited@gmail.com<br>
-Phone: +91 7259201729
-</p> `;
-    overlay.style.display = "flex";
-  });
-
-  closeBtn.addEventListener("click", () => {
-    overlay.style.display = "none";
-  });
-
-  overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) {
-      overlay.style.display = "none";
-    }
-  });
+    closeBtn.addEventListener("click", () => overlay.style.display = "none");
+    overlay.addEventListener("click", (e) => { if (e.target === overlay) overlay.style.display = "none"; });
 </script>
+
+<!-- ================= FEEDBACK SCRIPT ================= -->
+<script>
+// API Configuration
+const API_BASE_URL = 'http://localhost:5000/api/forms';
+
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('feedbackForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const successMsg = document.getElementById('successMessage');
+    const sendAnotherBtn = document.getElementById('sendAnother');
+    const feedbackList = document.getElementById('feedbackList');
+    const noFeedbackMsg = document.getElementById('noFeedbackMessage');
+    const avgRatingSpan = document.getElementById('avgRating');
+    const totalFeedbackSpan = document.getElementById('totalFeedback');
+    const positivePercentSpan = document.getElementById('positivePercent');
+    
+    // Rating stars
+    const stars = document.querySelectorAll('#ratingStars i');
+    const ratingInput = document.getElementById('rating');
+    let currentRating = 0;
+    
+    stars.forEach(star => {
+        star.addEventListener('click', function() {
+            const rating = parseInt(this.getAttribute('data-rating'));
+            currentRating = rating;
+            ratingInput.value = rating;
+            stars.forEach((s, idx) => {
+                if (idx < rating) s.className = 'fas fa-star';
+                else s.className = 'far fa-star';
+            });
+            const ratingError = document.getElementById('ratingError');
+            if (ratingError) ratingError.textContent = '';
+        });
+    });
+    
+    // Helper functions
+    function showError(element, message) {
+        const errorDiv = document.getElementById(element + 'Error');
+        if (errorDiv) {
+            errorDiv.textContent = message;
+            document.getElementById(element).classList.add('error');
+        }
+    }
+    
+    function clearError(element) {
+        const errorDiv = document.getElementById(element + 'Error');
+        if (errorDiv) {
+            errorDiv.textContent = '';
+            document.getElementById(element).classList.remove('error');
+        }
+    }
+    
+    // Form submission
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        ['name', 'email', 'category', 'rating', 'message'].forEach(field => clearError(field));
+        
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const category = document.getElementById('category').value;
+        const rating = currentRating;
+        const message = document.getElementById('message').value.trim();
+        
+        let hasError = false;
+        if (!name) { showError('name', 'Name is required'); hasError = true; }
+        if (!email) { showError('email', 'Email is required'); hasError = true; }
+        else if (!/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+            showError('email', 'Please enter a valid email address');
+            hasError = true;
+        }
+        if (!category) { showError('category', 'Please select a category'); hasError = true; }
+        if (rating === 0) { showError('rating', 'Please rate your experience'); hasError = true; }
+        if (!message) { showError('message', 'Feedback message is required'); hasError = true; }
+        
+        if (hasError) return;
+        
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+        
+        try {
+            const response = await fetch(`${API_BASE_URL}/feedback`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, category, rating, message })
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                alert('✅ Thank you! Your feedback has been submitted successfully!');
+                form.style.display = 'none';
+                successMsg.style.display = 'block';
+                form.reset();
+                stars.forEach(s => s.className = 'far fa-star');
+                currentRating = 0;
+                ratingInput.value = 0;
+                loadFeedback(); // Reload feedback list
+            } else {
+                alert('❌ Error: ' + (data.message || 'Something went wrong'));
+            }
+        } catch (error) {
+            console.error('Submit error:', error);
+            alert('❌ Network error. Please make sure the backend server is running on port 5000');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Feedback';
+        }
+    });
+    
+    sendAnotherBtn?.addEventListener('click', function() {
+        form.style.display = 'flex';
+        successMsg.style.display = 'none';
+        form.reset();
+        stars.forEach(s => s.className = 'far fa-star');
+        currentRating = 0;
+        ratingInput.value = 0;
+    });
+    
+    // Load feedback from server
+    async function loadFeedback(filter = 'all') {
+        try {
+            let url = `${API_BASE_URL}/feedback`;
+            if (filter === '5') url += '?rating=5';
+            else if (filter === '4') url += '?rating=4';
+            else if (filter === 'recent') url += '?sort=recent';
+            else if (filter === 'popular') url += '?sort=popular';
+            
+            const response = await fetch(url);
+            const data = await response.json();
+            
+            if (data.success) {
+                // Update stats
+                if (data.stats) {
+                    avgRatingSpan.textContent = data.stats.averageRating.toFixed(1);
+                    totalFeedbackSpan.textContent = data.stats.total;
+                    positivePercentSpan.textContent = data.stats.positivePercent + '%';
+                }
+                
+                if (data.data && data.data.length > 0) {
+                    displayFeedback(data.data);
+                    noFeedbackMsg.style.display = 'none';
+                    feedbackList.style.display = 'block';
+                } else {
+                    feedbackList.style.display = 'none';
+                    noFeedbackMsg.style.display = 'block';
+                }
+            }
+        } catch (error) {
+            console.error('Load feedback error:', error);
+            // Show sample feedback if backend not available
+            showSampleFeedback();
+        }
+    }
+    
+    function displayFeedback(feedbacks) {
+        feedbackList.innerHTML = '';
+        feedbacks.forEach(fb => {
+            const initials = fb.name.charAt(0).toUpperCase();
+            const date = new Date(fb.createdAt).toLocaleDateString();
+            const starsHtml = Array(5).fill().map((_, i) => 
+                `<i class="fas fa-star${i < fb.rating ? '' : '-o'}"></i>`
+            ).join('');
+            
+            const categoryNames = {
+                general: 'General', service: 'Customer Service', app: 'Mobile App',
+                payment: 'Payment', chit: 'Chit Plan', suggestion: 'Suggestion', complaint: 'Complaint'
+            };
+            
+            const item = document.createElement('div');
+            item.className = 'feedback-item';
+            item.innerHTML = `
+                <div class="feedback-header">
+                    <div class="feedback-user">
+                        <div class="user-avatar">${escapeHtml(initials)}</div>
+                        <div class="user-info">
+                            <h4>${escapeHtml(fb.name)}</h4>
+                            <p>${escapeHtml(fb.email)}</p>
+                        </div>
+                    </div>
+                    <div class="feedback-rating">${starsHtml}</div>
+                </div>
+                <div class="feedback-content">${escapeHtml(fb.message)}</div>
+                <div class="feedback-footer">
+                    <span class="feedback-category"><i class="fas fa-tag"></i> ${categoryNames[fb.category] || fb.category}</span>
+                    <span class="feedback-date"><i class="far fa-calendar-alt"></i> ${date}</span>
+                    <div class="feedback-helpful">
+                        <button class="helpful-btn" data-id="${fb._id}">
+                            <i class="far fa-thumbs-up"></i> Helpful (${fb.helpfulCount || 0})
+                        </button>
+                    </div>
+                </div>
+            `;
+            feedbackList.appendChild(item);
+        });
+        
+        // Helpful button listeners
+        document.querySelectorAll('.helpful-btn').forEach(btn => {
+            btn.addEventListener('click', async function() {
+                const id = this.getAttribute('data-id');
+                try {
+                    const response = await fetch(`${API_BASE_URL}/feedback/${id}/helpful`, { method: 'PATCH' });
+                    if (response.ok) loadFeedback();
+                } catch (err) { console.error(err); }
+            });
+        });
+    }
+    
+    function escapeHtml(str) { 
+        if (!str) return ''; 
+        return str.replace(/[&<>]/g, function(m) { 
+            if (m === '&') return '&amp;'; 
+            if (m === '<') return '&lt;'; 
+            if (m === '>') return '&gt;'; 
+            return m; 
+        });
+    }
+    
+    function showSampleFeedback() {
+        const sample = [
+            { _id:'1', name:'Ramesh K', email:'ramesh@example.com', rating:5, message:'Excellent service! Very happy with Manikya Chits.', category:'service', helpfulCount:12, createdAt:new Date().toISOString() },
+            { _id:'2', name:'Suresh K', email:'suresh@example.com', rating:4, message:'Good experience with the app. Easy to use.', category:'app', helpfulCount:8, createdAt:new Date(Date.now()-86400000).toISOString() }
+        ];
+        displayFeedback(sample);
+        noFeedbackMsg.style.display = 'none';
+    }
+    
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            loadFeedback(this.getAttribute('data-filter'));
+        });
+    });
+    
+    // Initial load
+    loadFeedback();
+});
+</script>
+
 </body>
 </html>

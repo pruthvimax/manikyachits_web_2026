@@ -34,6 +34,7 @@
     display: flex;
     align-items: center;
     box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+    position: relative;
 }
 
 /* ================= LOGO ================= */
@@ -142,23 +143,27 @@
 }
 
 /* ================= HAMBURGER STYLES ================= */
+.menu-toggle {
+    display: none;
+}
+
 .hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 6px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 8px;
-  z-index: 10002;
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 8px;
+    z-index: 10002;
 }
 
 .hamburger span {
-  width: 26px;
-  height: 3px;
-  background-color: #0b5c3b;
-  border-radius: 2px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+    width: 26px;
+    height: 3px;
+    background-color: #0b5c3b;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 /* ================= FAQ ACCORDION ================= */
@@ -591,38 +596,7 @@
   }
 }
 
-/* ================= PURE CSS HAMBURGER MENU (FIXED) ================= */
-.menu-toggle {
-  display: none;
-}
-
-/* Desktop dropdown styles */
-@media (min-width: 993px) {
-  .dropdown {
-    position: absolute;
-    top: 48px;
-    left: 0;
-    min-width: 220px;
-    background: #ffffff;
-    border-radius: 14px;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
-    padding: 10px 0;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: all 0.25s ease;
-    z-index: 1000;
-    list-style: none;
-  }
-
-  .nav-item:hover .dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-}
-
-/* Mobile styles */
+/* ================= MOBILE MENU STYLES ================= */
 @media (max-width: 992px) {
   /* Show hamburger on mobile */
   .hamburger {
@@ -630,6 +604,7 @@
     margin-left: auto;
     cursor: pointer;
     z-index: 10002;
+    position: relative;
   }
 
   /* Hide menu by default off-screen */
@@ -650,26 +625,27 @@
     margin: 0 !important;
     box-shadow: none !important;
     transition: left 0.3s ease !important;
+    opacity: 1 !important;
+    visibility: visible !important;
   }
-
-  /* When checkbox is checked, show menu */
   #menu-toggle:checked ~ .menu {
-    left: 0 !important;
-  }
+  left: 0 !important;
+}
+#menu-toggle:checked ~ .menu {
+  left: 0 !important;
+}
 
-  /* Animate hamburger to X when checked */
-  #menu-toggle:checked + .hamburger span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
-  }
+#menu-toggle:checked + .hamburger span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
 
-  #menu-toggle:checked + .hamburger span:nth-child(2) {
-    opacity: 0;
-  }
+#menu-toggle:checked + .hamburger span:nth-child(2) {
+  opacity: 0;
+}
 
-  #menu-toggle:checked + .hamburger span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
-  }
-
+#menu-toggle:checked + .hamburger span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
   .menu li {
     width: 100% !important;
     list-style: none !important;
@@ -725,5 +701,11 @@
 
   .nav-item.active .arrow {
     transform: rotate(180deg);
+  }
+  
+  /* Ensure nav-container maintains proper layout */
+  .nav-container {
+    position: relative;
+    z-index: 10003;
   }
 }

@@ -1685,3 +1685,122 @@
     font-size: 0.75rem;
   }
 }
+/* ================= DESKTOP VIEW FIXES ================= */
+
+/* Fix About section alignment */
+@media (min-width: 993px) {
+  .about-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+  }
+  
+  .about-text {
+    flex: 1;
+    text-align: left;
+  }
+  
+  .about-text h1 {
+    font-size: 42px;
+    text-align: left;
+  }
+  
+  .about-text p {
+    text-align: left;
+    max-width: 100%;
+  }
+  
+  .about-image {
+    flex: 1;
+  }
+  
+  .image-frame {
+    max-width: 500px;
+    margin-left: auto;
+  }
+}
+
+/* Fix Mission & Vision section */
+@media (min-width: 993px) {
+  .mv-container {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+  }
+  
+  .mv-card {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+/* Fix Core Values grid */
+@media (min-width: 993px) {
+  .core-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+  
+  .core-item {
+    text-align: center;
+  }
+}
+
+/* Fix Management section */
+@media (min-width: 993px) {
+  .management-container {
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+    align-items: center;
+  }
+  
+  .management-text {
+    flex: 1;
+    text-align: left;
+  }
+  
+  .management-image-card {
+    flex: 1;
+    max-width: 400px;
+  }
+  
+  .director-quote {
+    text-align: left;
+  }
+}
+
+/* Fix License section */
+@media (min-width: 993px) {
+  .licenses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+}
+
+/* Fix font sizes for desktop */
+@media (min-width: 993px) {
+  body {
+    font-size: 16px;
+  }
+  
+  h1 {
+    font-size: 42px;
+  }
+  
+  h2 {
+    font-size: 32px;
+  }
+  
+  h3 {
+    font-size: 24px;
+  }
+  
+  p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+}

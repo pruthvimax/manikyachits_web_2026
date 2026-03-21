@@ -2,8 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const formRoutes = require('./routes/formRoutes');
-
+const formRoutes = require('./routes/formRoutes'); // Only declare ONCE
 const app = express();
 
 // Update CORS to allow your frontend port

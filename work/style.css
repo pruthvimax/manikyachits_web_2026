@@ -93,13 +93,7 @@ body {
 }
 
 /* ================= MENU (DESKTOP) ================= */
-.menu {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    margin-left: auto;
-    list-style: none;
-}
+
 
 /* ================= LINKS ================= */
 .menu a {
@@ -2794,133 +2788,261 @@ body {
     font-size: 22px;
   }
 }
+/* ================= FIXED HAMBURGER & MOBILE MENU ================= */
 
-/* ========== BASE (DESKTOP FIRST) ========== */
-/* Hide hamburger on desktop */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  padding: 0;
-}
-.hamburger span {
-  width: 25px;
-  height: 3px;
-  background: #333;
-  margin: 3px 0;
-  transition: 0.3s;
-}
-
-/* Horizontal menu for desktop */
-.menu {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  gap: 2rem;
-}
-.menu li {
-  position: relative; /* for dropdown positioning */
-}
-.menu a {
-  text-decoration: none;
-  color: #333;
-  padding: 0.5rem 0;
-  display: block;
-}
-
-/* Dropdown base styles (hidden by default) */
-.dropdown {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  min-width: 200px;
-  list-style: none;
-  padding: 0.5rem 0;
-  margin: 0;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: all 0.3s ease;
-  z-index: 100;
-}
-/* Show dropdown on hover (desktop) */
-.nav-item:hover > .dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-/* Optional arrow rotation on hover */
-.nav-item:hover .arrow {
-  transform: rotate(180deg);
-}
-.arrow {
-  display: inline-block;
-  transition: transform 0.3s;
-}
-
-/* ========== MOBILE / TABLET (≤992px) ========== */
-@media (max-width: 992px) {
-  /* Make nav container relative for absolute menu */
-  .nav-container {
-    position: relative;
-  }
-
-  /* Show hamburger */
-  .hamburger {
-    display: flex;
-  }
-
-  /* Hide menu by default, show when active */
+/* Desktop menu - keep original styles */
+@media (min-width: 993px) {
   .menu {
-    display: none !important;          /* override desktop flex */
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: #fff;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    padding: 1rem 0;
-    z-index: 1000;
-    margin: 0;
-    border-radius: 0 0 16px 16px;
-  }
-  .menu.active {
     display: flex !important;
-  }
-
-  /* Reset dropdowns for mobile: hidden by default */
-  .dropdown {
-    position: static;                  /* expand inside the menu */
+    align-items: center;
+    gap: 30px;
+    margin-left: auto;
+    list-style: none;
+    position: static;
+    background: transparent;
     box-shadow: none;
-    padding-left: 1rem;
-    background: #f8f8f8;
-    margin: 0.5rem 0;
-    opacity: 1;                        /* override desktop transitions */
-    visibility: visible;
-    transform: none;
-    display: none;                     /* hidden initially */
-    transition: none;                  /* no fancy animation */
+    padding: 0;
+    width: auto;
+    height: auto;
   }
-  /* Show dropdown when parent .nav-item has class 'active' */
-  .nav-item.active > .dropdown {
-    display: block;
-  }
-
-  /* Hamburger animation to X */
-  .hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-  .hamburger.active span:nth-child(2) {
+  
+  .dropdown {
+    position: absolute;
+    top: 48px;
+    left: 0;
+    min-width: 220px;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+    padding: 10px 0;
     opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.25s ease;
+    z-index: 1000;
   }
-  .hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -6px);
+  
+  .nav-item:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .hamburger {
+    display: none !important;
   }
 }
 
+/* Mobile menu - clean version */
+@media (max-width: 992px) {
+  /* Show hamburger button */
+  .hamburger {
+    display: flex !important;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 8px;
+    z-index: 10002;
+    margin-left: auto;
+  }
+  
+  .hamburger span {
+    width: 26px;
+    height: 3px;
+    background-color: #0b5c3b;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  /* Menu hidden by default */
+  .menu {
+    position: fixed !important;
+    top: 0 !important;
+    left: -100% !important;
+    width: 100% !important;
+    height: 100vh !important;
+    background-color: #ffffff !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    padding: 90px 24px 24px !important;
+    z-index: 10001 !important;
+    overflow-y: auto !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    transition: left 0.3s ease !important;
+  }
+  
+  /* Menu visible when active class is added via JS */
+  .menu.active {
+    left: 0 !important;
+  }
+  
+  .menu li {
+    width: 100% !important;
+    list-style: none !important;
+  }
+  
+  .menu a {
+    display: block !important;
+    padding: 14px 10px !important;
+    font-size: 16px !important;
+    border-bottom: 1px solid #f1f1f1 !important;
+    color: #374151 !important;
+    text-decoration: none !important;
+  }
+  
+  .menu a:hover {
+    color: #0b5c3b !important;
+  }
+  
+  /* Remove underline on mobile */
+  .menu a::before {
+    display: none !important;
+  }
+  
+  /* Mobile dropdown styles */
+  .dropdown {
+    position: static !important;
+    display: none !important;
+    margin-top: 8px !important;
+    padding-left: 16px !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    border-left: 2px solid #0b5c3b !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    background: transparent !important;
+    width: 100% !important;
+  }
+  
+  /* Show dropdown when parent has active class */
+  .nav-item.active > .dropdown {
+    display: block !important;
+  }
+  
+  /* Disable hover on mobile */
+  .nav-item:hover > .dropdown {
+    display: none !important;
+  }
+  
+  /* Arrow rotation */
+  .arrow {
+    transition: transform 0.3s ease;
+  }
+  
+  .nav-item.active .arrow {
+    transform: rotate(180deg);
+  }
+}
+
+/* Fix for hero text alignment on desktop */
+@media (min-width: 993px) {
+  .hero-text {
+    text-align: left;
+  }
+  
+  .hero-text h1 {
+    text-align: left;
+  }
+  
+  .buttons {
+    justify-content: flex-start;
+  }
+  
+  .store-box {
+    text-align: left;
+  }
+  
+  .features {
+    justify-content: flex-start;
+  }
+}
+
+/* Fix for About section on desktop */
+@media (min-width: 993px) {
+  .about-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    text-align: left;
+  }
+  
+  .about-content {
+    text-align: left;
+  }
+  
+  .about-content h2 {
+    text-align: left;
+  }
+  
+  .about-content p {
+    text-align: left;
+    max-width: 100%;
+  }
+  
+  .about-image-box {
+    max-width: 450px;
+    margin-left: auto;
+  }
+}
+
+/* Fix for Why section grid on desktop */
+@media (min-width: 993px) {
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+}
+
+/* Fix for Testimonials grid on desktop */
+@media (min-width: 993px) {
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+}
+
+/* Fix for App section on desktop */
+@media (min-width: 993px) {
+  .app-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .app-left {
+    text-align: left;
+  }
+  
+  .app-highlight {
+    justify-content: flex-start;
+  }
+  
+  .app-stores {
+    justify-content: flex-start;
+  }
+}
+
+/* Fix for Footer grid on desktop */
+@media (min-width: 993px) {
+  .footer-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    gap: 40px;
+  }
+  
+  .footer-col {
+    text-align: left;
+  }
+  
+  .social-links {
+    justify-content: flex-start;
+  }
+}
