@@ -48,9 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const allBtn = document.querySelector('.filter[data-filter="all"]');
       if (allBtn) allBtn.classList.add("active");
 
-      // 🔴 HIDE VIEW ALL BUTTON AFTER CLICK
-      viewAllBtn.style.display = "none";
-
       // Optional smooth scroll
       document
         .querySelector(".chit-plans-section")
@@ -60,86 +57,84 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-/* ================= MODAL (GLOBAL FIX) ================= */
-window.openModal = function () {
-  const modal = document.getElementById("assistModal");
+/* ================= MODAL FUNCTIONS ================= */
 
-  if (!modal) {
-    console.error("assistModal NOT found in DOM");
-    return;
+// Helper Functions
+function showError(input, message) {
+  input.classList.add("error-input");
+  const errorElement = input.nextElementSibling;
+  if (errorElement && errorElement.classList.contains("error")) {
+    errorElement.textContent = message;
+    errorElement.style.display = "block";
   }
+}
 
-  modal.classList.add("active");
-  console.log("Modal opened");
-};
+function hideError(input) {
+  input.classList.remove("error-input");
+  const errorElement = input.nextElementSibling;
+  if (errorElement && errorElement.classList.contains("error")) {
+    errorElement.style.display = "none";
+  }
+}
 
-window.closeModal = function () {
+// Open modal
+window.openModal = function(e) {
+  if (e && e.preventDefault) e.preventDefault();
   const modal = document.getElementById("assistModal");
-  if (!modal) return;
-
-  modal.classList.remove("active");
-  console.log("Modal closed");
+  if (modal) {
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+    const firstInput = modal.querySelector("input");
+    if (firstInput) setTimeout(() => firstInput.focus(), 100);
+  }
 };
 
-/* Close when clicking background */
-document.addEventListener("click", function (e) {
+// Close modal
+window.closeModal = function() {
+  const modal = document.getElementById("assistModal");
+  if (modal) {
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+    const inputs = modal.querySelectorAll("input");
+    inputs.forEach(input => {
+      input.value = "";
+      input.classList.remove("error-input");
+    });
+    modal.querySelectorAll(".error").forEach(el => el.style.display = "none");
+  }
+};
+
+// Close when clicking background
+document.addEventListener("click", function(e) {
   const modal = document.getElementById("assistModal");
   if (e.target === modal) {
     window.closeModal();
   }
 });
 
-/* ================= MODAL VALIDATION ================= */
-
-window.validateModal = function () {
-  const mobile = document.getElementById("mobile");
-  const name = document.getElementById("name");
-  const email = document.getElementById("email");
-
-  let valid = true;
-
-  [mobile, name, email].forEach(input => {
-    const error = input.nextElementSibling;
-
-    if (!input.value.trim()) {
-      input.classList.add("error-input");
-      error.style.display = "block";
-      valid = false;
-    } else {
-      input.classList.remove("error-input");
-      error.style.display = "none";
+// Close with Escape key
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    const modal = document.getElementById("assistModal");
+    if (modal && modal.classList.contains("active")) {
+      window.closeModal();
     }
-  });
-
-  if (valid) {
-    closeModal(); // success case
-  }
-};
-
-/* Remove error while typing */
-document.addEventListener("input", function (e) {
-  if (e.target.closest(".assist-form input")) {
-    e.target.classList.remove("error-input");
-    e.target.nextElementSibling.style.display = "none";
   }
 });
 
-/* ================= MODAL VALIDATION (PHONE + EMAIL) ================= */
-
-window.validateModal = function () {
+// Validate modal form
+window.validateModal = function() {
   const mobile = document.getElementById("mobile");
   const name = document.getElementById("name");
   const email = document.getElementById("email");
-
   let valid = true;
 
-  // Mobile number: exactly 10 digits
+  // Mobile number regex: exactly 10 digits starting with 6-9
   const mobileRegex = /^[6-9]\d{9}$/;
-
-  // Email format
+  // Email format regex
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  // ===== MOBILE =====
+  // ===== MOBILE VALIDATION =====
   if (!mobile.value.trim()) {
     showError(mobile, "Mobile number is required");
     valid = false;
@@ -150,7 +145,7 @@ window.validateModal = function () {
     hideError(mobile);
   }
 
-  // ===== NAME =====
+  // ===== NAME VALIDATION =====
   if (!name.value.trim()) {
     showError(name, "Name is required");
     valid = false;
@@ -158,7 +153,7 @@ window.validateModal = function () {
     hideError(name);
   }
 
-  // ===== EMAIL =====
+  // ===== EMAIL VALIDATION =====
   if (!email.value.trim()) {
     showError(email, "Email is required");
     valid = false;
@@ -171,25 +166,13 @@ window.validateModal = function () {
 
   // SUCCESS
   if (valid) {
-    closeModal();
-    alert("Details submitted successfully!");
+    alert("Thank you! Our advisor will contact you shortly.");
+    window.closeModal();
   }
 };
 
-// ===== Helper Functions =====
-function showError(input, message) {
-  input.classList.add("error-input");
-  input.nextElementSibling.innerText = message;
-  input.nextElementSibling.style.display = "block";
-}
-
-function hideError(input) {
-  input.classList.remove("error-input");
-  input.nextElementSibling.style.display = "none";
-}
-
-/* Remove error while typing */
-document.addEventListener("input", function (e) {
+// Remove error while typing
+document.addEventListener("input", function(e) {
   if (e.target.closest(".assist-form input")) {
     hideError(e.target);
   }

@@ -1,92 +1,104 @@
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Manikya Chits Website Loaded");
 
-    // ================= HAMBURGER MENU =================
-    const hamburger = document.getElementById('hamburger');
-    const menu = document.querySelector('.menu');
-    const navItems = document.querySelectorAll('.nav-item');
-    const allLinks = document.querySelectorAll('.menu a');
-    const BREAKPOINT = 992; // must match CSS media query
+    // ================= HAMBURGER MENU FIXED =================
+const hamburger = document.getElementById('hamburger');
+const menu = document.getElementById('menu');
+const body = document.body;
+const BREAKPOINT = 992;
 
-    // Toggle mobile menu
-    if (hamburger && menu) {
-        hamburger.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isActive = hamburger.classList.toggle('active');
-            menu.classList.toggle('active');
-            document.body.style.overflow = isActive ? 'hidden' : '';
-            hamburger.setAttribute('aria-expanded', isActive);
-        });
-    }
+if (hamburger && menu) {
+    hamburger.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        this.classList.toggle('active');
+        menu.classList.toggle('active');
+        
+        if (menu.classList.contains('active')) {
+            body.style.overflow = 'hidden';
+        } else {
+            body.style.overflow = '';
+        }
+    });
 
-    // Mobile dropdown toggles (only when screen width ≤ BREAKPOINT)
-  // Mobile dropdown toggles (only when screen width ≤ BREAKPOINT)
-navItems.forEach(item => {
-    const link = item.querySelector('a');
-    const dropdown = item.querySelector('.dropdown');
-
-    if (link && dropdown) {
-        link.addEventListener('click', (e) => {
-            // Only prevent default on mobile
-            if (window.innerWidth <= BREAKPOINT) {
-                e.preventDefault();          // don't navigate on mobile
-                e.stopPropagation();
-
-                // Close other open dropdowns
-                navItems.forEach(otherItem => {
-                    if (otherItem !== item && otherItem.classList.contains('active')) {
-                        otherItem.classList.remove('active');
-                    }
-                });
-
-                // Toggle current dropdown
-                item.classList.toggle('active');
-            }
-            // On desktop, let the normal navigation happen
-        });
-    }
-});
-    // Close menu when a link is clicked (except dropdown toggles)
+    const allLinks = menu.querySelectorAll('a');
     allLinks.forEach(link => {
-        link.addEventListener('click', () => {
+        link.addEventListener('click', function() {
             if (window.innerWidth <= BREAKPOINT) {
-                // If the clicked link does NOT have a dropdown sibling, close the menu
-                if (!link.nextElementSibling || !link.nextElementSibling.classList.contains('dropdown')) {
-                    menu.classList.remove('active');
+                const parentItem = this.closest('.nav-item');
+                if (!parentItem || !parentItem.querySelector('.dropdown')) {
                     hamburger.classList.remove('active');
-                    hamburger.setAttribute('aria-expanded', 'false');
-                    document.body.style.overflow = '';
+                    menu.classList.remove('active');
+                    body.style.overflow = '';
                 }
             }
         });
     });
 
-    // Close menu when clicking outside (mobile)
-    document.addEventListener('click', (e) => {
-        if (window.innerWidth <= BREAKPOINT && menu && menu.classList.contains('active')) {
-            if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
-                menu.classList.remove('active');
-                hamburger.classList.remove('active');
-                hamburger.setAttribute('aria-expanded', 'false');
-                document.body.style.overflow = '';
-                navItems.forEach(item => item.classList.remove('active'));
-            }
+    document.addEventListener('click', function(e) {
+        if (menu.classList.contains('active') && 
+            !menu.contains(e.target) && 
+            !hamburger.contains(e.target)) {
+            hamburger.classList.remove('active');
+            menu.classList.remove('active');
+            body.style.overflow = '';
         }
     });
+}
 
-    // Reset menu when window resizes above breakpoint
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > BREAKPOINT) {
-            if (menu) menu.classList.remove('active');
-            if (hamburger) {
-                hamburger.classList.remove('active');
-                hamburger.setAttribute('aria-expanded', 'false');
+// Mobile dropdown toggles
+const navItems = document.querySelectorAll('.nav-item');
+navItems.forEach(item => {
+    const link = item.querySelector('a');
+    const dropdown = item.querySelector('.dropdown');
+    
+    if (link && dropdown) {
+        link.addEventListener('click', function(e) {
+            if (window.innerWidth <= BREAKPOINT) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const isActive = item.classList.contains('active');
+                
+                navItems.forEach(navItem => {
+                    if (navItem !== item) {
+                        navItem.classList.remove('active');
+                    }
+                });
+                
+                if (!isActive) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
             }
-            document.body.style.overflow = '';
-            navItems.forEach(item => item.classList.remove('active'));
-        }
-    });
+        });
+    }
+});
 
+document.addEventListener('click', function(e) {
+    if (window.innerWidth <= BREAKPOINT) {
+        if (!e.target.closest('.nav-item')) {
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+        }
+    }
+});
+
+window.addEventListener('resize', function() {
+    if (window.innerWidth > BREAKPOINT) {
+        if (menu && menu.classList.contains('active')) {
+            menu.classList.remove('active');
+            if (hamburger) hamburger.classList.remove('active');
+            body.style.overflow = '';
+        }
+        navItems.forEach(item => {
+            item.classList.remove('active');
+        });
+    }
+});
     // ================= STICKY NAVBAR =================
     const header = document.querySelector(".site-header");
     const navbar = document.querySelector(".navbar");
