@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  
   <title>About Us | ManikyaChits</title>
 
   <!-- Google Font -->
@@ -17,44 +18,43 @@
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
-<!-- ================= NAVBAR ================= -->
+<!-- NAVBAR -->
 <header class="site-header">
   <nav class="navbar">
     <div class="nav-container">
-
+      
       <!-- LOGO -->
       <div class="logo">
         <img src="assets/manikyaChits.png" alt="Manikya Chits">
       </div>
         
-      <!-- HAMBURGER (checkbox hack for pure CSS) -->
-      <input type="checkbox" id="menu-toggle" class="menu-toggle">
-      <label for="menu-toggle" class="hamburger">
+      <!-- HAMBURGER -->
+      <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span>
         <span></span>
         <span></span>
-      </label>
+      </button>
 
       <!-- MENU -->
-      <ul class="menu">
+      <ul class="menu" id="menu">
         <li><a href="index.html">Home</a></li>
         
         <li class="nav-item">
-          <a href="about.html">About Us</a>
+          <a href="about.html">About Us <span class="arrow">▾</span></a>
           <ul class="dropdown">
             <li><a href="about.html">About Us</a></li>
             <li><a href="about.html#core-values">Core Values</a></li>
             <li><a href="about.html#management">Management</a></li>
-            <li><a href="about.html#cirtificate">Certificate</a></li>
+            <li><a href="about.html#certificate">Certificate</a></li>
           </ul>
         </li>
 
         <li><a href="chitplan.html">Chit Plans</a></li>
+        
         <li><a href="faq.html">FAQ</a></li>
 
         <li class="nav-item">
-          <a href="contact.html">Contact Us</a>
+          <a href="contact.html">Contact Us <span class="arrow">▾</span></a>
           <ul class="dropdown">
             <li><a href="contact.html">Contact Details</a></li>
             <li><a href="branches.html">Branches</a></li>
@@ -67,6 +67,7 @@
   </nav>
 </header>
 
+
 <!-- ================= ABOUT CONTENT ================= -->
 <section class="about-section" id="about-us">
   <div class="about-container">
@@ -78,8 +79,8 @@
 
       <p>
         <strong>ManikyaChits Private Limited</strong> is a government-approved
-        chit fund company with over <strong> 5+ years</strong> of trusted service
-        in Karnataka’s financial sector. Established in 2022 in Sagara,
+        chit fund company with over <strong>5+ years</strong> of trusted service
+        in Karnataka's financial sector. Established in 2022 in Sagara,
         ManikyaChits is the flagship entity of the ManikyaGroup of Companies.
       </p>
 
@@ -91,7 +92,7 @@
 
       <p>
         Under the leadership of Managing Director
-        <strong>Mr. Kanthu Alalli </strong>, ManikyaChits has evolved into
+        <strong>Mr. Kanthu Alalli</strong>, ManikyaChits has evolved into
         a technology-driven financial institution serving lakhs of subscribers.
       </p>
     </div>
@@ -99,7 +100,7 @@
     <!-- RIGHT -->
     <div class="about-image">
       <div class="image-frame">
-        <img src="assets/Screenshot 2026-02-15 230304.png" alt="ManikyaChits Office">
+        <img src="assets\ManikyaAbout2.png" alt="ManikyaChits Office">
       </div>
     </div>
 
@@ -156,7 +157,7 @@
       <!-- ===== Item 01 ===== -->
       <div class="core-item">
         <span class="core-number">01</span>
-        <img src="assets\icons\corevalue\trust.svg" alt="Trust Icon" class="core-icon">
+        <img src="assets/icons/corevalue/trust.svg" alt="Trust Icon" class="core-icon">
         <h3>Trust & Transparency</h3>
         <p>
           We uphold complete honesty in our processes and communications,
@@ -167,7 +168,7 @@
       <!-- ===== Item 02 ===== -->
       <div class="core-item">
         <span class="core-number">02</span>
-        <img src="assets\icons\corevalue\customer.svg" alt="Customer Icon" class="core-icon">
+        <img src="assets/icons/corevalue/customer.svg" alt="Customer Icon" class="core-icon">
         <h3>Customer-Centricity</h3>
         <p>
           Our customers are at the heart of everything we do. We offer
@@ -178,7 +179,7 @@
       <!-- ===== Item 03 ===== -->
       <div class="core-item">
         <span class="core-number">03</span>
-        <img src="assets\icons\corevalue\innovation.svg" alt="Innovation Icon" class="core-icon">
+        <img src="assets/icons/corevalue/innovation.svg" alt="Innovation Icon" class="core-icon">
         <h3>Innovation</h3>
         <p>
           We embrace digital transformation to make chit funds simpler,
@@ -189,7 +190,7 @@
       <!-- ===== Item 04 ===== -->
       <div class="core-item">
         <span class="core-number">04</span>
-        <img src="assets\icons\corevalue\financial.svg" alt="Education Icon" class="core-icon">
+        <img src="assets/icons/corevalue/financial.svg" alt="Education Icon" class="core-icon">
         <h3>Financial Literacy & Education</h3>
         <p>
           We educate customers about chit funds, savings habits, and
@@ -200,7 +201,7 @@
       <!-- ===== Item 05 ===== -->
       <div class="core-item">
         <span class="core-number">05</span>
-        <img src="assets\icons\corevalue\regional.svg" alt="Empowerment Icon" class="core-icon">
+        <img src="assets/icons/corevalue/regional.svg" alt="Empowerment Icon" class="core-icon">
         <h3>Regional Empowerment</h3>
         <p>
           We uplift communities across Karnataka by offering accessible
@@ -211,7 +212,7 @@
       <!-- ===== Item 06 ===== -->
       <div class="core-item">
         <span class="core-number">06</span>
-        <img src="assets\icons\corevalue\security.svg" alt="Security Icon" class="core-icon">
+        <img src="assets/icons/corevalue/security.svg" alt="Security Icon" class="core-icon">
         <h3>Security & Legal Assurance</h3>
         <p>
           We operate with full legal compliance, providing peace of mind
@@ -222,11 +223,11 @@
       <!-- ===== Item 07 ===== -->
       <div class="core-item">
         <span class="core-number">07</span>
-        <img src="assets\icons\corevalue\cultural.svg" alt="Legacy Icon" class="core-icon">
+        <img src="assets/icons/corevalue/cultural.svg" alt="Legacy Icon" class="core-icon">
         <h3>Cultural Legacy with a Modern Touch</h3>
         <p>
           We revive community-saving traditions using secure,
-          tech-driven solutions for today’s world.
+          tech-driven solutions for today's world.
         </p>
       </div>
 
@@ -238,8 +239,7 @@
 <!-- ========================== MANAGEMENT SECTION ========================== -->
 <section class="management-section" id="management">
 
-  <h1 class="management-tag"> <center><b>Management</b></center></h1><br>
-
+  <h1 class="management-tag" style="text-align: center;"><b>Management</b></h1><br>
 
   <!-- Section heading -->
   <h2 class="management-title">Meet our Director's</h2>
@@ -253,14 +253,14 @@
         With over 10+ years of distinguished experience in IT, administration, and
         project management, Mr. Kanthu Alalli stands as the driving force behind
         the success of ManikyaChits. Known for his strategic vision and
-        unwavering integrity, he has led the company to become one of India’s
+        unwavering integrity, he has led the company to become one of India's
         leading chit fund institutions.
       </p>
 
       <p>
         Under his dynamic leadership, ManikyaChits has embraced technology to
         transform customer experiences. From mobile-based investments to real-time
-        balance tracking and secure digital transactions, Mr. Kanthu Alalli  has
+        balance tracking and secure digital transactions, Mr. Kanthu Alalli has
         pioneered a new era of convenience and transparency in the chit fund
         sector.
       </p>
@@ -275,8 +275,8 @@
       <!-- Quote Box -->
       <div class="director-quote">
         <p>
-          “Our mission is to bring back the trusted culture of saving through
-          chit funds—powered by digital innovation and rooted in community trust.”
+          "Our mission is to bring back the trusted culture of saving through
+          chit funds—powered by digital innovation and rooted in community trust."
         </p>
         <span>– Mr. Kanthu Alalli, Managing Director</span>
       </div>
@@ -287,11 +287,11 @@
     <div class="management-image-card">
 
       <!-- Director Image -->
-      <img src="assets\kantu.png" alt="Mr. Parashuram K N">
+      <img src="assets/kantu.png" alt="Mr. Kanthu Alalli">
 
       <!-- Name Overlay -->
       <div class="director-info">
-        <h4>Mr. Kanthu Alalli </h4>
+        <h4>Mr. Kanthu Alalli</h4>
         <span>Managing Director of MCPL</span>
       </div>
 
@@ -299,13 +299,14 @@
 
   </div>
 </section>
+
 <!-- ========================== SECOND DIRECTOR SECTION ========================== -->
 <section class="management-section">
   <div class="management-container">
     
     <!-- LEFT: Text Content -->
     <div class="management-text">
-      <h2 class="management-title"> Director</h2>
+      <h2 class="management-title">Director</h2>
       <p>At Manikya Chits, we believe in building lasting relationships with our customers based on trust, transparency, and reliability. For over 5 years, we have been serving the financial needs of thousands of families across Karnataka.</p>
       <p>Our commitment to ethical business practices and customer-centric approach has made us one of the most trusted chit fund companies in the region. We continuously strive to innovate and improve our services to better serve our valued customers.</p>
       
@@ -319,7 +320,7 @@
     <div class="management-image-card">
       <img src="assets/subdirector.png" alt="Managing Director">
       <div class="director-info">
-        <h4> Ram Hunsur </h4>
+        <h4>Ram Hunsur</h4>
         <span>Director Of MCPL</span>
       </div>
     </div>
@@ -328,7 +329,7 @@
 </section>
 
 <!-- LICENSES & CERTIFICATIONS SECTION -->
-<section class="licenses-section" id="cirtificate">
+<section class="licenses-section" id="certificate">
   <h2 class="licenses-title">Licenses & Certifications</h2>
 
   <div class="licenses-grid">
@@ -339,12 +340,12 @@
       <h4>Certificate of Incorporation</h4>
       <p class="label">Corporate Identity No:</p>
       <p class="value">U65992KA2012PTC062100</p>
-    <a href="assets/licence.pdf" 
-   class="license-btn" 
-   target="_blank" 
-   rel="noopener">
-  View Certificate →
-</a>
+      <a href="assets/licence.pdf" 
+         class="license-btn" 
+         target="_blank" 
+         rel="noopener">
+        View Certificate →
+      </a>
     </div>
 
   </div>
@@ -368,10 +369,10 @@
         </div>
         
         <div class="social-links">
-          <a href="https://www.facebook.com/p/manikya-chits-61552792953767/" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://www.linkedin.com/in/manikya-chits-private-limited-undefined-8408923b0/" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://www.youtube.com/channel/UCPvoA77wvjq_Yea3hCzC-Hw" class="social-icon"><i class="fab fa-youtube"></i></a>
-          <a href="https://www.instagram.com/manikya_chits_pvt_limited/?hl=en" class="social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/p/manikya-chits-61552792953767/" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.linkedin.com/in/manikya-chits-private-limited-undefined-8408923b0/" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.youtube.com/channel/UCPvoA77wvjq_Yea3hCzC-Hw" class="social-icon" target="_blank"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.instagram.com/manikya_chits_pvt_limited/?hl=en" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
       
@@ -389,17 +390,6 @@
           <li><a href="#" id="openPrivacy">Privacy Policy</a></li>
         </ul>
       </div>
-      <!-- POPUP OVERLAY -->
-<div class="popup-overlay" id="popupOverlay">
-  <div class="popup-box">
-    <span class="close-btn" id="closePopup">&times;</span>
-
-    <h2 id="popupTitle"></h2>
-    <div class="popup-content" id="popupContent">
-      <!-- Content injected by JS -->
-    </div>
-  </div>
-</div>
       
       <div class="footer-col">
         <h4>Services</h4>
@@ -433,182 +423,266 @@
   </div>
 </footer>
 
+<!-- POPUP OVERLAY -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup-box">
+    <span class="close-btn" id="closePopup">&times;</span>
+    <h2 id="popupTitle"></h2>
+    <div class="popup-content" id="popupContent">
+      <!-- Content injected by JS -->
+    </div>
+  </div>
+</div>
 
+<!-- ================= ALL JAVASCRIPT ================= -->
 <script>
   // Set current year in footer
   document.getElementById('currentYear').textContent = new Date().getFullYear();
-</script>
 
+  // Terms and Conditions Content
+  const termsContent = `
+    <h4>Terms and Conditions for Manikya Chits Private Limited</h4>
+    <p><strong>Last Updated: March 2026</strong></p>
+    
+    <p>Welcome to Manikya Chits Private Limited. By accessing and using our services, you agree to comply with and be bound by the following terms and conditions.</p>
+    
+    <h4>1. Chit Fund Services</h4>
+    <p>Manikya Chits Private Limited operates as a government-approved chit fund company under the Chit Funds Act, 1982. All chit fund schemes are governed by the rules and regulations set forth by the regulatory authorities.</p>
+    
+    <h4>2. Membership Eligibility</h4>
+    <p>To become a member, you must be at least 18 years of age and have the legal capacity to enter into a contract. You must provide valid identification and address proof as required by law.</p>
+    
+    <h4>3. Subscription and Payments</h4>
+    <p>Members are required to pay their monthly subscriptions on or before the due date. Late payments may attract penalties as per the chit agreement terms.</p>
+    
+    <h4>4. Auction Process</h4>
+    <p>Auctions are conducted monthly, and members can participate either online through our digital platform or offline at our branches. Proxy bidding is also available.</p>
+    
+    <h4>5. Prize Money Distribution</h4>
+    <p>Prize money is distributed to the winning bidder after deducting the foreman's commission and any applicable taxes. The distribution is done within the stipulated time frame.</p>
+    
+    <h4>6. Foreman's Commission</h4>
+    <p>The foreman (Manikya Chits Private Limited) is entitled to a commission as per the Chit Funds Act, 1982, which is deducted from the chit amount.</p>
+    
+    <h4>7. Default and Termination</h4>
+    <p>In case of default in payment, the member's participation may be terminated as per the chit agreement. The company reserves the right to take legal action for recovery of dues.</p>
+    
+    <h4>8. Privacy Policy</h4>
+    <p>We are committed to protecting your personal information. Please refer to our separate Privacy Policy for details on how we collect, use, and protect your data.</p>
+    
+    <h4>9. Dispute Resolution</h4>
+    <p>Any disputes arising out of or in connection with these terms shall be subject to the jurisdiction of the courts in Sagara, Karnataka.</p>
+    
+    <h4>10. Modifications</h4>
+    <p>We reserve the right to modify these terms and conditions at any time. Changes will be effective immediately upon posting on our website.</p>
+  `;
 
-<script>
+  // Privacy Policy Content
+  const privacyContent = `
+    <h4>Privacy Policy - Manikya Chits Private Limited</h4>
+    <p><strong>Last Updated: March 2026</strong></p>
+    
+    <p>At Manikya Chits Private Limited, we value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our services.</p>
+    
+    <h4>1. Information We Collect</h4>
+    <p>We may collect personal information that you voluntarily provide to us when you register for our services, including but not limited to:</p>
+    <ul style="margin-left: 20px; margin-bottom: 15px;">
+      <li>Name, address, and contact information</li>
+      <li>PAN card, Aadhaar card, and other identification documents</li>
+      <li>Bank account details</li>
+      <li>Employment and income information</li>
+      <li>Transaction history and payment records</li>
+    </ul>
+    
+    <h4>2. How We Use Your Information</h4>
+    <p>We use the information we collect to:</p>
+    <ul style="margin-left: 20px; margin-bottom: 15px;">
+      <li>Process your chit fund subscriptions and payments</li>
+      <li>Verify your identity and eligibility</li>
+      <li>Communicate with you about your account and transactions</li>
+      <li>Comply with legal and regulatory requirements</li>
+      <li>Improve our services and customer experience</li>
+    </ul>
+    
+    <h4>3. Information Sharing and Disclosure</h4>
+    <p>We do not sell, trade, or rent your personal information to third parties. We may share your information with:</p>
+    <ul style="margin-left: 20px; margin-bottom: 15px;">
+      <li>Regulatory authorities as required by law</li>
+      <li>Service providers who assist in our operations</li>
+      <li>Legal authorities when required by law or to protect our rights</li>
+    </ul>
+    
+    <h4>4. Data Security</h4>
+    <p>We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+    
+    <h4>5. Retention of Information</h4>
+    <p>We retain your personal information for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law.</p>
+    
+    <h4>6. Your Rights</h4>
+    <p>You have the right to access, correct, or delete your personal information. You may also withdraw your consent for processing your data, subject to legal and contractual restrictions.</p>
+    
+    <h4>7. Cookies and Tracking Technologies</h4>
+    <p>Our website may use cookies and similar tracking technologies to enhance your browsing experience. You can set your browser to refuse cookies, but this may limit some functionality.</p>
+    
+    <h4>8. Updates to This Policy</h4>
+    <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page with an updated effective date.</p>
+    
+    <h4>9. Contact Us</h4>
+    <p>If you have any questions about this Privacy Policy, please contact us at:<br>
+    Email: manikyachitsprivatelimited@gmail.com<br>
+    Phone: 8 123 444 787</p>
+  `;
+
+  // Popup functionality
   const overlay = document.getElementById("popupOverlay");
   const title = document.getElementById("popupTitle");
   const content = document.getElementById("popupContent");
   const closeBtn = document.getElementById("closePopup");
 
-  document.getElementById("openTerms").addEventListener("click", function (e) {
-    e.preventDefault();
-    title.innerText = "Terms & Conditions";
-    content.innerHTML = `...`; // Keep your existing content
-    overlay.style.display = "flex";
-  });
+  // Function to open popup
+  function openPopup(popupTitle, popupContent) {
+    if (title) title.innerText = popupTitle;
+    if (content) content.innerHTML = popupContent;
+    if (overlay) overlay.style.display = "flex";
+    document.body.style.overflow = "hidden";
+  }
 
-  document.getElementById("openPrivacy").addEventListener("click", function (e) {
-    e.preventDefault();
-    title.innerText = "Privacy Policy";
-    content.innerHTML = `...`; // Keep your existing content
-    overlay.style.display = "flex";
-  });
+  // Function to close popup
+  function closePopup() {
+    if (overlay) overlay.style.display = "none";
+    document.body.style.overflow = "";
+  }
 
-  closeBtn.addEventListener("click", () => {
-    overlay.style.display = "none";
-  });
+  // Terms link
+  const termsLink = document.getElementById("openTerms");
+  if (termsLink) {
+    termsLink.addEventListener("click", function(e) {
+      e.preventDefault();
+      openPopup("Terms & Conditions", termsContent);
+    });
+  }
 
-  overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) {
-      overlay.style.display = "none";
-    }
-  });
-</script>
+  // Privacy link
+  const privacyLink = document.getElementById("openPrivacy");
+  if (privacyLink) {
+    privacyLink.addEventListener("click", function(e) {
+      e.preventDefault();
+      openPopup("Privacy Policy", privacyContent);
+    });
+  }
 
-<!-- ================= HAMBURGER MENU SCRIPT ================= -->
-<script>
-document.addEventListener("DOMContentLoaded", function() {
+  // Close button
+  if (closeBtn) {
+    closeBtn.addEventListener("click", closePopup);
+  }
+
+  // Close when clicking outside
+  if (overlay) {
+    overlay.addEventListener("click", function(e) {
+      if (e.target === overlay) {
+        closePopup();
+      }
+    });
+  }
+
+  // ================= HAMBURGER MENU FUNCTIONALITY =================
+  document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.getElementById('hamburger');
     const menu = document.getElementById('menu');
-    const navItems = document.querySelectorAll('.nav-item');
-    const allLinks = document.querySelectorAll('.menu a');
-    const BREAKPOINT = 992;
+    const body = document.body;
 
-    if (!hamburger || !menu) return;
-
-    // Toggle mobile menu
-    hamburger.addEventListener('click', function(e) {
+    if (hamburger && menu) {
+      hamburger.addEventListener('click', function(e) {
+        e.preventDefault();
         e.stopPropagation();
-        const isActive = this.classList.toggle('active');
+        
+        this.classList.toggle('active');
         menu.classList.toggle('active');
-        document.body.style.overflow = isActive ? 'hidden' : '';
-    });
-
-    // Mobile dropdown toggles - ONLY on mobile
-    navItems.forEach(function(item) {
-        const link = item.querySelector('a');
-        const dropdown = item.querySelector('.dropdown');
-
-        if (link && dropdown) {
-            link.addEventListener('click', function(e) {
-                // Only handle on mobile
-                if (window.innerWidth <= BREAKPOINT) {
-                    e.preventDefault(); // Stop navigation on mobile
-                    
-                    // Close other dropdowns
-                    navItems.forEach(function(otherItem) {
-                        if (otherItem !== item && otherItem.classList.contains('active')) {
-                            otherItem.classList.remove('active');
-                        }
-                    });
-
-                    // Toggle current dropdown
-                    item.classList.toggle('active');
-                }
-                // On desktop, normal navigation works
-            });
+        
+        if (menu.classList.contains('active')) {
+          body.style.overflow = 'hidden';
+        } else {
+          body.style.overflow = '';
         }
-    });
+      });
 
-    // Close menu when clicking a link (on mobile)
-    allLinks.forEach(function(link) {
+      const allLinks = menu.querySelectorAll('a');
+      allLinks.forEach(link => {
         link.addEventListener('click', function() {
-            if (window.innerWidth <= BREAKPOINT) {
-                // If it's NOT a dropdown parent, close the menu
-                if (!this.nextElementSibling || !this.nextElementSibling.classList.contains('dropdown')) {
-                    menu.classList.remove('active');
-                    hamburger.classList.remove('active');
-                    document.body.style.overflow = '';
-                    
-                    // Also close any open dropdowns
-                    navItems.forEach(function(item) {
-                        item.classList.remove('active');
-                    });
-                }
+          if (window.innerWidth <= 992) {
+            const parentItem = this.closest('.nav-item');
+            if (!parentItem || !parentItem.querySelector('.dropdown')) {
+              hamburger.classList.remove('active');
+              menu.classList.remove('active');
+              body.style.overflow = '';
             }
+          }
         });
-    });
+      });
 
-    // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
-        if (window.innerWidth <= BREAKPOINT && menu.classList.contains('active')) {
-            if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
-                menu.classList.remove('active');
-                hamburger.classList.remove('active');
-                document.body.style.overflow = '';
-                navItems.forEach(function(item) {
-                    item.classList.remove('active');
-                });
-            }
+      document.addEventListener('click', function(e) {
+        if (menu.classList.contains('active') && 
+            !menu.contains(e.target) && 
+            !hamburger.contains(e.target)) {
+          hamburger.classList.remove('active');
+          menu.classList.remove('active');
+          body.style.overflow = '';
         }
-    });
+      });
+    }
 
-    // Reset on window resize
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > BREAKPOINT) {
-            menu.classList.remove('active');
-            hamburger.classList.remove('active');
-            document.body.style.overflow = '';
-            navItems.forEach(function(item) {
-                item.classList.remove('active');
-            });
-        }
-    });
-
-    // Handle anchor links smoothly
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+      const link = item.querySelector('a');
+      const dropdown = item.querySelector('.dropdown');
+      
+      if (link && dropdown) {
         link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href === "#") return;
+          if (window.innerWidth <= 992) {
+            e.preventDefault();
+            e.stopPropagation();
             
-            const target = document.querySelector(href);
-            if (target) {
-                e.preventDefault();
-                
-                // Close mobile menu if open
-                if (window.innerWidth <= BREAKPOINT) {
-                    menu.classList.remove('active');
-                    hamburger.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-                
-                // Smooth scroll
-                const headerHeight = document.querySelector('.navbar')?.offsetHeight || 0;
-                const targetPosition = target.offsetTop - headerHeight - 20;
-                window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+            const isActive = item.classList.contains('active');
+            
+            navItems.forEach(navItem => {
+              if (navItem !== item) {
+                navItem.classList.remove('active');
+              }
+            });
+            
+            if (!isActive) {
+              item.classList.add('active');
+            } else {
+              item.classList.remove('active');
             }
+          }
         });
+      }
     });
-});
-</script>
 
-<!-- Fix for mobile menu close on anchor links -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const menuLinks = document.querySelectorAll('.menu a');
-    const hamburger = document.getElementById('hamburger');
-    const menu = document.getElementById('menu');
-    
-    menuLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            // Check if it's an anchor link (starts with #)
-            if (this.getAttribute('href').startsWith('#')) {
-                if (window.innerWidth <= 992) {
-                    // Close mobile menu
-                    hamburger.classList.remove('active');
-                    menu.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            }
-        });
+    document.addEventListener('click', function(e) {
+      if (window.innerWidth <= 992) {
+        if (!e.target.closest('.nav-item')) {
+          navItems.forEach(item => {
+            item.classList.remove('active');
+          });
+        }
+      }
     });
-});
+
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 992) {
+        if (menu && menu.classList.contains('active')) {
+          menu.classList.remove('active');
+          if (hamburger) hamburger.classList.remove('active');
+          body.style.overflow = '';
+        }
+        navItems.forEach(item => {
+          item.classList.remove('active');
+        });
+      }
+    });
+  });
 </script>
 
 </body>

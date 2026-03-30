@@ -3,68 +3,97 @@
   --white: #ffffff;
   --text-gray: #555;
   --text-dark: #222;
-}
-/* ================= ROOT COLORS ================= */
-:root {
   --green: #0b5c3b;
   --green-light: #ecfdf5;
 }
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Segoe UI", system-ui, sans-serif;
 }
-/* ================= HEADER ================= */
+
+/* ================= HEADER & NAVBAR STYLES ================= */
 .site-header {
   position: fixed;
-  top: 20px;
+  top: 0;
   left: 0;
   width: 100%;
   z-index: 9999;
+  padding: 15px 20px;
+  background: transparent;
+  box-sizing: border-box;
 }
 
-/* ================= NAVBAR ================= */
 .navbar {
   width: 100%;
+  pointer-events: auto;
 }
 
 .nav-container {
   max-width: 1250px;
-  margin: auto;
+  margin: 0 auto;
   background: #ffffff;
   border-radius: 28px;
-  padding: 16px 32px;
+  padding: 12px 24px;
   display: flex;
   align-items: center;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+  justify-content: space-between;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
-/* ================= LOGO ================= */
 .logo img {
-  height: 36px;
+  height: 32px;
   width: auto;
 }
 
-/* ================= MENU ================= */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 8px;
+  z-index: 10002;
+  position: relative;
+}
+
+.hamburger span {
+  width: 26px;
+  height: 3px;
+  background-color: #146c43;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
 .menu {
   display: flex;
   align-items: center;
   gap: 30px;
-  margin-left: auto;
-  list-style: none;
+  margin: 0;
   padding: 0;
-}
-
-.menu li {
   list-style: none;
-  position: relative;
 }
 
-/* ================= LINKS ================= */
 .menu a {
   text-decoration: none;
-  font-size: 15.5px;
+  font-size: 15px;
   font-weight: 500;
   color: #374151;
   position: relative;
@@ -74,7 +103,7 @@
 
 .menu a:hover,
 .menu a.active {
-  color: var(--green);
+  color: #146c43;
 }
 
 .menu a::before {
@@ -84,7 +113,7 @@
   bottom: -4px;
   width: 0;
   height: 2px;
-  background: var(--green);
+  background: #146c43;
   transition: width 0.25s ease;
 }
 
@@ -93,7 +122,6 @@
   width: 100%;
 }
 
-/* ================= DROPDOWN ================= */
 .nav-item {
   position: relative;
 }
@@ -101,9 +129,14 @@
 .arrow {
   font-size: 11px;
   margin-left: 4px;
+  transition: transform 0.3s ease;
+  display: inline-block;
 }
 
-/* DROPDOWN BOX */
+.nav-item:hover .arrow {
+  transform: rotate(180deg);
+}
+
 .dropdown {
   position: absolute;
   top: 48px;
@@ -123,12 +156,14 @@
 
 .dropdown li {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .dropdown li a {
   display: block;
   padding: 12px 20px;
-  font-size: 14.5px;
+  font-size: 14px;
   color: #374151;
   text-decoration: none;
   transition: background 0.2s ease, color 0.2s ease;
@@ -136,107 +171,102 @@
 }
 
 .dropdown li a:hover {
-  background: var(--green-light);
-  color: var(--green);
+  background: #ecfdf5;
+  color: #146c43;
 }
 
-/* SHOW DROPDOWN ON HOVER (DESKTOP) */
 .nav-item:hover .dropdown {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
 
-/* ================= HAMBURGER ================= */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 6px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 8px;
-  z-index: 10002;
-}
-
-.hamburger span {
-  width: 26px;
-  height: 3px;
-  background-color: #0b5c3b;
-  border-radius: 2px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-/* Hamburger active (X icon) */
-.hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
-}
-
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
-
-/* ================= MOBILE MENU ================= */
+/* Mobile Styles */
 @media (max-width: 992px) {
+  .site-header {
+    padding: 12px 15px;
+  }
+
+  .nav-container {
+    padding: 10px 20px;
+  }
+
   .hamburger {
-    display: flex;
-    margin-left: auto;
+    display: flex !important;
   }
 
   .menu {
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    right: -100%;
+    width: 80%;
+    max-width: 350px;
     height: 100vh;
     background-color: #ffffff;
-    display: none;
+    display: flex !important;
     flex-direction: column;
-    gap: 8px;
-    padding: 90px 24px 24px;
+    gap: 0;
+    padding: 80px 20px 30px;
     z-index: 10001;
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    transition: right 0.3s ease-in-out;
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    list-style: none;
   }
 
   .menu.active {
-    display: flex;
+    right: 0;
   }
 
   .menu li {
     width: 100%;
+    border-bottom: 1px solid #f0f0f0;
   }
 
   .menu a {
     display: block;
-    padding: 14px 10px;
+    padding: 16px 10px;
     font-size: 16px;
-    border-bottom: 1px solid #f1f1f1;
+    font-weight: 500;
   }
 
-  /* ================= MOBILE DROPDOWN ================= */
   .dropdown {
     position: static;
     display: none;
-    margin-top: 8px;
-    padding-left: 16px;
+    margin-top: 0;
+    padding-left: 20px;
     box-shadow: none;
     border-radius: 0;
-    border-left: 2px solid #0b5c3b;
+    background: #fafafa;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
   }
 
-  /* OPEN DROPDOWN ONLY VIA .active (JS CONTROLLED) */
+  .dropdown li a {
+    padding: 12px 10px;
+    font-size: 14px;
+  }
+
   .nav-item.active > .dropdown {
-    display: block;
+    display: block !important;
   }
 
-  /* DISABLE HOVER ON MOBILE */
   .nav-item:hover > .dropdown {
     display: none;
+  }
+
+  .nav-item > a {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-item.active > a .arrow {
+    transform: rotate(180deg);
   }
 }
 
@@ -481,44 +511,6 @@
   opacity: 0.9;
 }
 
-/* ================= TEAM CARDS ================= */
-.management-team {
-  padding: 70px 20px;
-}
-
-.team-wrapper {
-  max-width: 700px;
-  margin: auto;
-  display: flex;
-  gap: 30px;
-  justify-content: center;
-}
-
-.team-card {
-  background: #ffffff;
-  border-radius: 18px;
-  padding: 30px;
-  text-align: center;
-  width: 260px;
-  box-shadow: 0 14px 32px rgba(0,0,0,0.08);
-}
-
-.team-card img {
-  width: 100%;
-  border-radius: 12px;
-  margin-bottom: 14px;
-}
-
-.team-card h4 {
-  color: var(--green);
-  margin-bottom: 4px;
-}
-
-.team-card p {
-  font-size: 14px;
-  color: #6b7280;
-}
-
 /* ================= LICENSE SECTION ================= */
 .licenses-section {
   padding: 80px 20px;
@@ -532,7 +524,6 @@
   margin-bottom: 40px;
 }
 
-/* GRID – FIXED */
 .licenses-grid {
   max-width: 1100px;
   margin: 0 auto;
@@ -542,7 +533,6 @@
   justify-content: center;
 }
 
-/* CARD */
 .license-card {
   background: #f9fafb;
   border-radius: 16px;
@@ -560,20 +550,17 @@
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
 }
 
-/* ICON */
 .license-icon {
   font-size: 36px;
   margin-bottom: 14px;
 }
 
-/* TITLE */
 .license-card h4 {
   color: var(--green);
   margin-bottom: 10px;
   font-size: 18px;
 }
 
-/* LABEL + VALUE */
 .license-card .label {
   font-size: 13px;
   color: #777;
@@ -586,7 +573,6 @@
   color: #333;
 }
 
-/* BUTTON */
 .license-btn {
   display: inline-block;
   margin-top: 18px;
@@ -598,13 +584,6 @@
 
 .license-btn:hover {
   text-decoration: underline;
-}
-
-/* ================= MOBILE ================= */
-@media (max-width: 600px) {
-  .licenses-title {
-    font-size: 26px;
-  }
 }
 
 /* ================= FOOTER STYLING ================= */
@@ -703,6 +682,7 @@
 .social-icon:hover {
   background: var(--green);
   color: var(--white);
+  transform: translateY(-3px);
 }
 
 .mt-30 {
@@ -713,46 +693,8 @@
   background-color: var(--green);
   color: var(--white);
   text-align: center;
-  padding: 8px;
+  padding: 15px;
   font-size: 0.85rem;
-}
-
-/* ================= RESPONSIVE FOOTER ================= */
-@media (max-width: 992px) {
-  .footer-main {
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-  }
-  
-  .info-col {
-    grid-column: span 2;
-  }
-  
-  .footer-col h4 {
-    margin-bottom: 20px;
-  }
-}
-
-@media (max-width: 576px) {
-  .footer-main {
-    grid-template-columns: 1fr;
-  }
-  
-  .info-col {
-    grid-column: span 1;
-  }
-  
-  .footer-col {
-    text-align: center;
-  }
-  
-  .social-links {
-    justify-content: center;
-  }
-  
-  .footer-links li a:hover {
-    padding-left: 0;
-  }
 }
 
 /* ================= POPUP OVERLAY ================= */
@@ -836,653 +778,99 @@
   .popup-box {
     padding: 25px 22px;
   }
-
   .popup-box h2 {
     font-size: 22px;
   }
 }
-/* ================= MOBILE RESPONSIVE STYLES ================= */
 
-/* Tablet (768px - 992px) */
+/* ================= RESPONSIVE STYLES ================= */
 @media (max-width: 992px) {
   .about-container {
     flex-direction: column;
     gap: 40px;
-    padding: 0 15px;
   }
-
+  
   .about-text h1 {
     font-size: 36px;
     text-align: center;
   }
-
+  
   .about-text {
     text-align: center;
   }
-
+  
   .mv-container {
     flex-direction: column;
-    gap: 20px;
-    padding: 0 15px;
   }
-
-  .mv-card {
-    padding: 30px 20px;
-  }
-
+  
   .core-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
   }
-
+  
   .core-card {
     padding: 40px 30px;
   }
-
+  
   .management-container {
     flex-direction: column;
-    gap: 40px;
-    padding: 0 15px;
   }
-
+  
   .management-text {
     order: 2;
   }
-
+  
   .management-image-card {
     order: 1;
     max-width: 400px;
     margin: 0 auto;
   }
-
-  .management-title {
-    font-size: 30px;
-  }
-
-  .team-wrapper {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .team-card {
-    width: 100%;
-    max-width: 320px;
-  }
-}
-
-/* Mobile (576px - 768px) */
-@media (max-width: 768px) {
-  /* About Section */
-  .about-section {
-    padding: 100px 15px 50px;
-  }
-
-  .about-text h1 {
-    font-size: 32px;
-  }
-
-  .about-text p {
-    font-size: 15px;
-    line-height: 1.7;
-  }
-
-  .image-frame {
-    padding: 10px;
-  }
-
-  /* Mission Vision */
-  .mv-section {
-    padding: 50px 15px;
-  }
-
-  .mv-card h3 {
-    font-size: 20px;
-  }
-
-  .mv-card p {
-    font-size: 14px;
-  }
-
-  /* Core Values */
-  .core-values-section {
-    padding: 50px 15px;
-  }
-
-  .core-title {
-    font-size: 28px;
-    margin-bottom: 30px;
-  }
-
-  .core-card {
-    padding: 30px 20px;
-  }
-
-  .core-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
-  .core-item {
-    padding: 15px 10px;
-  }
-
-  .core-number {
-    font-size: 50px;
-    top: -10px;
-    left: -5px;
-  }
-
-  .core-icon {
-    width: 40px;
-  }
-
-  .core-item h3 {
-    font-size: 16px;
-  }
-
-  .core-item p {
-    font-size: 13px;
-    line-height: 1.5;
-  }
-
-  /* Management Section */
-  .management-section {
-    padding: 50px 15px;
-  }
-
-  .management-title {
-    font-size: 28px;
-    margin-bottom: 30px;
-  }
-
-  .management-text p {
-    font-size: 14px;
-    line-height: 1.7;
-  }
-
-  .director-quote {
-    padding: 15px;
-  }
-
-  .director-quote p {
-    font-size: 14px;
-  }
-
-  .director-info h4 {
-    font-size: 16px;
-  }
-
-  .director-info span {
-    font-size: 13px;
-  }
-
-  /* License Section */
-  .licenses-section {
-    padding: 50px 15px;
-  }
-
-  .licenses-title {
-    font-size: 28px;
-    margin-bottom: 30px;
-  }
-
-  .licenses-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .license-card {
-    padding: 25px 20px;
-    max-width: 100%;
-  }
-
-  .license-card h4 {
-    font-size: 16px;
-  }
-
-  .license-card .value {
-    font-size: 14px;
-  }
-}
-
-/* Small Mobile (below 576px) */
-@media (max-width: 576px) {
-  /* About Section */
-  .about-section {
-    padding: 90px 12px 40px;
-  }
-
-  .about-text h1 {
-    font-size: 28px;
-  }
-
-  .about-text h2 {
-    font-size: 20px;
-  }
-
-  .about-text p {
-    font-size: 14px;
-  }
-
-  /* Mission Vision */
-  .mv-card {
-    padding: 25px 15px;
-  }
-
-  .mv-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 18px;
-  }
-
-  .mv-card h3 {
-    font-size: 18px;
-  }
-
-  /* Core Values */
-  .core-values-section {
-    padding: 40px 12px;
-  }
-
-  .core-title {
-    font-size: 26px;
-  }
-
-  .core-grid {
-    grid-template-columns: 1fr;  /* Single column on mobile */
-    gap: 20px;
-  }
-
-  .core-card {
-    padding: 25px 15px;
-  }
-
-  .core-item {
-    text-align: center;
-    padding: 20px 15px;
-    background: #f9f9f9;
-    border-radius: 12px;
-  }
-
-  .core-number {
-    font-size: 60px;
-    top: -5px;
-    left: 5px;
-  }
-
-  .core-icon {
-    width: 45px;
-    margin-bottom: 10px;
-  }
-
-  .core-item h3 {
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
-
-  .core-item p {
-    font-size: 13px;
-  }
-
-  /* Management Section */
-  .management-section {
-    padding: 40px 12px;
-  }
-
-  .management-title {
-    font-size: 26px;
-  }
-
-  .management-container {
-    gap: 30px;
-  }
-
-  .management-text p {
-    font-size: 13px;
-  }
-
-  .director-quote p {
-    font-size: 13px;
-  }
-
-  .director-quote span {
-    font-size: 12px;
-  }
-
-  .management-image-card {
-    max-width: 100%;
-  }
-
-  .director-info {
-    padding: 15px;
-  }
-
-  .director-info h4 {
-    font-size: 15px;
-  }
-
-  .director-info span {
-    font-size: 12px;
-  }
-
-  /* License Section */
-  .licenses-section {
-    padding: 40px 12px;
-  }
-
-  .licenses-title {
-    font-size: 26px;
-  }
-
-  .license-card {
-    padding: 20px 15px;
-  }
-
-  .license-icon {
-    font-size: 30px;
-  }
-
-  .license-card h4 {
-    font-size: 15px;
-  }
-
-  .license-card .label {
-    font-size: 12px;
-  }
-
-  .license-card .value {
-    font-size: 13px;
-  }
-
-  .license-btn {
-    font-size: 13px;
-    margin-top: 15px;
-  }
-}
-
-/* Fix for very small devices */
-@media (max-width: 360px) {
-  .about-text h1 {
-    font-size: 24px;
-  }
-
-  .core-number {
-    font-size: 45px;
-  }
-
-  .core-item h3 {
-    font-size: 16px;
-  }
-
-  .core-item p {
-    font-size: 12px;
-  }
-}
-
-/* Fix for navbar on mobile */
-@media (max-width: 992px) {
-  .nav-container {
-    padding: 12px 20px;
-  }
-
-  .menu {
-    padding-top: 80px;
-  }
-
-  .menu a {
-    font-size: 15px;
-    padding: 12px 15px;
-  }
-
-  .dropdown {
-    margin-left: 20px;
-    border-left: 2px solid #0b5c3b;
-  }
-
-  .dropdown li a {
-    font-size: 14px;
-    padding: 10px 15px;
-  }
-}
-
-/* Fix for overlapping content on mobile */
-@media (max-width: 768px) {
-  .site-header {
-    top: 10px;
-  }
-
-  .nav-container {
-    padding: 12px 20px;
-  } 
-
-  .logo img {
-    height: 30px;
-  }
-
-  .hamburger span {
-    width: 22px;
-    height: 2.5px;
-  }
-}
-
-/* ================= FIX FOR DROPDOWN NAVIGATION ================= */
-/* This ensures dropdown links work on desktop */
-@media (min-width: 993px) {
-  .nav-item .dropdown {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: all 0.25s ease;
-    display: block !important; /* Override any mobile styles */
-  }
   
-  .nav-item:hover .dropdown {
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: translateY(0) !important;
-    display: block !important;
-  }
-  
-  .dropdown li a {
-    pointer-events: auto !important; /* Ensure links are clickable */
-  }
-}
-
-/* Fix for dropdown links on desktop */
-.nav-item .dropdown li a {
-  position: relative;
-  z-index: 1001;
-}
-
-/* Ensure no overlapping elements block clicks */
-.dropdown {
-  pointer-events: none;
-}
-
-.nav-item:hover .dropdown {
-  pointer-events: auto;
-}
-
-/* ================= PURE CSS MENU (NO JAVASCRIPT) ================= */
-.menu-toggle {
-  display: none;
-}
-
-/* Hide hamburger on desktop */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 6px;
-  cursor: pointer;
-  padding: 8px;
-  z-index: 10002;
-}
-
-.hamburger span {
-  width: 26px;
-  height: 3px;
-  background-color: #0b5c3b;
-  border-radius: 2px;
-  transition: 0.3s;
-}
-
-/* Mobile styles */
-@media (max-width: 992px) {
-  .hamburger {
-    display: flex;
-    margin-left: auto;
-  }
-  
-  .menu {
-    position: fixed;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100vh;
-    background: white;
-    flex-direction: column;
-    padding: 80px 20px;
-    transition: left 0.3s ease;
-    z-index: 10001;
-    margin: 0;
-    display: flex !important;
-  }
-  
-  .menu-toggle:checked ~ .menu {
-    left: 0;
-  }
-  
-  .menu-toggle:checked + .hamburger span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
-  }
-  
-  .menu-toggle:checked + .hamburger span:nth-child(2) {
-    opacity: 0;
-  }
-  
-  .menu-toggle:checked + .hamburger span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
-  }
-  
-  .menu li {
-    width: 100%;
-  }
-  
-  .menu a {
-    display: block;
-    padding: 15px;
-    border-bottom: 1px solid #eee;
-    color: #333;
-    text-decoration: none;
-  }
-  
-  /* Dropdowns on mobile */
-  .dropdown {
-    position: static;
-    display: none;
-    padding-left: 20px;
-    box-shadow: none;
-    border-left: 2px solid #0b5c3b;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-  }
-  
-  .nav-item:hover .dropdown {
-    display: none;
-  }
-  
-  .nav-item:focus-within .dropdown,
-  .nav-item.active .dropdown {
-    display: block;
-  }
-}
-
-/* Desktop dropdown styles */
-@media (min-width: 993px) {
-  .dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    min-width: 220px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: 0.3s;
-    padding: 10px 0;
-    z-index: 1000;
-  }
-  
-  .nav-item:hover .dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-  
-  .dropdown li a {
-    padding: 10px 20px;
-    display: block;
-    color: #333;
-    text-decoration: none;
-  }
-  
-  .dropdown li a:hover {
-    background: #f5f5f5;
-    color: #0b5c3b;
-  }
-}
-
-/* ================= MOBILE FOOTER STYLES (like index.html) ================= */
-
-/* Tablet (768px - 992px) */
-@media (max-width: 992px) {
   .footer-main {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+    grid-template-columns: 1fr 1fr;
   }
   
   .info-col {
     grid-column: span 2;
   }
-  
-  .footer-col h4 {
-    margin-bottom: 20px;
-    font-size: 1rem;
-  }
-  
-  .footer-links li {
-    margin-bottom: 10px;
-  }
-  
-  .footer-links li a {
-    font-size: 0.9rem;
-  }
-  
-  .company-description {
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-  }
-  
-  .contact-info p {
-    font-size: 0.85rem;
-  }
 }
 
-/* Mobile (576px - 768px) */
 @media (max-width: 768px) {
-  .kcpl-footer {
-    padding-top: 50px;
-    margin-top: 40px;
+  .about-section {
+    padding: 100px 15px 50px;
+  }
+  
+  .about-text h1 {
+    font-size: 32px;
+  }
+  
+  .core-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .core-card {
+    padding: 30px 20px;
+  }
+  
+  .core-number {
+    font-size: 50px;
+    top: -10px;
+    left: -5px;
+  }
+  
+  .core-icon {
+    width: 40px;
+  }
+  
+  .core-item h3 {
+    font-size: 16px;
+  }
+  
+  .licenses-grid {
+    grid-template-columns: 1fr;
   }
   
   .footer-main {
     grid-template-columns: 1fr;
-    gap: 30px;
-    padding-bottom: 40px;
   }
   
   .info-col {
@@ -1494,313 +882,80 @@
   }
   
   .footer-logo-img {
-    width: 140px;
     margin: 0 auto 20px;
-    display: block;
   }
   
   .company-description {
     text-align: center;
-    max-width: 400px;
     margin-left: auto;
     margin-right: auto;
   }
   
-  .contact-info {
-    text-align: center;
-  }
-  
   .contact-info p {
+    text-align: center;
     justify-content: center;
   }
   
   .social-links {
     justify-content: center;
-    margin-top: 20px;
-  }
-  
-  .footer-col h4 {
-    margin-bottom: 15px;
-    font-size: 1.1rem;
   }
   
   .footer-links {
-    display: flex;
-    flex-direction: column;
     align-items: center;
-  }
-  
-  .footer-links li {
-    margin-bottom: 8px;
-  }
-  
-  .footer-links li a {
-    font-size: 0.9rem;
-  }
-  
-  .footer-links li a:hover {
-    padding-left: 0;
-  }
-  
-  .mt-30 {
-    margin-top: 25px;
   }
 }
 
-/* Small Mobile (below 576px) */
 @media (max-width: 576px) {
-  .kcpl-footer {
-    padding-top: 40px;
+  .about-text h1 {
+    font-size: 28px;
   }
   
-  .footer-main {
-    gap: 25px;
-    padding-bottom: 30px;
+  .about-text p {
+    font-size: 14px;
+  }
+  
+  .mv-card {
+    padding: 25px 15px;
+  }
+  
+  .mv-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+  }
+  
+  .mv-card h3 {
+    font-size: 18px;
+  }
+  
+  .core-title {
+    font-size: 28px;
+  }
+  
+  .licenses-title {
+    font-size: 28px;
+  }
+  
+  .management-title {
+    font-size: 28px;
+  }
+  
+  .footer-bottom-strip {
+    padding: 12px;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .about-text h1 {
+    font-size: 24px;
+  }
+  
+  .core-number {
+    font-size: 45px;
   }
   
   .footer-logo-img {
     width: 120px;
-  }
-  
-  .company-description {
-    font-size: 0.85rem;
-    line-height: 1.5;
-  }
-  
-  .contact-info p {
-    font-size: 0.8rem;
-    margin-bottom: 5px;
-  }
-  
-  .social-links {
-    gap: 12px;
-  }
-  
-  .social-icon {
-    width: 34px;
-    height: 34px;
-    font-size: 14px;
-  }
-  
-  .footer-col h4 {
-    font-size: 1rem;
-    margin-bottom: 12px;
-  }
-  
-  .footer-links li a {
-    font-size: 0.85rem;
-  }
-  
-  .footer-bottom-strip {
-    padding: 12px;
-    font-size: 0.75rem;
-  }
-}
-
-/* Fix for very small devices */
-@media (max-width: 360px) {
-  .footer-logo-img {
-    width: 100px;
-  }
-  
-  .company-description {
-    font-size: 0.8rem;
-  }
-  
-  .contact-info p {
-    font-size: 0.75rem;
-  }
-  
-  .social-icon {
-    width: 30px;
-    height: 30px;
-    font-size: 12px;
-  }
-  
-  .footer-bottom-strip {
-    font-size: 0.7rem;
-    padding: 10px;
-  }
-}
-
-/* Ensure footer links are properly spaced */
-.footer-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-links li {
-  margin-bottom: 12px;
-}
-
-.footer-links li a {
-  text-decoration: none;
-  color: var(--text-gray);
-  transition: color 0.3s ease;
-}
-
-.footer-links li a:hover {
-  color: var(--green);
-}
-
-/* Contact info styling for mobile */
-.contact-info p {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
-}
-
-@media (max-width: 768px) {
-  .contact-info p {
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-}
-
-/* Social icons hover effect */
-.social-icon {
-  transition: all 0.3s ease;
-}
-
-.social-icon:hover {
-  background: var(--green);
-  color: white;
-  transform: translateY(-3px);
-}
-
-/* Footer bottom strip */
-.footer-bottom-strip {
-  background-color: var(--green);
-  color: white;
-  text-align: center;
-  padding: 15px;
-  font-size: 0.85rem;
-}
-
-@media (max-width: 576px) {
-  .footer-bottom-strip {
-    padding: 12px;
-    font-size: 0.75rem;
-  }
-}
-/* ================= DESKTOP VIEW FIXES ================= */
-
-/* Fix About section alignment */
-@media (min-width: 993px) {
-  .about-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 60px;
-  }
-  
-  .about-text {
-    flex: 1;
-    text-align: left;
-  }
-  
-  .about-text h1 {
-    font-size: 42px;
-    text-align: left;
-  }
-  
-  .about-text p {
-    text-align: left;
-    max-width: 100%;
-  }
-  
-  .about-image {
-    flex: 1;
-  }
-  
-  .image-frame {
-    max-width: 500px;
-    margin-left: auto;
-  }
-}
-
-/* Fix Mission & Vision section */
-@media (min-width: 993px) {
-  .mv-container {
-    display: flex;
-    flex-direction: row;
-    gap: 40px;
-  }
-  
-  .mv-card {
-    flex: 1;
-    text-align: center;
-  }
-}
-
-/* Fix Core Values grid */
-@media (min-width: 993px) {
-  .core-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-  }
-  
-  .core-item {
-    text-align: center;
-  }
-}
-
-/* Fix Management section */
-@media (min-width: 993px) {
-  .management-container {
-    display: flex;
-    flex-direction: row;
-    gap: 60px;
-    align-items: center;
-  }
-  
-  .management-text {
-    flex: 1;
-    text-align: left;
-  }
-  
-  .management-image-card {
-    flex: 1;
-    max-width: 400px;
-  }
-  
-  .director-quote {
-    text-align: left;
-  }
-}
-
-/* Fix License section */
-@media (min-width: 993px) {
-  .licenses-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-  }
-}
-
-/* Fix font sizes for desktop */
-@media (min-width: 993px) {
-  body {
-    font-size: 16px;
-  }
-  
-  h1 {
-    font-size: 42px;
-  }
-  
-  h2 {
-    font-size: 32px;
-  }
-  
-  h3 {
-    font-size: 24px;
-  }
-  
-  p {
-    font-size: 16px;
-    line-height: 1.6;
   }
 }

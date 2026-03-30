@@ -1,25 +1,26 @@
 :root {
   --green: #146c43;
+  --orange: #FFA500;
+  --dark-orange: #ff8c00;
 }
-
-
 
 /* PAGE */
 body {
   margin: 0;
   font-family: "Inter", sans-serif;
   background: #fff;
+  overflow-x: hidden;
 }
 
 .career-section {
-  padding: 80px 20px;
+  padding: 100px 20px 60px;
 }
 
 .career-title {
   text-align: center;
-  font-size: 36px;
+  font-size: 28px;
   color: var(--green);
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 /* JOB GRID */
@@ -27,241 +28,95 @@ body {
   max-width: 1100px;
   margin: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  padding: 0 10px;
 }
 
 /* JOB CARD */
 .job-card {
   background: #ffffff;
   border-radius: 18px;
-  padding: 28px;
+  padding: 25px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
 }
 
 .job-card h3 {
   margin-bottom: 12px;
+  font-size: 20px;
+  color: #333;
 }
 
 .job-card p {
   margin: 6px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.job-card p strong {
+  color: var(--orange);
 }
 
 /* APPLY BUTTON */
 .apply-btn {
+  width: 100%;
   margin-top: 16px;
-  border: 1.5px solid var(--green);
-  background: transparent;
-  color: var(--green);
-  padding: 8px 18px;
-  border-radius: 22px;
+  border: none;
+  background: var(--orange);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 12px;
   cursor: pointer;
   font-weight: 600;
+  transition: all 0.3s ease;
 }
 
 .apply-btn:hover {
-  background: var(--green);
-  color: #fff;
+  background: var(--dark-orange);
+  transform: translateY(-2px);
 }
-
-/* MODAL */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.6);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-.modal-box {
-  background: #fff;
-  width: 100%;
-  max-width: 520px;
-  padding: 35px;
-  border-radius: 18px;
-  position: relative;
-}
-
-.modal-box h2 {
-  text-align: center;
-  color: var(--green);
-  margin-bottom: 25px;
-}
-
-.close-modal {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-/* FORM */
-.apply-form input,
-.apply-form select,
-.apply-form textarea {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 14px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-}
-
-.upload-btn {
-  display: inline-block;
-  border: 1.5px solid var(--green);
-  color: var(--green);
-  padding: 10px 18px;
-  border-radius: 22px;
-  cursor: pointer;
-  margin-bottom: 16px;
-}
-
-.submit-btn {
-  width: 100%;
-  background: var(--green);
-  color: #fff;
-  border: none;
-  padding: 14px;
-  border-radius: 12px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-
 
 /* ================= HEADER ================= */
 .site-header {
-    position: fixed;
-    top: 20px;
-    left: 0;
-    width: 100%;
-    z-index: 9999;
-    pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  padding: 15px 20px;
+  background: transparent;
+  box-sizing: border-box;
 }
 
 /* ================= NAVBAR ================= */
 .navbar {
-    width: 100%;
-    pointer-events: auto;
+  width: 100%;
+  pointer-events: auto;
 }
 
 .nav-container {
-    max-width: 1250px;
-    margin: auto;
-    background: #ffffff;
-    border-radius: 28px;
-    padding: 16px 32px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+  max-width: 1250px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 /* ================= LOGO ================= */
 .logo img {
-    height: 36px;
-    width: auto;
-}
-
-/* ================= MENU (DESKTOP) ================= */
-.menu {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    margin-left: auto;
-    list-style: none;
-}
-
-/* ================= LINKS ================= */
-.menu a {
-    text-decoration: none;
-    font-size: 15.5px;
-    font-weight: 500;
-    color: #374151;
-    position: relative;
-    padding-bottom: 4px;
-    transition: color 0.3s ease;
-}
-
-.menu a:hover,
-.menu a.active {
-    color: #0b5c3b;
-}
-
-.menu a::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0;
-    height: 2px;
-    background: #0b5c3b;
-    transition: width 0.25s ease;
-}
-
-.menu a:hover::before,
-.menu a.active::before {
-    width: 100%;
-}
-
-/* ================= DROPDOWN ================= */
-.nav-item {
-    position: relative;
-}
-
-.arrow {
-    font-size: 11px;
-    margin-left: 4px;
-}
-
-/* DROPDOWN CONTAINER */
-.dropdown {
-    position: absolute;
-    top: 48px;
-    left: 0;
-    min-width: 220px;
-    background: #ffffff;
-    border-radius: 14px;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
-    padding: 10px 0;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: all 0.25s ease;
-    z-index: 1000;
-    list-style: none;
-}
-
-/* REMOVE BULLETS + SPACING */
-.dropdown li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-/* LINK STYLE */
-.dropdown li a {
-    display: block;
-    padding: 12px 20px;
-    font-size: 14.5px;
-    color: #374151;
-    text-decoration: none;
-    transition: background 0.2s ease, color 0.2s ease;
-    white-space: nowrap;
-}
-
-.dropdown li a:hover {
-    background: #ecfdf5;
-    color: #0b5c3b;
-}
-
-/* SHOW DROPDOWN */
-.nav-item:hover .dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+  height: 32px;
+  width: auto;
 }
 
 /* ================= HAMBURGER ================= */
@@ -274,14 +129,15 @@ body {
   border: none;
   padding: 8px;
   z-index: 10002;
+  position: relative;
 }
 
 .hamburger span {
   width: 26px;
   height: 3px;
-  background-color: #0b5c3b;
+  background-color: var(--green);
   border-radius: 2px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 /* Hamburger active (X icon) */
@@ -291,73 +147,273 @@ body {
 
 .hamburger.active span:nth-child(2) {
   opacity: 0;
+  transform: translateX(-10px);
 }
 
 .hamburger.active span:nth-child(3) {
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* ================= MOBILE MENU ================= */
-@media (max-width: 992px) {
+/* ================= MENU (DESKTOP) ================= */
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
-  .hamburger {
-    display: flex;
-    margin-left: auto;
+/* ================= LINKS ================= */
+.menu a {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #374151;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+.menu a:hover,
+.menu a.active {
+  color: var(--green);
+}
+
+.menu a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: var(--green);
+  transition: width 0.25s ease;
+}
+
+.menu a:hover::before,
+.menu a.active::before {
+  width: 100%;
+}
+
+/* ================= DROPDOWN ================= */
+.nav-item {
+  position: relative;
+}
+
+.arrow {
+  font-size: 11px;
+  margin-left: 4px;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.nav-item:hover .arrow {
+  transform: rotate(180deg);
+}
+
+/* DROPDOWN CONTAINER */
+.dropdown {
+  position: absolute;
+  top: 48px;
+  left: 0;
+  min-width: 220px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  padding: 10px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.25s ease;
+  z-index: 1000;
+  list-style: none;
+}
+
+/* REMOVE BULLETS + SPACING */
+.dropdown li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* LINK STYLE */
+.dropdown li a {
+  display: block;
+  padding: 12px 20px;
+  font-size: 14px;
+  color: #374151;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+
+.dropdown li a:hover {
+  background: #ecfdf5;
+  color: var(--green);
+}
+
+/* SHOW DROPDOWN */
+.nav-item:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* ================= MOBILE MENU - FIXED VERSION ================= */
+@media (max-width: 992px) {
+  .site-header {
+    padding: 12px 15px;
   }
 
+  .nav-container {
+    padding: 10px 20px;
+  }
+
+  /* Show hamburger button */
+  .hamburger {
+    display: flex !important;
+  }
+
+  /* Hide menu by default on mobile */
   .menu {
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    right: -100%;
+    width: 80%;
+    max-width: 350px;
     height: 100vh;
-
     background-color: #ffffff;
-    display: none;
+    display: flex !important;
     flex-direction: column;
-    gap: 8px;
-
-    padding: 90px 24px 24px;
+    gap: 0;
+    padding: 80px 20px 30px;
     z-index: 10001;
-
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    transition: right 0.3s ease-in-out;
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    list-style: none;
   }
 
+  /* Show menu when active class is added */
   .menu.active {
-    display: flex;
+    right: 0;
   }
 
   .menu li {
     width: 100%;
+    border-bottom: 1px solid #f0f0f0;
   }
 
   .menu a {
     display: block;
-    padding: 14px 10px;
+    padding: 16px 10px;
     font-size: 16px;
-    border-bottom: 1px solid #f1f1f1;
+    font-weight: 500;
   }
 
   /* ================= MOBILE DROPDOWN ================= */
+  .nav-item {
+    position: relative;
+  }
+
   .dropdown {
     position: static;
     display: none;
-    margin-top: 8px;
-    padding-left: 16px;
-
+    margin-top: 0;
+    padding-left: 20px;
     box-shadow: none;
     border-radius: 0;
-    border-left: 2px solid #0b5c3b;
+    background: #fafafa;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: none;
   }
 
-  /* OPEN DROPDOWN ONLY VIA .active (JS controlled) */
+  .dropdown li a {
+    padding: 12px 10px;
+    font-size: 14px;
+  }
+
+  /* OPEN DROPDOWN VIA JS */
   .nav-item.active > .dropdown {
-    display: block;
+    display: block !important;
   }
 
-  /* ❌ COMPLETELY DISABLE HOVER ON MOBILE */
+  /* Disable hover on mobile */
   .nav-item:hover > .dropdown {
     display: none;
+  }
+
+  /* Add dropdown indicator for mobile */
+  .nav-item > a {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-item > a .arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .nav-item.active > a .arrow {
+    transform: rotate(180deg);
+  }
+}
+
+/* Tablet Responsive */
+@media (max-width: 768px) {
+  .career-section {
+    padding: 90px 15px 50px;
+  }
+
+  .career-title {
+    font-size: 26px;
+    margin-bottom: 30px;
+  }
+
+  .jobs-grid {
+    gap: 20px;
+    padding: 0;
+  }
+
+  .job-card {
+    padding: 20px;
+  }
+
+  .job-card h3 {
+    font-size: 18px;
+  }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+  .career-section {
+    padding: 80px 12px 40px;
+  }
+
+  .career-title {
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
+
+  .jobs-grid {
+    gap: 15px;
+  }
+
+  .job-card {
+    padding: 18px;
+  }
+
+  .job-card h3 {
+    font-size: 17px;
+  }
+
+  .apply-btn {
+    padding: 10px 16px;
+    font-size: 14px;
   }
 }

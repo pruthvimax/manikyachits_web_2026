@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Careers | Manikya Chits</title>
   <link rel="stylesheet" href="career.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -534,261 +535,370 @@
 
 <!-- JAVASCRIPT -->
 <script>
-  // Modal functionality
-  const modal = document.getElementById("jobModal");
-  const closeBtn = document.getElementById("closeModal");
-  const roleSelect = document.getElementById("jobRole");
-  const careerForm = document.getElementById("careerForm");
-  const successMessage = document.getElementById("successMessage");
-  const closeSuccess = document.getElementById("closeSuccess");
-  const loadingSpinner = document.getElementById("loadingSpinner");
-  const submitBtn = document.getElementById("submitBtn");
-  const resumeInput = document.getElementById("resume");
-  const resumeText = document.getElementById("resumeText");
-
-  // File upload handler
-  resumeInput.addEventListener('change', function() {
-    if (this.files && this.files[0]) {
-      resumeText.textContent = this.files[0].name;
-    } else {
-      resumeText.textContent = 'Upload Resume (PDF, DOC)';
-    }
-  });
-
-  // Open modal with selected role
-  document.querySelectorAll(".apply-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      modal.style.display = "flex";
-      roleSelect.value = btn.dataset.role;
-      // Reset form
-      careerForm.reset();
-      successMessage.style.display = "none";
-      careerForm.style.display = "block";
-      clearErrors();
-      resumeText.textContent = 'Upload Resume (PDF, DOC)';
-    });
-  });
-
-  // Close modal
-  function closeModal() {
-    modal.style.display = "none";
-    careerForm.style.display = "block";
-    successMessage.style.display = "none";
-    clearErrors();
-  }
-
-  closeBtn.addEventListener("click", closeModal);
-  closeSuccess.addEventListener("click", closeModal);
-
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      closeModal();
-    }
-  });
-
-  // Helper functions
-  function showError(elementId, message) {
-    const errorElement = document.getElementById(elementId);
-    if (errorElement) {
-      errorElement.textContent = message;
-      errorElement.style.display = 'block';
-      
-      // Highlight the input
-      const input = errorElement.previousElementSibling;
-      if (input) {
-        input.classList.add('error-input');
-      }
-    }
-  }
-
-  function clearErrors() {
-    document.querySelectorAll('.error-message').forEach(el => {
-      el.style.display = 'none';
-      el.textContent = '';
-    });
+  // Wait for DOM to be fully loaded
+  document.addEventListener('DOMContentLoaded', function() {
     
-    document.querySelectorAll('.apply-form input, .apply-form select, .apply-form textarea').forEach(el => {
-      el.classList.remove('error-input');
-    });
-  }
+    // ========== MOBILE MENU FUNCTIONALITY - FIXED ==========
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+    const body = document.body;
 
-  function showLoading(show) {
-    if (loadingSpinner) {
-      loadingSpinner.style.display = show ? 'block' : 'none';
-    }
-    if (submitBtn) {
-      submitBtn.disabled = show;
-    }
-    if (careerForm) {
-      const inputs = careerForm.querySelectorAll('input, select, textarea, .upload-btn');
-      inputs.forEach(input => {
-        if (input.tagName !== 'BUTTON') {
-          input.disabled = show;
+    if (hamburger && menu) {
+      // Toggle menu on hamburger click
+      hamburger.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Toggle classes
+        this.classList.toggle('active');
+        menu.classList.toggle('active');
+        
+        // Prevent body scroll when menu is open
+        if (menu.classList.contains('active')) {
+          body.style.overflow = 'hidden';
+        } else {
+          body.style.overflow = '';
+        }
+      });
+
+      // Close menu when clicking on any link
+      const allLinks = menu.querySelectorAll('a');
+      allLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          // Only close if it's not a dropdown toggle on mobile
+          if (window.innerWidth <= 992) {
+            const parentItem = this.closest('.nav-item');
+            // If it's not a dropdown with arrow, close menu
+            if (!parentItem || !parentItem.querySelector('.dropdown')) {
+              hamburger.classList.remove('active');
+              menu.classList.remove('active');
+              body.style.overflow = '';
+            }
+          }
+        });
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', function(e) {
+        if (menu.classList.contains('active') && 
+            !menu.contains(e.target) && 
+            !hamburger.contains(e.target)) {
+          hamburger.classList.remove('active');
+          menu.classList.remove('active');
+          body.style.overflow = '';
         }
       });
     }
-  }
 
-  // Form submission
-  if (careerForm) {
-    careerForm.addEventListener('submit', async function(e) {
-      e.preventDefault();
+    // ========== MOBILE DROPDOWN FUNCTIONALITY ==========
+    const navItems = document.querySelectorAll('.nav-item');
+
+    navItems.forEach(item => {
+      const link = item.querySelector('a');
+      const dropdown = item.querySelector('.dropdown');
       
-      // Clear previous errors
-      clearErrors();
-      
-      // Get form data
-      const formData = {
-        firstName: document.getElementById('firstName')?.value.trim() || '',
-        lastName: document.getElementById('lastName')?.value.trim() || '',
-        email: document.getElementById('email')?.value.trim() || '',
-        phoneNumber: document.getElementById('phoneNumber')?.value.trim() || '',
-        qualification: document.getElementById('qualification')?.value.trim() || '',
-        jobRole: document.getElementById('jobRole')?.value || '',
-        comments: document.getElementById('comments')?.value.trim() || ''
-      };
-      
-      // Basic validation
-      let isValid = true;
-      
-      // First Name validation
-      if (!formData.firstName) {
-        showError('firstNameError', 'First name is required');
-        isValid = false;
-      } else if (formData.firstName.length < 2) {
-        showError('firstNameError', 'First name must be at least 2 characters');
-        isValid = false;
-      }
-      
-      // Last Name validation
-      if (!formData.lastName) {
-        showError('lastNameError', 'Last name is required');
-        isValid = false;
-      } else if (formData.lastName.length < 2) {
-        showError('lastNameError', 'Last name must be at least 2 characters');
-        isValid = false;
-      }
-      
-      // Email validation
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!formData.email) {
-        showError('emailError', 'Email is required');
-        isValid = false;
-      } else if (!emailRegex.test(formData.email)) {
-        showError('emailError', 'Please enter a valid email address');
-        isValid = false;
-      }
-      
-      // Phone validation
-      const phoneRegex = /^[6-9]\d{9}$/;
-      if (!formData.phoneNumber) {
-        showError('phoneError', 'Phone number is required');
-        isValid = false;
-      } else if (!phoneRegex.test(formData.phoneNumber)) {
-        showError('phoneError', 'Please enter a valid 10-digit Indian mobile number');
-        isValid = false;
-      }
-      
-      // Job Role validation
-      if (!formData.jobRole) {
-        showError('jobRoleError', 'Please select a job role');
-        isValid = false;
-      }
-      
-      // If validation fails, stop here
-      if (!isValid) {
-        const firstError = document.querySelector('.error-message[style*="display: block"]');
-        if (firstError) {
-          firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-        return;
-      }
-      
-      // Show loading
-      showLoading(true);
-      
-      try {
-        const response = await fetch('http://localhost:5000/api/forms/career', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData)
-        });
-        
-        const data = await response.json();
-        
-        if (data.success) {
-          // Hide form, show success message
-          careerForm.style.display = 'none';
-          successMessage.style.display = 'block';
-          
-          // Scroll to success message
-          successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        } else {
-          // Show errors from server
-          if (data.errors && Array.isArray(data.errors)) {
-            data.errors.forEach(error => {
-              if (error.toLowerCase().includes('first name')) {
-                showError('firstNameError', error);
-              } else if (error.toLowerCase().includes('last name')) {
-                showError('lastNameError', error);
-              } else if (error.toLowerCase().includes('email')) {
-                showError('emailError', error);
-              } else if (error.toLowerCase().includes('phone') || error.toLowerCase().includes('mobile')) {
-                showError('phoneError', error);
-              } else if (error.toLowerCase().includes('job role')) {
-                showError('jobRoleError', error);
-              } else if (error.toLowerCase().includes('comment')) {
-                showError('commentsError', error);
+      if (link && dropdown) {
+        link.addEventListener('click', function(e) {
+          // Only for mobile view
+          if (window.innerWidth <= 992) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Check if this dropdown is already active
+            const isActive = item.classList.contains('active');
+            
+            // Close all other dropdowns
+            navItems.forEach(navItem => {
+              if (navItem !== item) {
+                navItem.classList.remove('active');
               }
             });
-          } else {
-            alert(data.message || 'Something went wrong. Please try again.');
+            
+            // Toggle current dropdown
+            if (!isActive) {
+              item.classList.add('active');
+            } else {
+              item.classList.remove('active');
+            }
           }
-        }
-      } catch (error) {
-        console.error('Error:', error);
-        alert('Network error. Please check your connection and try again.');
-      } finally {
-        showLoading(false);
+        });
       }
     });
-  }
 
-  // Remove error on input
-  document.querySelectorAll('#careerForm input, #careerForm select, #careerForm textarea').forEach(input => {
-    if (input) {
-      input.addEventListener('input', function() {
-        this.classList.remove('error-input');
-        const errorId = this.id + 'Error';
-        const errorElement = document.getElementById(errorId);
-        if (errorElement) {
-          errorElement.style.display = 'none';
+    // Close dropdowns when clicking outside on mobile
+    document.addEventListener('click', function(e) {
+      if (window.innerWidth <= 992) {
+        if (!e.target.closest('.nav-item')) {
+          navItems.forEach(item => {
+            item.classList.remove('active');
+          });
+        }
+      }
+    });
+
+    // Handle window resize - reset menu state
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 992) {
+        // Reset mobile menu state on desktop
+        if (menu && menu.classList.contains('active')) {
+          menu.classList.remove('active');
+          if (hamburger) hamburger.classList.remove('active');
+          body.style.overflow = '';
+        }
+        // Close all dropdowns on desktop view
+        navItems.forEach(item => {
+          item.classList.remove('active');
+        });
+      }
+    });
+
+    // ========== MODAL FUNCTIONALITY ==========
+    const modal = document.getElementById("jobModal");
+    const closeBtn = document.getElementById("closeModal");
+    const roleSelect = document.getElementById("jobRole");
+    const careerForm = document.getElementById("careerForm");
+    const successMessage = document.getElementById("successMessage");
+    const closeSuccess = document.getElementById("closeSuccess");
+    const loadingSpinner = document.getElementById("loadingSpinner");
+    const submitBtn = document.getElementById("submitBtn");
+    const resumeInput = document.getElementById("resume");
+    const resumeText = document.getElementById("resumeText");
+
+    // File upload handler
+    if (resumeInput) {
+      resumeInput.addEventListener('change', function() {
+        if (this.files && this.files[0]) {
+          if (resumeText) resumeText.textContent = this.files[0].name;
+        } else {
+          if (resumeText) resumeText.textContent = 'Upload Resume (PDF, DOC)';
         }
       });
     }
-  });
 
-  // Mobile menu functionality
-  const hamburger = document.getElementById('hamburger');
-  const menu = document.getElementById('menu');
-
-  if (hamburger) {
-    hamburger.addEventListener('click', function() {
-      this.classList.toggle('active');
-      menu.classList.toggle('active');
+    // Open modal with selected role
+    document.querySelectorAll(".apply-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (modal) {
+          modal.style.display = "flex";
+          if (roleSelect) roleSelect.value = btn.dataset.role;
+          // Reset form
+          if (careerForm) careerForm.reset();
+          if (successMessage) successMessage.style.display = "none";
+          if (careerForm) careerForm.style.display = "block";
+          clearErrors();
+          if (resumeText) resumeText.textContent = 'Upload Resume (PDF, DOC)';
+        }
+      });
     });
-  }
 
-  // Remove any active class from menu items
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.menu a').forEach(link => {
+    // Close modal
+    function closeModal() {
+      if (modal) modal.style.display = "none";
+      if (careerForm) careerForm.style.display = "block";
+      if (successMessage) successMessage.style.display = "none";
+      clearErrors();
+    }
+
+    if (closeBtn) closeBtn.addEventListener("click", closeModal);
+    if (closeSuccess) closeSuccess.addEventListener("click", closeModal);
+
+    if (modal) {
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+    }
+
+    // Helper functions
+    function showError(elementId, message) {
+      const errorElement = document.getElementById(elementId);
+      if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+        
+        // Highlight the input
+        const input = errorElement.previousElementSibling;
+        if (input) {
+          input.classList.add('error-input');
+        }
+      }
+    }
+
+    function clearErrors() {
+      document.querySelectorAll('.error-message').forEach(el => {
+        el.style.display = 'none';
+        el.textContent = '';
+      });
+      
+      document.querySelectorAll('.apply-form input, .apply-form select, .apply-form textarea').forEach(el => {
+        el.classList.remove('error-input');
+      });
+    }
+
+    function showLoading(show) {
+      if (loadingSpinner) {
+        loadingSpinner.style.display = show ? 'block' : 'none';
+      }
+      if (submitBtn) {
+        submitBtn.disabled = show;
+      }
+      if (careerForm) {
+        const inputs = careerForm.querySelectorAll('input, select, textarea, .upload-btn');
+        inputs.forEach(input => {
+          if (input.tagName !== 'BUTTON') {
+            input.disabled = show;
+          }
+        });
+      }
+    }
+
+    // Form submission
+    if (careerForm) {
+      careerForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Clear previous errors
+        clearErrors();
+        
+        // Get form data
+        const formData = {
+          firstName: document.getElementById('firstName')?.value.trim() || '',
+          lastName: document.getElementById('lastName')?.value.trim() || '',
+          email: document.getElementById('email')?.value.trim() || '',
+          phoneNumber: document.getElementById('phoneNumber')?.value.trim() || '',
+          qualification: document.getElementById('qualification')?.value.trim() || '',
+          jobRole: document.getElementById('jobRole')?.value || '',
+          comments: document.getElementById('comments')?.value.trim() || ''
+        };
+        
+        // Basic validation
+        let isValid = true;
+        
+        // First Name validation
+        if (!formData.firstName) {
+          showError('firstNameError', 'First name is required');
+          isValid = false;
+        } else if (formData.firstName.length < 2) {
+          showError('firstNameError', 'First name must be at least 2 characters');
+          isValid = false;
+        }
+        
+        // Last Name validation
+        if (!formData.lastName) {
+          showError('lastNameError', 'Last name is required');
+          isValid = false;
+        } else if (formData.lastName.length < 2) {
+          showError('lastNameError', 'Last name must be at least 2 characters');
+          isValid = false;
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!formData.email) {
+          showError('emailError', 'Email is required');
+          isValid = false;
+        } else if (!emailRegex.test(formData.email)) {
+          showError('emailError', 'Please enter a valid email address');
+          isValid = false;
+        }
+        
+        // Phone validation
+        const phoneRegex = /^[6-9]\d{9}$/;
+        if (!formData.phoneNumber) {
+          showError('phoneError', 'Phone number is required');
+          isValid = false;
+        } else if (!phoneRegex.test(formData.phoneNumber)) {
+          showError('phoneError', 'Please enter a valid 10-digit Indian mobile number');
+          isValid = false;
+        }
+        
+        // Job Role validation
+        if (!formData.jobRole) {
+          showError('jobRoleError', 'Please select a job role');
+          isValid = false;
+        }
+        
+        // If validation fails, stop here
+        if (!isValid) {
+          const firstError = document.querySelector('.error-message[style*="display: block"]');
+          if (firstError) {
+            firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          return;
+        }
+        
+        // Show loading
+        showLoading(true);
+        
+        try {
+          const response = await fetch('http://localhost:5000/api/forms/career', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+          });
+          
+          const data = await response.json();
+          
+          if (data.success) {
+            // Hide form, show success message
+            if (careerForm) careerForm.style.display = 'none';
+            if (successMessage) successMessage.style.display = 'block';
+            
+            // Scroll to success message
+            if (successMessage) successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } else {
+            // Show errors from server
+            if (data.errors && Array.isArray(data.errors)) {
+              data.errors.forEach(error => {
+                if (error.toLowerCase().includes('first name')) {
+                  showError('firstNameError', error);
+                } else if (error.toLowerCase().includes('last name')) {
+                  showError('lastNameError', error);
+                } else if (error.toLowerCase().includes('email')) {
+                  showError('emailError', error);
+                } else if (error.toLowerCase().includes('phone') || error.toLowerCase().includes('mobile')) {
+                  showError('phoneError', error);
+                } else if (error.toLowerCase().includes('job role')) {
+                  showError('jobRoleError', error);
+                } else if (error.toLowerCase().includes('comment')) {
+                  showError('commentsError', error);
+                }
+              });
+            } else {
+              alert(data.message || 'Something went wrong. Please try again.');
+            }
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Network error. Please check your connection and try again.');
+        } finally {
+          showLoading(false);
+        }
+      });
+    }
+
+    // Remove error on input
+    document.querySelectorAll('#careerForm input, #careerForm select, #careerForm textarea').forEach(input => {
+      if (input) {
+        input.addEventListener('input', function() {
+          this.classList.remove('error-input');
+          const errorId = this.id + 'Error';
+          const errorElement = document.getElementById(errorId);
+          if (errorElement) {
+            errorElement.style.display = 'none';
+          }
+        });
+      }
+    });
+
+    // Remove any active class from menu items
+    document.querySelectorAll('.menu a, .dropdown a').forEach(link => {
       link.classList.remove('active');
     });
-    document.querySelectorAll('.dropdown a').forEach(link => {
-      link.classList.remove('active');
-    });
+    
   });
 </script>
 
