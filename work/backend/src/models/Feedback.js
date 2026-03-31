@@ -41,14 +41,13 @@ const feedbackSchema = new mongoose.Schema({
 });
 
 // Add debug pre-save middleware
-feedbackSchema.pre('save', function(next) {
+feedbackSchema.pre('save', function () {
     console.log('📝 Attempting to save feedback:', {
         name: this.name,
         email: this.email,
         rating: this.rating,
         category: this.category
     });
-    next();
 });
 
 // Add post-save middleware

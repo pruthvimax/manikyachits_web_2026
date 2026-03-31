@@ -164,11 +164,38 @@ window.validateModal = function() {
     hideError(email);
   }
 
-  // SUCCESS
   if (valid) {
-    alert("Thank you! Our advisor will contact you shortly.");
-    window.closeModal();
-  }
+
+  const data = {
+    mobile: mobile.value.trim(),
+    name: name.value.trim(),
+    email: email.value.trim()
+  };
+
+  fetch("http://localhost:5000/api/forms/chit-plan", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  })
+  .then(res => res.json())
+  .then(result => {
+
+    if (result.success) {
+      alert(result.message || "Thank you! Our advisor will contact you shortly.");
+      window.closeModal();
+    } else {
+      alert("Submission failed. Please try again.");
+    }
+
+  })
+  .catch(err => {
+    console.error("Chit plan error:", err);
+    alert("Server error. Please try again later.");
+  });
+
+}
 };
 
 // Remove error while typing
