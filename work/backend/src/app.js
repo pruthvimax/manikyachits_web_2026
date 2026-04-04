@@ -15,7 +15,7 @@ const cors = require("cors");
 const allowedOrigins = [
   "http://localhost:5500",
   "http://127.0.0.1:5500",
-  "https://manikyachits.netlify.app"
+  "https://manikyachits.vercel.app"
 ];
 
 app.use(cors({
