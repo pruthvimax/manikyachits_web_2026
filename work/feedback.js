@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-const API_URL = "http://localhost:5000/api/forms/feedback";
+const API_BASE_URL = "https://manikyachitsweb2026-production.up.railway.app/api/forms";
 
 const form = document.getElementById('feedbackForm');
 const feedbackList = document.getElementById('feedbackList');

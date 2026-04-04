@@ -398,7 +398,7 @@ window.validateModal = async function() {
                 email: email.value.trim()
             };
 
-            const response = await fetch('http://localhost:5000/api/forms/chit-plan', {
+            fetch("https://manikyachitsweb2026-production.up.railway.app/api/forms/chit-plan", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
