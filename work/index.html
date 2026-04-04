@@ -676,6 +676,54 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <script src="main.js"></script>
+<script>
+const API_URL = "https://manikyachitsweb2026-production.up.railway.app/api/forms";
 
+async function validateModal() {
+
+  const mobile = document.getElementById("mobile").value.trim();
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+
+  if (!mobile || !name || !email) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  try {
+
+    const response = await fetch(`${API_URL}/chit-plan`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        mobile,
+        name,
+        email
+      })
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      alert("Thank you! Our advisor will contact you soon.");
+      closeModal();
+
+      document.getElementById("mobile").value = "";
+      document.getElementById("name").value = "";
+      document.getElementById("email").value = "";
+
+    } else {
+      alert(data.message || "Something went wrong");
+    }
+
+  } catch (error) {
+    console.error(error);
+    alert("Server error. Please try again later.");
+  }
+
+}
+</script>
 </body>
 </html>
