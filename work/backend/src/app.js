@@ -10,11 +10,27 @@ const app = express();
 app.use(helmet());
 
 // CORS configuration
+const cors = require("cors");
+
 const allowedOrigins = [
-  'http://localhost:5500',
-  'http://127.0.0.1:5500',
-  'https://manikyachits.netlify.app', // replace when frontend deployed
+  "http://localhost:5500",
+  "http://127.0.0.1:5500",
+  "https://manikyachits.netlify.app"
 ];
+
+app.use(cors({
+  origin: function (origin, callback) {
+
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+
+  }
+}));
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -39,10 +55,13 @@ app.use(express.json());
 app.use('/api/forms', formRoutes);
 
 // Health check route
-app.get('/api/health', (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: 'Manikya API is running'
+app.get('/', (req, res) => {
+  res.json({
+    message: "Manikya Chits API is running",
+    endpoints: {
+      health: "/api/health",
+      forms: "/api/forms"
+    }
   });
 });
 
