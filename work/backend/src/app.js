@@ -9,36 +9,25 @@ const app = express();
 // Security headers
 app.use(helmet());
 
-// CORS configuration
-const cors = require("cors");
-
+// Allowed origins
 const allowedOrigins = [
   "http://localhost:5500",
   "http://127.0.0.1:5500",
   "https://manikyachits.vercel.app"
 ];
 
+// CORS configuration
 app.use(cors({
   origin: function (origin, callback) {
 
     if (!origin) return callback(null, true);
 
-    if (allowedOrigins.indexOf(origin) !== -1) {
+    if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
     }
 
-  }
-}));
-
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('CORS not allowed'));
-    }
   },
   methods: ['GET','POST','PUT','DELETE','PATCH'],
   allowedHeaders: ['Content-Type','Authorization'],
@@ -54,7 +43,7 @@ app.use(express.json());
 // Routes
 app.use('/api/forms', formRoutes);
 
-// Health check route
+// Root route
 app.get('/', (req, res) => {
   res.json({
     message: "Manikya Chits API is running",
