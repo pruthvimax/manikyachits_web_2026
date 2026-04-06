@@ -9,29 +9,34 @@ const app = express();
 // Security headers
 app.use(helmet());
 
-// Allowed origins
+// Allowed origins - UPDATED with proper Vercel URLs
 const allowedOrigins = [
   "http://localhost:5500",
   "http://127.0.0.1:5500",
-  "https://manikyachits.vercel.app"
+  "http://localhost:3000",
+  "http://localhost:5000",
+  "https://manikyachits.vercel.app",
+  "https://manikyachits-git-main-pruthvimax.vercel.app",
+  "https://manikyachits-pruthvimax.vercel.app"
 ];
 
-// CORS configuration
+// CORS configuration - FIXED VERSION
 app.use(cors({
   origin: function (origin, callback) {
-
+    // Allow requests with no origin (like mobile apps or curl)
     if (!origin) return callback(null, true);
-
+    
     if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.log('❌ Blocked origin:', origin);
       callback(new Error("Not allowed by CORS"));
     }
-
   },
-  methods: ['GET','POST','PUT','DELETE','PATCH'],
-  allowedHeaders: ['Content-Type','Authorization'],
-  credentials: true
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+  optionsSuccessStatus: 200
 }));
 
 // Logging
@@ -39,6 +44,7 @@ app.use(morgan('dev'));
 
 // Parse JSON
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/forms', formRoutes);
@@ -54,13 +60,38 @@ app.get('/', (req, res) => {
   });
 });
 
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.json({
+    success: true,
+    message: "Manikya API is running",
+    timestamp: new Date().toISOString()
+  });
+});
+
 // Global error handler
 app.use((err, req, res, next) => {
   console.error('Server Error:', err.message);
-
+  
+  // Handle CORS errors specifically
+  if (err.message === "Not allowed by CORS") {
+    return res.status(403).json({
+      success: false,
+      message: 'CORS error: Origin not allowed'
+    });
+  }
+  
   res.status(500).json({
     success: false,
     message: 'Internal server error'
+  });
+});
+
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: 'Route not found'
   });
 });
 

@@ -1,38 +1,13 @@
 const ChitScheme = require('../models/ChitScheme');
-const nodemailer = require('nodemailer');
 
-// Create email transporter
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  }
-});
-
-// Submit chit plan
+// Submit chit plan with WhatsApp notification
 const submitChitPlan = async (req, res) => {
   try {
-
     const chitPlan = new ChitScheme(req.body);
     await chitPlan.save();
 
-    // Email message
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.ADMIN_EMAIL,
-      subject: "📩 New Chit Plan Inquiry - Manikya Chits",
-      html: `
-        <h2>New Chit Plan Request</h2>
-        <p><strong>Name:</strong> ${chitPlan.name}</p>
-        <p><strong>Mobile:</strong> ${chitPlan.mobile}</p>
-        <p><strong>Email:</strong> ${chitPlan.email}</p>
-        <p><strong>Submitted At:</strong> ${chitPlan.createdAt}</p>
-      `
-    };
-
-    // Send email
-    await transporter.sendMail(mailOptions);
+    // Send WhatsApp notification
+    await sendWhatsAppNotification(chitPlan);
 
     res.status(201).json({
       success: true,
@@ -47,7 +22,6 @@ const submitChitPlan = async (req, res) => {
     });
 
   } catch (error) {
-
     console.error('Chit plan form error:', error);
 
     if (error.name === 'ValidationError') {
@@ -65,29 +39,47 @@ const submitChitPlan = async (req, res) => {
   }
 };
 
+// WhatsApp notification function
+async function sendWhatsAppNotification(data) {
+  // Using CallMeBot API (completely free)
+  const phoneNumber = "91XXXXXXXXXX"; // REPLACE WITH YOUR PHONE NUMBER (without +, with country code)
+  const apiKey = "YOUR_API_KEY"; // Get from https://www.callmebot.com/blog/free-whatsapp-api/
+  
+  const message = `🔔 *NEW CHIT PLAN INQUIRY* 🔔
+  
+📌 *Name:* ${data.name}
+📞 *Mobile:* ${data.mobile}
+📧 *Email:* ${data.email}
+⏰ *Time:* ${data.createdAt}
 
-// Optional: To view submissions (for testing)
+📱 *Customer wants more information about chit plans.*`;
+
+  const url = `https://api.callmebot.com/whatsapp.php?phone=${phoneNumber}&text=${encodeURIComponent(message)}&apikey=${apiKey}`;
+  
+  try {
+    const response = await fetch(url);
+    console.log('WhatsApp notification sent:', response.status);
+  } catch (error) {
+    console.error('WhatsApp send failed:', error);
+    // Don't throw error - form submission still succeeds
+  }
+}
+
 const getChitPlanSubmissions = async (req, res) => {
   try {
-
     const submissions = await ChitScheme.find().sort({ createdAt: -1 });
-
     res.json({
       success: true,
       count: submissions.length,
       data: submissions
     });
-
   } catch (error) {
-
     res.status(500).json({
       success: false,
       message: error.message
     });
-
   }
 };
-
 
 module.exports = {
   submitChitPlan,
