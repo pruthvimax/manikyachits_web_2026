@@ -1,38 +1,24 @@
-const { GreenAPI } = require('greenapi');
-
-// Initialize GreenAPI client
-let greenApiClient = null;
-
-function getGreenAPIClient() {
-    if (!greenApiClient) {
-        const idInstance = process.env.GREENAPI_ID_INSTANCE;
-        const apiToken = process.env.GREENAPI_API_TOKEN;
-        
-        if (!idInstance || !apiToken) {
-            throw new Error('GreenAPI credentials not configured in environment variables');
-        }
-        
-        greenApiClient = new GreenAPI({
-            idInstance: idInstance,
-            apiTokenInstance: apiToken,
-            apiUrl: process.env.GREENAPI_API_URL || 'https://api.green-api.com'
-        });
-    }
-    return greenApiClient;
-}
+// utils/whatsapp.js - CORRECTED VERSION
 
 /**
- * Send WhatsApp message using GreenAPI
+ * Send WhatsApp message using GreenAPI with native fetch
  * @param {string} message - The message text to send
  * @returns {Promise<boolean>} - Returns true if sent successfully
  */
 async function sendWhatsAppMessage(message) {
     try {
-        const client = getGreenAPIClient();
+        const idInstance = process.env.GREENAPI_ID_INSTANCE;
+        const apiToken = process.env.GREENAPI_API_TOKEN;
         const recipientNumber = process.env.WHATSAPP_RECIPIENT_NUMBER;
         
+        if (!idInstance || !apiToken) {
+            console.error('❌ GreenAPI credentials missing in environment variables');
+            return false;
+        }
+        
         if (!recipientNumber) {
-            throw new Error('WHATSAPP_RECIPIENT_NUMBER not configured');
+            console.error('❌ WHATSAPP_RECIPIENT_NUMBER not configured');
+            return false;
         }
         
         // Format recipient number: add @c.us suffix if not present
@@ -41,31 +27,46 @@ async function sendWhatsAppMessage(message) {
             chatId = `${chatId}@c.us`;
         }
         
+        // Fixed URL construction - removed trailing slash issue
+        const url = `https://api.green-api.com/waInstance${idInstance}/sendMessage/${apiToken}`;
+        
+        const payload = {
+            chatId: chatId,
+            message: message
+        };
+        
         console.log(`📱 Sending WhatsApp message to ${chatId}...`);
         
-        // Send the message using GreenAPI
-        const response = await client.sending.sendMessage(chatId, message);
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
         
-        if (response && response.code === 200) {
+        const result = await response.json();
+        
+        // GreenAPI returns idMessage on success, error on failure
+        if (result.idMessage) {
             console.log('✅ WhatsApp message sent successfully!');
-            console.log('Message ID:', response.data?.idMessage);
+            console.log('Message ID:', result.idMessage);
+            return true;
+        } else if (result.code === 200) {
+            // Alternative success response format
+            console.log('✅ WhatsApp message sent successfully!');
             return true;
         } else {
-            console.error('❌ GreenAPI error:', response);
+            console.error('❌ GreenAPI error:', result);
             return false;
         }
     } catch (error) {
         console.error('❌ Failed to send WhatsApp message:', error.message);
-        if (error.response) {
-            console.error('API Response:', error.response.data);
-        }
         return false;
     }
 }
 
-/**
- * Format notification message for Chit Plan Inquiry
- */
+// Keep all the formatting functions the same as before...
 function formatChitPlanMessage(data) {
     const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
     
@@ -79,13 +80,9 @@ function formatChitPlanMessage(data) {
 💡 *Customer is interested in chit plans. Please contact them soon.*`;
 }
 
-/**
- * Format notification message for Contact Form
- */
 function formatContactMessage(data) {
     const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
     
-    // Map subject codes to readable labels
     const subjectLabels = {
         'chit-info': 'Chit Information',
         'existing-customer': 'Existing Customer',
@@ -109,9 +106,6 @@ function formatContactMessage(data) {
 ⏰ *Time:* ${timestamp}`;
 }
 
-/**
- * Format notification message for Feedback
- */
 function formatFeedbackMessage(data) {
     const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
     const stars = '⭐'.repeat(data.rating);
@@ -139,9 +133,6 @@ function formatFeedbackMessage(data) {
 ⏰ *Time:* ${timestamp}`;
 }
 
-/**
- * Format notification message for Career Application
- */
 function formatCareerMessage(data) {
     const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
     
@@ -156,7 +147,6 @@ function formatCareerMessage(data) {
 ⏰ *Time:* ${timestamp}`;
 }
 
-// Export all functions
 module.exports = {
     sendWhatsAppMessage,
     formatChitPlanMessage,
