@@ -1801,3 +1801,36 @@ body {
         justify-content: flex-start;
     }
 }
+
+/* Legal Compliance Strip */
+.legal-compliance-strip {
+    background: #1a3c2c;
+    color: #ffffff;
+    padding: 15px 0;
+    font-size: 13px;
+    border-top: 2px solid #ffd700;
+    border-bottom: 1px solid #2a5c3c;
+}
+
+.legal-compliance-strip .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.legal-compliance-strip p {
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+.legal-compliance-strip strong {
+    color: #ffd700;
+}
+
+@media (max-width: 768px) {
+    .legal-compliance-strip {
+        font-size: 11px;
+        padding: 10px 0;
+    }
+}
