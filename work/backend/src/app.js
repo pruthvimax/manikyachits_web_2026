@@ -9,17 +9,17 @@ const app = express();
 // Security headers
 app.use(helmet());
 
-// Allowed origins - UPDATED with proper Vercel URLs
+
+// Allowed origins - ADD YOUR NEW DOMAIN
 const allowedOrigins = [
   "http://localhost:5500",
   "http://127.0.0.1:5500",
-  "http://localhost:3000",
-  "http://localhost:5000",
   "https://manikyachits.vercel.app",
-  "https://manikyachits-git-main-pruthvimax.vercel.app",
-  "https://manikyachits-pruthvimax.vercel.app"
+  "https://manikyachits.vercel.app/",
+  "https://www.manikya-chaitsprivatelimited.com",  // ← ADD THIS
+  "https://manikya-chaitsprivatelimited.com",       // ← ADD THIS (without www)
+  "https://manikya-chaits-web-2026-94sjiz7oo-pruthvimaxs-projects.vercel.app" // ← Your Vercel preview URL
 ];
-
 // CORS configuration - FIXED VERSION
 app.use(cors({
   origin: function (origin, callback) {
