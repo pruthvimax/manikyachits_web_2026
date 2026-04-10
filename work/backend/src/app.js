@@ -18,7 +18,8 @@ const allowedOrigins = [
   "https://manikyachits.vercel.app/",
   "https://www.manikya-chaitsprivatelimited.com",  // ← ADD THIS
   "https://manikya-chaitsprivatelimited.com",       // ← ADD THIS (without www)
-  "https://manikya-chaits-web-2026-94sjiz7oo-pruthvimaxs-projects.vercel.app" // ← Your Vercel preview URL
+  "https://manikya-chaits-web-2026-94sjiz7oo-pruthvimaxs-projects.vercel.app", // ← Your Vercel preview URL
+   "https://manikya-chaitsprivatelimited.com"     
 ];
 // CORS configuration - FIXED VERSION
 app.use(cors({
