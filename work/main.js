@@ -344,6 +344,7 @@ window.validateModal = async function() {
             err.style.display = "block";
         }
     };
+    
     const hideError = (input) => {
         input.classList.remove("error-input");
         const err = input.nextElementSibling;
@@ -388,6 +389,7 @@ window.validateModal = async function() {
     if (valid) {
         const submitBtn = document.querySelector(".assist-btn");
         const originalText = submitBtn.textContent;
+        
         try {
             submitBtn.textContent = "Submitting...";
             submitBtn.disabled = true;
@@ -398,31 +400,33 @@ window.validateModal = async function() {
                 email: email.value.trim()
             };
 
-            fetch("https://manikyachitsweb2026-production.up.railway.app/api/forms/chit-plan", {
+            // ✅ FIXED: Store the response and await it properly
+            const response = await fetch("https://manikyachitsweb2026-production.up.railway.app/api/forms/chit-plan", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             });
 
             const data = await response.json();
+            
             if (data.success) {
                 alert('Thank you! Our advisor will contact you shortly.');
                 window.closeModal();
-                mobile.value = ''; name.value = ''; email.value = '';
+                mobile.value = '';
+                name.value = '';
+                email.value = '';
             } else {
-                alert('Something went wrong. Please try again.');
+                alert(data.message || 'Something went wrong. Please try again.');
             }
         } catch (error) {
-            console.log('Note: Your data may still be saved.');
-            
-            window.closeModal();
+            console.error('Submission error:', error);
+            alert('Network error. Please check your connection and try again.');
         } finally {
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
         }
     }
 };
-
 // Remove error while typing
 document.addEventListener("input", function(e) {
     if (e.target.closest(".assist-form input")) {
