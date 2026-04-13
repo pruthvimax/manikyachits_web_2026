@@ -7,6 +7,7 @@ A paid client project developed for **Manikya Chits Private Limited**. This repo
 ## Project Overview
 
 The **Manikya Chits Website** is a business website created to provide a professional online presence for **Manikya Chits Private Limited**. The website is designed to present company information clearly, improve customer trust, and make it easier for users to explore services, understand chit plans, find branches, contact the company, and submit feedback.
+live_URL = www.manikyachitsprivatelimited.com
 
 The project focuses on:
 - Clean and responsive UI
