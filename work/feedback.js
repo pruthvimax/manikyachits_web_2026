@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-const API_BASE_URL = "https://manikyachitsweb2026-production.up.railway.app/api/forms";
+// API Configuration
+const API_BASE_URL = 'https://manikyachits-backend.onrender.com/api/forms';
 
 const form = document.getElementById('feedbackForm');
 const feedbackList = document.getElementById('feedbackList');

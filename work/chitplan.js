@@ -172,7 +172,8 @@ window.validateModal = function() {
     email: email.value.trim()
   };
 
-  fetch("https://manikyachitsweb2026-production.up.railway.app/api/forms/chit-plan", {
+// ✅ ADD THIS LINE (new Render URL):
+fetch("https://manikyachits-backend.onrender.com/api/forms/chit-plan", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"

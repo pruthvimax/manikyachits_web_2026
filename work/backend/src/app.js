@@ -16,8 +16,10 @@ const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:5000",
   "https://manikyachits.vercel.app",
-  "https://www.manikyachitsprivatelimited.com",  // YOUR CUSTOM DOMAIN
-  "https://manikyachitsprivatelimited.com"       // WITHOUT WWW
+  "https://www.manikyachitsprivatelimited.com",
+  "https://manikyachitsprivatelimited.com",
+  // ADD YOUR RENDER BACKEND URL (after deployment)
+  "https://manikyachits-backend.onrender.com"  // ← Will be your actual Render URL
 ];
 
 // CORS configuration

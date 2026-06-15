@@ -401,7 +401,7 @@ window.validateModal = async function() {
             };
 
             // ✅ FIXED: Store the response and await it properly
-            const response = await fetch("https://manikyachitsweb2026-production.up.railway.app/api/forms/chit-plan", {
+            const response = await fetch("https://manikyachits-backend.onrender.com/api/forms/chit-plan", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
