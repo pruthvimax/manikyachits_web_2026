@@ -18,8 +18,8 @@ const allowedOrigins = [
   "https://manikyachits.vercel.app",
   "https://www.manikyachitsprivatelimited.com",
   "https://manikyachitsprivatelimited.com",
-  // ADD YOUR RENDER BACKEND URL (after deployment)
-  "https://manikyachits-backend.onrender.com"  // ← Will be your actual Render URL
+  "https://manikyachits-backend.onrender.com"
+    // ← Will be your actual Render URL
 ];
 
 // CORS configuration
