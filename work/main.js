@@ -2,103 +2,104 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Manikya Chits Website Loaded");
 
     // ================= HAMBURGER MENU FIXED =================
-const hamburger = document.getElementById('hamburger');
-const menu = document.getElementById('menu');
-const body = document.body;
-const BREAKPOINT = 992;
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('menu');
+    const body = document.body;
+    const BREAKPOINT = 992;
 
-if (hamburger && menu) {
-    hamburger.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        this.classList.toggle('active');
-        menu.classList.toggle('active');
-        
-        if (menu.classList.contains('active')) {
-            body.style.overflow = 'hidden';
-        } else {
-            body.style.overflow = '';
-        }
-    });
-
-    const allLinks = menu.querySelectorAll('a');
-    allLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            if (window.innerWidth <= BREAKPOINT) {
-                const parentItem = this.closest('.nav-item');
-                if (!parentItem || !parentItem.querySelector('.dropdown')) {
-                    hamburger.classList.remove('active');
-                    menu.classList.remove('active');
-                    body.style.overflow = '';
-                }
+    if (hamburger && menu) {
+        hamburger.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            this.classList.toggle('active');
+            menu.classList.toggle('active');
+            
+            if (menu.classList.contains('active')) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = '';
             }
         });
-    });
 
-    document.addEventListener('click', function(e) {
-        if (menu.classList.contains('active') && 
-            !menu.contains(e.target) && 
-            !hamburger.contains(e.target)) {
-            hamburger.classList.remove('active');
-            menu.classList.remove('active');
-            body.style.overflow = '';
-        }
-    });
-}
-
-// Mobile dropdown toggles
-const navItems = document.querySelectorAll('.nav-item');
-navItems.forEach(item => {
-    const link = item.querySelector('a');
-    const dropdown = item.querySelector('.dropdown');
-    
-    if (link && dropdown) {
-        link.addEventListener('click', function(e) {
-            if (window.innerWidth <= BREAKPOINT) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                const isActive = item.classList.contains('active');
-                
-                navItems.forEach(navItem => {
-                    if (navItem !== item) {
-                        navItem.classList.remove('active');
+        const allLinks = menu.querySelectorAll('a');
+        allLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= BREAKPOINT) {
+                    const parentItem = this.closest('.nav-item');
+                    if (!parentItem || !parentItem.querySelector('.dropdown')) {
+                        hamburger.classList.remove('active');
+                        menu.classList.remove('active');
+                        body.style.overflow = '';
                     }
-                });
-                
-                if (!isActive) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
                 }
+            });
+        });
+
+        document.addEventListener('click', function(e) {
+            if (menu.classList.contains('active') && 
+                !menu.contains(e.target) && 
+                !hamburger.contains(e.target)) {
+                hamburger.classList.remove('active');
+                menu.classList.remove('active');
+                body.style.overflow = '';
             }
         });
     }
-});
 
-document.addEventListener('click', function(e) {
-    if (window.innerWidth <= BREAKPOINT) {
-        if (!e.target.closest('.nav-item')) {
+    // Mobile dropdown toggles
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        const link = item.querySelector('a');
+        const dropdown = item.querySelector('.dropdown');
+        
+        if (link && dropdown) {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= BREAKPOINT) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const isActive = item.classList.contains('active');
+                    
+                    navItems.forEach(navItem => {
+                        if (navItem !== item) {
+                            navItem.classList.remove('active');
+                        }
+                    });
+                    
+                    if (!isActive) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                }
+            });
+        }
+    });
+
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= BREAKPOINT) {
+            if (!e.target.closest('.nav-item')) {
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                });
+            }
+        }
+    });
+
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > BREAKPOINT) {
+            if (menu && menu.classList.contains('active')) {
+                menu.classList.remove('active');
+                if (hamburger) hamburger.classList.remove('active');
+                body.style.overflow = '';
+            }
             navItems.forEach(item => {
                 item.classList.remove('active');
             });
         }
-    }
-});
+    });
 
-window.addEventListener('resize', function() {
-    if (window.innerWidth > BREAKPOINT) {
-        if (menu && menu.classList.contains('active')) {
-            menu.classList.remove('active');
-            if (hamburger) hamburger.classList.remove('active');
-            body.style.overflow = '';
-        }
-        navItems.forEach(item => {
-            item.classList.remove('active');
-        });
-    }
-});
     // ================= STICKY NAVBAR =================
     const header = document.querySelector(".site-header");
     const navbar = document.querySelector(".navbar");
@@ -125,14 +126,12 @@ window.addEventListener('resize', function() {
             if (target) {
                 e.preventDefault();
 
-                // Close mobile menu if open
                 if (window.innerWidth <= BREAKPOINT && menu && menu.classList.contains("active")) {
                     menu.classList.remove("active");
                     hamburger.classList.remove("active");
                     document.body.style.overflow = "";
                 }
 
-                // Smooth scroll to target
                 const headerHeight = navbar ? navbar.offsetHeight : 0;
                 const targetPosition = target.offsetTop - headerHeight - 20;
                 window.scrollTo({ top: targetPosition, behavior: "smooth" });
@@ -293,7 +292,7 @@ window.addEventListener('resize', function() {
     }
 });
 
-// ================= GLOBAL MODAL FUNCTIONS (unchanged) =================
+// ================= GLOBAL MODAL FUNCTIONS =================
 window.openModal = function(e) {
     if (e && typeof e.preventDefault === "function") e.preventDefault();
     const modal = document.getElementById("assistModal");
@@ -307,12 +306,25 @@ window.openModal = function(e) {
 window.closeModal = function() {
     const modal = document.getElementById("assistModal");
     if (!modal) return;
+
     modal.classList.remove("active");
     document.body.style.overflow = "";
-    const form = modal.querySelector(".assist-form");
-    if (form) form.reset();
-    modal.querySelectorAll(".error-input").forEach(el => el.classList.remove("error-input"));
-    modal.querySelectorAll(".error").forEach(el => el.style.display = "none");
+
+    const mobile = document.getElementById("mobile");
+    const name = document.getElementById("name");
+    const email = document.getElementById("email");
+
+    if (mobile) mobile.value = "";
+    if (name) name.value = "";
+    if (email) email.value = "";
+
+    modal.querySelectorAll(".error-input").forEach(el => {
+        el.classList.remove("error-input");
+    });
+
+    modal.querySelectorAll(".error").forEach(el => {
+        el.style.display = "none";
+    });
 };
 
 // Close modal when clicking background
@@ -329,7 +341,7 @@ document.addEventListener("keydown", function(e) {
     }
 });
 
-// Form validation (unchanged)
+// ================= FIXED VALIDATE MODAL =================
 window.validateModal = async function() {
     const mobile = document.getElementById("mobile");
     const name = document.getElementById("name");
@@ -400,7 +412,7 @@ window.validateModal = async function() {
                 email: email.value.trim()
             };
 
-            // ✅ FIXED: Store the response and await it properly
+            // Send data to backend
             const response = await fetch("https://manikyachits-backend.onrender.com/api/forms/chit-plan", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -409,13 +421,15 @@ window.validateModal = async function() {
 
             const data = await response.json();
             
-            if (data.success) {
+            if (response.ok && data.success) {
+                // SUCCESS - Only one message!
                 alert('Thank you! Our advisor will contact you shortly.');
                 window.closeModal();
                 mobile.value = '';
                 name.value = '';
                 email.value = '';
             } else {
+                // ERROR from backend
                 alert(data.message || 'Something went wrong. Please try again.');
             }
         } catch (error) {
@@ -427,6 +441,7 @@ window.validateModal = async function() {
         }
     }
 };
+
 // Remove error while typing
 document.addEventListener("input", function(e) {
     if (e.target.closest(".assist-form input")) {
@@ -448,10 +463,8 @@ if (assistForm) {
 // Force fix for navigation links
 document.querySelectorAll('.menu a').forEach(link => {
     link.addEventListener('click', function(e) {
-        // Allow normal navigation if not on mobile or if it's not a dropdown toggle
         const href = this.getAttribute('href');
         if (href && !href.startsWith('#') && !href.startsWith('javascript')) {
-            // Let the browser navigate normally
             return true;
         }
     });
